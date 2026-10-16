@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/*
+  DESIGN SYSTEM — CyberShopOS
+  ---------------------------------------------------------------
+  Direction: Status Board (projectplan.md §4.1a, Decision 18).
+  This file executes that direction. It does not replace it.
+
+  Two rules govern everything here:
+
+  1. THE SIGNATURE — anything the MACHINE measures is set in the data
+     face. Anything a HUMAN reads is set in the UI face. So ₱1,011, 42:00,
+     10 min left and waiting 2 hr 15 min are all `font-data`, while
+     "Record payment" and "the PC is already free either way" are UI
+     sans. One glance separates the shop's own output from its own words.
+     This is why a number can be scanned across a room without reading a
+     word of it.
+
+  2. NO WEBFONT. Hosting is still Not decided (Decision 21), so both
+     stacks are system fonts chosen deliberately rather than inherited by
+     accident. Zero network requests, zero hosting impact — and the
+     stacks are now an explicit decision instead of an omission.
+*/
+
+@theme static {
+  /* ---- TYPOGRAPHY ------------------------------------------------ */
+  /* Anything a human reads. Declared, not inherited. */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif;
+
+  /* Anything the machine measures — THE SIGNATURE. Monospaced digits are
+     the whole point: peso amounts and countdowns line up in columns and
+     a changing digit never shifts the ones beside it. */
+  --font-data:
+    ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'SF Mono', Menlo, Consolas,
+    'Liberation Mono', monospace;
+
+  /* ---- STATE COLOURS — unchanged, and load-bearing ---------------- */
+  /* Four states, four hues, all distinguishable without colour. */
+  --color-state-free: #059669; /* emerald-600 — available    */
+  --color-state-busy: #d97706; /* amber-600   — rented       */
+  --color-state-issue: #7c3aed; /* violet-600  — issue        */
+  --color-state-fault: #dc2626; /* red-600     — unresponsive */
+
+  /* Tinted surfaces behind a state */
+  --color-surface-free: #ecfdf5; /* emerald-50 */
+  --color-surface-busy: #fffbeb; /* amber-50   */
+  --color-surface-issue: #f5f3ff; /* violet-50  */
+  --color-surface-fault: #fef2f2; /* red-50     */
+
+  /* ---- SHAPE ----------------------------------------------------- */
+  /* Three radii, named for what they are rather than how big they are,
+     so a card can never end up with a button's corner. */
+  --radius-control: 0.5rem; /* buttons, inputs, chips        */
+  --radius-card: 0.75rem; /* tiles, bills, panels        */
+  --radius-panel: 1rem; /* the pickers, which sit on top */
+
+  /* ---- ELEVATION ------------------------------------------------- */
+  /* Nothing lifts without a reason. A card sits on the page; a picker
+     sits on a card; the header sits on nothing. */
+  --shadow-card: 0 1px 2px 0 rgb(15 23 42 / 0.04), 0 1px 3px 0 rgb(15 23 42 / 0.06);
+  --shadow-raised: 0 4px 6px -1px rgb(15 23 42 / 0.07), 0 2px 4px -2px rgb(15 23 42 / 0.05);
+  --shadow-overlay: 0 12px 28px -8px rgb(15 23 42 / 0.14), 0 4px 10px -4px rgb(15 23 42 / 0.07);
+}
+
+@layer base {
+  /*
+    One rule rather than a transition class on forty controls. 150ms is
+    long enough to read as movement and short enough not to lag a tap.
+  */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role='button'] {
+    transition-property: color, background-color, border-color, box-shadow, opacity, transform;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Keyboard focus must be obvious at a counter, where nobody is
+     hovering and the pointer gives no clue where you are. */
+  :focus-visible {
+    outline: 2px solid var(--color-slate-900);
+    outline-offset: 2px;
+  }
+
+  /* Numbers never reflow as they tick. */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/*
+  The app deliberately has no ambient motion — a blinking tile at a busy
+  counter is the distraction the design exists to avoid (§6.1.2a). This
+  respects a stated OS preference on top of that.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}

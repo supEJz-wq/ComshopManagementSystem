@@ -1,0 +1,182 @@
+# ============================================================
+#  CyberShopOS — Git ignore
+#  Scanned 2026-10-17 against the whole project before the first commit.
+# ============================================================
+
+
+# ============================================================
+#  1. SECRETS — NEVER COMMIT
+# ============================================================
+
+# Environment files hold real credentials. This is the single most
+# important rule in this file.
+.env
+.env.*
+!.env.example
+
+# Credential-shaped files
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+credentials.json
+id_rsa*
+*.keystore
+
+
+# ============================================================
+#  2. DATABASE BACKUPS — CRITICAL
+# ============================================================
+#
+#  Each .bak is a COMPLETE dump of the comshop database: both account
+#  password hashes, every PC name, every transaction amount, and the
+#  cashier's name. 7 of them is ~48 MB of real shop data.
+#
+#  Take backups with:  php server/backup.php
+#  Keep them on this machine only.
+backups/
+*.bak
+*.bakmdf
+*.bakldf
+*.mdf
+*.ldf
+*.ndf
+
+
+# ============================================================
+#  3. DATABASE SCRIPTS — NOT COMMITTED
+# ============================================================
+#
+#  Requested by the owner.
+#
+#  NOTE: server/update.php, backup.php and restore.php all read from
+#  this folder. With it ignored, someone who clones the repository gets
+#  the application code but NOT the schema, the seed, or the
+#  migrations — and update.php will fail with "No such file".
+#  That is the intended trade-off: code travels, shop data does not.
+database/
+
+
+# ============================================================
+#  4. PROJECT DOCUMENTATION — NOT COMMITTED
+# ============================================================
+#
+#  Requested by the owner. Contains 113 recorded decisions, the pricing
+#  model, the business rules and the financial logic of the shop.
+projectplan/
+
+
+# ============================================================
+#  5. AI TOOLING — NOT PROJECT CODE
+# ============================================================
+#
+#  Third-party skill libraries, ~200 files including compiled .pyc
+#  bytecode. Not written by this project and not part of it.
+#  skills-lock.json pins them by hash, so they can be reinstalled.
+#
+#  Remove these two lines if you want the tooling committed.
+.agents/
+.opencode/
+
+
+# ============================================================
+#  6. DEPENDENCIES
+# ============================================================
+
+node_modules/
+vendor/
+bower_components/
+
+
+# ============================================================
+#  7. BUILD OUTPUT
+# ============================================================
+#
+#  Regenerate with `npm run build`. Never committed.
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+
+# ============================================================
+#  8. CACHE
+# ============================================================
+
+.cache/
+.temp/
+.tmp/
+*.tmp
+__pycache__/
+*.py[cod]
+
+.phpunit.cache/
+.php-cs-fixer.cache
+.eslintcache
+.stylelintcache
+
+
+# ============================================================
+#  9. LOGS
+# ============================================================
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+
+
+# ============================================================
+#  10. LOCAL DATABASE FILES
+# ============================================================
+
+*.sqlite
+*.sqlite3
+*.db
+data/*.json
+
+
+# ============================================================
+#  11. USER CONTENT
+# ============================================================
+
+uploads/
+public/uploads/
+
+
+# ============================================================
+#  12. LOCK FILES — THESE *MUST* BE COMMITTED
+# ============================================================
+#
+#  The opposite of secrets. They pin exact dependency versions so every
+#  machine installs an identical tree. Un-ignored explicitly in case a
+#  parent rule ever matches them.
+!package-lock.json
+!composer.lock
+
+
+# ============================================================
+#  13. TEST COVERAGE
+# ============================================================
+
+coverage/
+*.lcov
+
+
+# ============================================================
+#  14. EDITOR & OPERATING SYSTEM
+# ============================================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
