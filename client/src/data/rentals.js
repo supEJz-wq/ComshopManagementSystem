@@ -200,6 +200,32 @@ export const DURATION_PRESETS = [
   { label: '6 hr', minutes: 360 },
 ]
 /*
+  Milliseconds since the epoch, from whatever shape a timestamp arrives in.
+
+  WHY THIS EXISTS. Every timestamp used to be a NUMBER — the mock data was built
+  with `Date.now()` and arithmetic. Since Phase 11 they arrive from the API as
+  ISO STRINGS.
+
+      now - rental.blockStartedAt
+      1758000000000 - "2026-10-17T03:00:00.000"   ->  NaN
+
+  That is where "NaN : NaN" on the board came from. Worse, a comparison like
+  `timestamp < range.start` between a string and a number does NOT produce NaN —
+  JavaScript coerces the number to a string and compares CHARACTERS, which
+  quietly filters revenue wrongly. A wrong money figure is far worse than a
+  broken timer, so the conversion is done in one place and used by both files.
+*/
+export function toMillis(value) {
+  if (typeof value === 'number') return Number.isFinite(value) ? value : 0
+  if (value instanceof Date) return value.getTime()
+  if (typeof value === 'string') {
+    const parsed = Date.parse(value)
+    return Number.isNaN(parsed) ? 0 : parsed
+  }
+  return 0
+}
+
+/*
   Remaining time on the display.
 
   Wraps inside the block, so the result is always 1..blockSeconds and is
@@ -207,7 +233,7 @@ export const DURATION_PRESETS = [
 */
 export function getDisplayRemaining(rental, now) {
   const blockMs = rental.blockSeconds * 1000
-  const intoBlock = now - rental.blockStartedAt
+  const intoBlock = now - toMillis(rental.blockStartedAt)
   const wrapped = ((intoBlock % blockMs) + blockMs) % blockMs
   return Math.max(1, Math.ceil((blockMs - wrapped) / 1000))
 }
@@ -217,7 +243,7 @@ export function getDisplayRemaining(rental, now) {
   touches it.
 */
 export function getElapsedSeconds(rental, now) {
-  return Math.max(0, Math.floor((now - rental.startedAt) / 1000))
+  return Math.max(0, Math.floor((now - toMillis(rental.startedAt)) / 1000))
 }
 
 /*
@@ -238,26 +264,16 @@ export const WARNING_CHIPS = {
 }
 
 /*
-  MOCK rental. Generated relative to load time so the live timer works
-  immediately. PC-02 is 18 minutes into a 1 hour block, so the display
-  reads 42:00.
+  createDefaultRentals — DELETED IN PHASE 11.
 
-  `segments` is the BILLING history — one entry per booking or extension,
-  each already priced and held in SECONDS. It is separate from
-  blockSeconds/blockStartedAt, which drive the cosmetic display only.
-  Display ≠ billing (Decision 41).
+  The mock rental is gone. Active rentals come from /api/rentals/active.
+
+  Everything above it in this file is still live and still used by the screens:
+  the display-vs-billing distinction (Decision 41), the roll that never reads
+  0:00 (Decision 39), the warning thresholds (Decision 45), duration validation
+  (Decision 62), and the period boundaries (Decision 109).
+
+  The billing clock itself is server-side now. `startedAt` comes from
+  dbo.rentals.started_at, so the number a customer is charged cannot be
+  changed by a reload, a slow frame or a doctored browser.
 */
-export function createDefaultRentals() {
-  const now = Date.now()
-  return [
-    {
-      id: 'r-001',
-      pcId: 'pc-02',
-      blockSeconds: 60 * 60,
-      startedAt: now - 18 * 60 * 1000,
-      blockStartedAt: now - 18 * 60 * 1000,
-      segments: [{ seconds: 60 * 60, amount: 20 }],
-      transfers: [],
-    },
-  ]
-}

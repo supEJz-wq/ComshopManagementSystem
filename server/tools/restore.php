@@ -1,10 +1,10 @@
 <?php
-// server/restore.php
+// server/tools/restore.php
 //
-//   php server/restore.php                     list available backups
-//   php server/restore.php <file>.bak          restore one of them
+//   php server/tools/restore.php                     list available backups
+//   php server/tools/restore.php <file>.bak          restore one of them
 //
-// ⚠️  A restore REPLACES the database completely with the contents of the
+// âš ï¸  A restore REPLACES the database completely with the contents of the
 //     backup. Anything written since that backup was taken is lost.
 //
 //     It is a full restore, not a merge. There is no undo.
@@ -27,7 +27,7 @@ if ($target === null) {
     $backups = listBackups();
 
     if ($backups === []) {
-        echo "\nNone yet. Create one with:\n  php server/backup.php\n";
+        echo "\nNone yet. Create one with:\n  php server/tools/backup.php\n";
         exit(0);
     }
 
@@ -38,7 +38,7 @@ if ($target === null) {
         printf("  %-34s %-12s %s\n", $backup['file'], $backup['size'], $backup['date']);
     }
 
-    echo "\nRestore one with:\n  php server/restore.php <filename>\n";
+    echo "\nRestore one with:\n  php server/tools/restore.php <filename>\n";
     exit(0);
 }
 
@@ -58,7 +58,7 @@ try {
 
     if (!in_array('--yes', $argv, true)) {
         echo "\nRe-run with --yes to confirm:\n";
-        echo '  php server/restore.php ' . $target . " --yes\n";
+        echo '  php server/tools/restore.php ' . $target . " --yes\n";
         exit(2);
     }
 

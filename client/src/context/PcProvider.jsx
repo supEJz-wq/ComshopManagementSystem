@@ -1,92 +1,86 @@
-import { useEffect, useState } from 'react'
-import { ALLOWED_TRANSITIONS, DEFAULT_PCS, PC_STATUS } from '../data/pcs.js'
-import { PcContext } from './pcContext.js'
+// client/src/context/PcProvider.jsx
+//
+// PC list comes from the API. Status changes, repair and registration all go
+// through the API. The provider just mirrors server state and exposes the same
+// shape the screens already use.
 
-const PCS_KEY = 'cybershopos.pcs'
-
-/*
-  Ids are internal keys, generated free of collisions. They are deliberately
-  NOT a slug of the name: "PC-09" and "PC 09" are two different, legitimately
-  addable names, but a slug collapses both onto one id — which would give two
-  tiles the same key and make status and rental lookups hit both at once.
-  The name is never edited and the PC is never deleted, so a plain sequence
-  is stable for the life of the record.
-*/
-function nextPcId(pcs) {
-  let n = 1
-  let id = `pc-${String(n).padStart(2, '0')}`
-  while (pcs.some((pc) => pc.id === id)) {
-    n += 1
-    id = `pc-${String(n).padStart(2, '0')}`
-  }
-  return id
-}
-
-function readPcs() {
-  try {
-    const raw = localStorage.getItem(PCS_KEY)
-    return raw ? JSON.parse(raw) : DEFAULT_PCS
-  } catch {
-    return DEFAULT_PCS
-  }
-}
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { api } from '../api.js';
+import { useAuth } from './auth.js';
+import { PcContext } from './pcContext.js';
 
 export function PcProvider({ children }) {
-  const [pcs, setPcs] = useState(readPcs)
+  // The board is behind a login, so wait for the session check before asking
+  // for data. Otherwise every refresh fires three requests that are guaranteed
+  // to come back 401.
+  const { user, loading: authLoading } = useAuth();
+
+  const [pcs, setPcs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const refresh = useCallback(async () => {
+    try {
+      const data = await api.get('/pcs');
+      setPcs(data.pcs ?? []);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem(PCS_KEY, JSON.stringify(pcs))
-  }, [pcs])
+    if (authLoading || !user) return;
+    refresh();
+  }, [user, authLoading, refresh]);
 
-  // Admin only. Names must be unique and are never editable afterwards.
-  // A PC has a name and a status. Nothing else — no location, no notes, and
-  // no rental field. Rental timing lives in the rental layer.
-  function addPc(rawName) {
-    const name = rawName.trim()
-    if (!name) return { ok: false, error: 'Enter a name for the PC.' }
+  const addPc = useCallback(
+    async (rawName) => {
+      const name = rawName.trim();
+      if (!name) return { ok: false, error: 'Enter a name for the PC.' };
+      try {
+        const data = await api.post('/pcs', { name });
+        await refresh();
+        return { ok: true, pc: data.pc };
+      } catch (err) {
+        return { ok: false, error: err.message };
+      }
+    },
+    [refresh],
+  );
 
-    const taken = pcs.some((pc) => pc.name.toLowerCase() === name.toLowerCase())
-    if (taken) return { ok: false, error: `${name} already exists.` }
+  const setStatus = useCallback(
+    async (id, nextStatus) => {
+      try {
+        await api.patch(`/pcs/${id}/status`, { status: nextStatus });
+        await refresh();
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: err.message };
+      }
+    },
+    [refresh],
+  );
 
-    setPcs((prev) => [...prev, { id: nextPcId(prev), name, status: PC_STATUS.FREE, needsRepair: false }])
-    return { ok: true }
-  }
+  const repairPc = useCallback(
+    async (id) => {
+      try {
+        await api.post('/pcs/repair', { id });
+        await refresh();
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: err.message };
+      }
+    },
+    [refresh],
+  );
 
-  // Transitions are validated here, not in the UI, so an invalid change can
-  // never be applied even if a control is bypassed.
-  //
-  // Entering a fault state RAISES needsRepair. It is never lowered here,
-  // because going free does not mean the machine was repaired — it usually
-  // means a rental ended. Only repairPc() clears the flag.
-  function setStatus(id, nextStatus) {
-    setPcs((prev) =>
-      prev.map((pc) => {
-        if (pc.id !== id) return pc
-        if (!ALLOWED_TRANSITIONS[pc.status]?.includes(nextStatus)) return pc
-        const faulted = nextStatus === PC_STATUS.ISSUE || nextStatus === PC_STATUS.UNRESPONSIVE
-        return { ...pc, status: nextStatus, needsRepair: faulted ? true : pc.needsRepair ?? false }
-      }),
-    )
-  }
+  const value = useMemo(
+    () => ({ pcs, loading, error, addPc, setStatus, repairPc, refresh }),
+    [pcs, loading, error, addPc, setStatus, repairPc, refresh],
+  );
 
-  /*
-    The only way a known fault is ever cleared. Leaves the PC usable, and
-    if it was flagged issue or unresponsive it goes back to free.
-  */
-  function repairPc(id) {
-    setPcs((prev) =>
-      prev.map((pc) => {
-        if (pc.id !== id) return pc
-        const status =
-          pc.status === PC_STATUS.ISSUE || pc.status === PC_STATUS.UNRESPONSIVE
-            ? PC_STATUS.FREE
-            : pc.status
-        return { ...pc, status, needsRepair: false }
-      }),
-    )
-  }
-
-  const value = { pcs, addPc, setStatus, repairPc }
-
-  return <PcContext.Provider value={value}>{children}</PcContext.Provider>
+  return <PcContext.Provider value={value}>{children}</PcContext.Provider>;
 }

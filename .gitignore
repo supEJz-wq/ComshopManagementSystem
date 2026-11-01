@@ -180,3 +180,10 @@ coverage/
 Thumbs.db
 desktop.ini
 $RECYCLE.BIN/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/

@@ -1,6 +1,7 @@
 <?php
 // server/api/revenue/index.php
 // GET ?period=today|month|year|all|<year> -> cash-basis revenue figures
+//                                        AND the rows the Revenue screen shows
 //
 // THE ONE PLACE A REVENUE FIGURE IS COMPUTED. Phase 7 and Phase 8 both consume
 // this shape, so the Revenue screen and the Analytics screen cannot disagree.
@@ -13,6 +14,13 @@
 // `net` and `stillOwed` are returned separately and must never be summed
 // (Decision 64). A refund reduces the period it HAPPENED in, never the period of
 // the original payment (Decision 107), so a day may legitimately go negative.
+//
+// WHY THE ROWS COME FROM HERE TOO. The screen used to receive every bill and
+// every refund and pick the ones inside the period itself. That put the period
+// rule — which bills belong to this period, and what a bill is worth after its
+// refunds — in the browser, twice over. Now the server decides all of it and
+// the screen only displays what it is told. The per-bill net is joined here
+// rather than computed by the client for the same reason.
 
 declare(strict_types=1);
 
@@ -117,6 +125,105 @@ $adjustmentCount = (int) aggregateWithColumn(
     $end,
 );
 
+// The rows the screen lists: the bills settled in this period, and the refunds
+// taken in this period.
+//
+// The window parameters are the same ones the aggregates above used, so the
+// figures and the rows always describe the SAME period. A summary that says
+// "₱120 collected" above a list of bills that adds up to ₱90 would be the
+// worst kind of bug — two truths on one screen.
+$periodWhere = '';
+$periodParams = [];
+
+if ($start !== null) {
+    $periodWhere = ' AND p.settled_at >= ? AND p.settled_at < ?';
+    $periodParams = [$start->format('Y-m-d H:i:s.v'), $end->format('Y-m-d H:i:s.v')];
+}
+
+/*
+  A bill, with what its refunds left behind.
+
+  The refund total is summed in a subquery and joined, so one bill is one row
+  — not one row per refund. A bill with three adjustments must still appear
+  once, carrying the total.
+*/
+$billStmt = $pdo->prepare("
+    SELECT p.id, p.reference_number, p.pc_name, p.amount_charged,
+           p.cash_received, p.change_given, p.settled_at,
+           p.settled_by_name, p.cashier_name,
+           ISNULL(r.total_refunded, 0) AS total_refunded
+    FROM dbo.payments p
+    LEFT JOIN (
+        SELECT payment_id, SUM(amount) AS total_refunded
+        FROM dbo.refunds
+        GROUP BY payment_id
+    ) r ON r.payment_id = p.id
+    WHERE p.is_settled = 1{$periodWhere}
+    ORDER BY p.settled_at DESC, p.id DESC
+");
+$billStmt->execute($periodParams);
+
+$bills = array_map(static function (array $row): array {
+    $charged = $row['amount_charged'] === null ? 0.0 : (float) $row['amount_charged'];
+    $refunded = (float) $row['total_refunded'];
+
+    return [
+        'id' => (int) $row['id'],
+        'reference_number' => $row['reference_number'],
+        'pc_name' => $row['pc_name'],
+        'amount_charged' => $charged,
+        'cash_received' => $row['cash_received'] === null ? null : (float) $row['cash_received'],
+        'change_given' => $row['change_given'] === null ? null : (float) $row['change_given'],
+        'settled_at' => dbIso($row['settled_at']),
+        'settled_by_name' => $row['settled_by_name'],
+        'cashier_name' => $row['cashier_name'],
+        'refunded' => $refunded,
+        'net' => $charged - $refunded,
+    ];
+}, $billStmt->fetchAll());
+
+/*
+  Refunds taken inside the period, with the bill they belong to.
+
+  A refund reduces the period it HAPPENED in (Decision 107), so this filter is
+  on the refund's own timestamp, not on the original payment's.
+
+  The bill's reference and PC name are joined in, because the screen shows
+  them on the refund row and looking them up in a second list would mean the
+  browser holding a copy of the bills again.
+*/
+$refundWhere = '';
+$refundParams = [];
+
+if ($start !== null) {
+    $refundWhere = ' WHERE r.created_at >= ? AND r.created_at < ?';
+    $refundParams = [$start->format('Y-m-d H:i:s.v'), $end->format('Y-m-d H:i:s.v')];
+}
+
+$refundStmt = $pdo->prepare("
+    SELECT r.id, r.payment_id, r.amount, r.reason, r.refund_type, r.created_at,
+           r.cashier_name, p.reference_number, p.pc_name
+    FROM dbo.refunds r
+    INNER JOIN dbo.payments p ON p.id = r.payment_id
+    {$refundWhere}
+    ORDER BY r.created_at DESC, r.id DESC
+");
+$refundStmt->execute($refundParams);
+
+$refundRows = array_map(static function (array $row): array {
+    return [
+        'id' => (int) $row['id'],
+        'payment_id' => (int) $row['payment_id'],
+        'amount' => dbNum($row['amount']),
+        'reason' => $row['reason'],
+        'refund_type' => $row['refund_type'],
+        'created_at' => dbIso($row['created_at']),
+        'cashier_name' => $row['cashier_name'],
+        'reference_number' => $row['reference_number'],
+        'pc_name' => $row['pc_name'],
+    ];
+}, $refundStmt->fetchAll());
+
 echo json_encode([
     'ok' => true,
     'revenue' => [
@@ -135,4 +242,6 @@ echo json_encode([
         'adjustmentCount' => $adjustmentCount,
         'role' => $user['role'],
     ],
+    'bills' => $bills,
+    'refunds' => $refundRows,
 ]);

@@ -5,6 +5,9 @@ import { formatSpan, formatDayLabel } from '../data/rentals.js'
 import { netAmount, refundableFor } from '../data/refunds.js'
 import { formatRef } from '../data/revenue.js'
 import { useRentals } from '../context/rentalContext.js'
+import DataState from '../components/DataState.jsx'
+import { PaymentsSkeleton } from '../components/skeletons.jsx'
+import { toMillis } from '../data/rentals.js'
 import RefundPanel from './Refunds.jsx'
 import Pager, { PAGE_SIZE } from '../components/Pager.jsx'
 
@@ -40,7 +43,7 @@ function PaymentRow({ entry, onSettle, onRefund, refunds, now }) {
 
   // How long this bill has been sitting unsettled. endedAt is when the
   // rental stopped, which is the moment the bill was raised.
-  const waitingSeconds = Math.max(0, Math.round((now - entry.endedAt) / 1000))
+  const waitingSeconds = Math.max(0, Math.round((now - toMillis(entry.endedAt)) / 1000))
 
   if (entry.settled) {
     const figures = refundableFor(entry, entry.usedSeconds, refunds)
@@ -247,7 +250,7 @@ function PaymentRow({ entry, onSettle, onRefund, refunds, now }) {
 }
 
 function Payments() {
-  const { unsettled, settled, settle, recordRefund, refundsFor } = useTransactions()
+  const { unsettled, settled, settle, recordRefund, refundsFor, loading, error } = useTransactions()
   const { rentals, now } = useRentals()
 
   /*
@@ -287,7 +290,7 @@ function Payments() {
   // Unpaid is the short list, but it is paged anyway — a busy night can
   // pile one up. Paid is the long list and must page or all-time becomes a
   // single scrolling column.
-  const shownUnsettled = [...unsettled].filter(matches).sort((a, b) => a.endedAt - b.endedAt)
+  const shownUnsettled = [...unsettled].filter(matches).sort((a, b) => toMillis(a.endedAt) - toMillis(b.endedAt))
   const shownSettled = [...settled].filter(matches)
   const unpaidPages = Math.max(1, Math.ceil(shownUnsettled.length / PAGE_SIZE))
   const paidPages = Math.max(1, Math.ceil(shownSettled.length / PAGE_SIZE))
@@ -306,7 +309,7 @@ function Payments() {
   const paidTotal = shownSettled.reduce((sum, entry) => sum + entry.amountCharged, 0)
 
   const paidByDay = []
-  for (const entry of [...pageSettled].sort((a, b) => b.endedAt - a.endedAt)) {
+  for (const entry of [...pageSettled].sort((a, b) => toMillis(b.endedAt) - toMillis(a.endedAt))) {
     const key = new Date(entry.endedAt).toDateString()
     let group = paidByDay[paidByDay.length - 1]
     if (!group || group.key !== key) {
@@ -341,6 +344,9 @@ function Payments() {
       />
     )
   }
+
+  if (loading) return <PaymentsSkeleton />
+    if (error) return <DataState error={error} />
 
   return (
     <div className="flex flex-col gap-4">

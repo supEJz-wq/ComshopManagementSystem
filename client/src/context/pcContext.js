@@ -1,9 +1,12 @@
-import { createContext, useContext } from 'react'
+// client/src/context/pcContext.js
+//
+// PC context object + hook. Unchanged shape from Phase 2 — only the provider
+// changed (it now reads from the API).
 
-export const PcContext = createContext(null)
+import { createContext, useContext } from 'react';
+
+export const PcContext = createContext(null);
 
 export function usePcs() {
-  const context = useContext(PcContext)
-  if (!context) throw new Error('usePcs must be used inside PcProvider')
-  return context
+  return useContext(PcContext);
 }

@@ -4,6 +4,8 @@ import { useAuth } from '../context/auth.js'
 import { usePcs } from '../context/pcContext.js'
 import { useRentals } from '../context/rentalContext.js'
 import { useTransactions } from '../context/transactionContext.js'
+import DataState from '../components/DataState.jsx'
+import { PCsSkeleton } from '../components/skeletons.jsx'
 import PcTile from '../components/PcTile.jsx'
 import { STATUS_VISUALS } from '../components/pcStatus.jsx'
 import { formatPeso } from '../data/pricing.js'
@@ -78,10 +80,10 @@ function AddPcForm({ onAdd, onClose }) {
 
 function PCs() {
   const { isAdmin } = useAuth()
-  const { pcs, addPc, setStatus, repairPc } = usePcs()
-  const { now, startRental, stopRental, extendRental, transferRental, transferTargets, rentalFor } =
+  const { pcs, addPc, setStatus, repairPc, loading, error: pcsError } = usePcs()
+  const { now, startRental, stopRental, extendRental, transferRental, transferTargets, rentalFor, loading: rentalsLoading, error: rentalsError } =
     useRentals()
-  const { openTransaction, unsettled } = useTransactions()
+  const { openTransaction, unsettled, loading: paymentsLoading, error: paymentsError } = useTransactions()
   const [adding, setAdding] = useState(false)
   const navigate = useNavigate()
 
@@ -91,14 +93,19 @@ function PCs() {
   // Stopping a rental ends it and opens an unsettled bill. The cashier is
   // taken to Payments, where they may record the cash or leave it for
   // later — either way the PC is already free.
-  function handleStop(pcId) {
-    const closed = stopRental(pcId)
-    if (!closed) return
+async function handleStop(pcId) {
+      // Async since Phase 11: the server prices the rental and writes the
+      // UNSETTLED bill itself, so this has to finish before we navigate.
+      const closed = await stopRental(pcId)
+      if (!closed) return
 
-    const pc = pcs.find((candidate) => candidate.id === pcId)
-    if (pc) openTransaction({ rental: closed.rental, pc, endedAt: closed.endedAt, bill: closed.bill })
-    navigate('/payments')
-  }
+      const pc = pcs.find((candidate) => candidate.id === pcId)
+      if (pc) await openTransaction({ rental: closed.rental, pc, endedAt: closed.endedAt, bill: closed.bill })
+      navigate('/payments')
+    }
+
+  if (loading || rentalsLoading || paymentsLoading) return <PCsSkeleton isAdmin={isAdmin} />
+  if (pcsError || rentalsError || paymentsError) return <DataState error={pcsError || rentalsError || paymentsError} />
 
   return (
     <div className="flex flex-col gap-4">
@@ -151,7 +158,7 @@ function PCs() {
             onStop={handleStop}
             onExtend={extendRental}
             onTransfer={transferRental}
-            transferTargets={transferTargets(pc.id)}
+            loadTargets={transferTargets}
           />
         ))}
       </div>

@@ -153,7 +153,7 @@ function DurationPicker({ onStart, onCancel }) {
   )
 }
 
-function PcTile({ pc, rental, now, onChange, onRepair, onStart, onStop, onExtend, onTransfer, transferTargets }) {
+function PcTile({ pc, rental, now, onChange, onRepair, onStart, onStop, onExtend, onTransfer, loadTargets }) {
   const [picking, setPicking] = useState(false)
   const [extendOpen, setExtendOpen] = useState(false)
   const [transferOpen, setTransferOpen] = useState(false)
@@ -232,9 +232,11 @@ function PcTile({ pc, rental, now, onChange, onRepair, onStart, onStop, onExtend
       {transferOpen && rental && (
         <TransferPicker
           fromPcName={pc.name}
-          targets={transferTargets}
-          onPick={(pcId) => {
-            const result = onTransfer(pc.id, pcId)
+          fromPcId={pc.id}
+          loadTargets={loadTargets}
+          onPick={async (pcId) => {
+            // Async since Phase 11: the server decides whether the move is legal.
+            const result = await onTransfer(pc.id, pcId)
             if (result.ok) setTransferOpen(false)
             return result
           }}

@@ -1,19 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRentals } from '../context/rentalContext.js'
 import { useTransactions } from '../context/transactionContext.js'
-import {
-  PERIODS,
-  netRevenueFor,
-  collectedByDay,
-  collectedByMonth,
-  collectedByYear,
-  collectedByCashier,
-  collectedByHour,
-  bestHour,
-  bestMonth,
-} from '../data/revenue.js'
+import { PERIODS } from '../data/revenue.js'
 import { formatPeso } from '../data/pricing.js'
 import { DailyEarnings, MonthlyEarnings, YearlyEarnings, BestHours, ByCashier } from '../components/AnalyticsCharts.jsx'
+import { AnalyticsSkeleton } from '../components/skeletons.jsx'
+import DataState from '../components/DataState.jsx'
 
 /*
   ANALYTICS — Phase 8, admin only.
@@ -23,9 +15,12 @@ import { DailyEarnings, MonthlyEarnings, YearlyEarnings, BestHours, ByCashier } 
   panels, and a strip of headline figures so the answer is legible without
   reading a single axis.
 
-  Every number on this page is derived from the same pure module the
-  Revenue page uses. Recharts only draws what src/data/revenue.js decided —
-  it cannot produce a figure the Revenue screen would disagree with.
+  Every number on this page is the SERVER's. The seven endpoints under
+  /api/analytics/* and /api/revenue compute them, and this screen only
+  chooses which series to draw and what to call it. It used to recompute all
+  of them in the browser, from the same records the server was already
+  summarising — the same rule in two places, which is how they eventually
+  stop agreeing.
 */
 
 /*
@@ -51,23 +46,31 @@ function Headline({ label, value }) {
 
 function Analytics() {
   const { now } = useRentals()
-  const { transactions, refunds } = useTransactions()
+  const { analytics, analyticsLoading, analyticsError, loadAnalytics } = useTransactions()
   const [period, setPeriod] = useState(PERIODS.MONTH)
 
-  const yearTabs = collectedByYear(transactions).map((row) => row.year)
-  const years = yearTabs.includes(new Date(now).getFullYear())
-    ? yearTabs
-    : [...yearTabs, new Date(now).getFullYear()].sort()
+  /*
+    Ask the server for this scope. The scope decides which series comes back,
+    so switching it re-asks rather than re-shaping what is already here.
+  */
+  useEffect(() => {
+    loadAnalytics(period);
+  }, [period, loadAnalytics]);
+
+  const currentYear = new Date(now).getFullYear()
+  const yearTabs = analytics?.years ?? []
+  const years = yearTabs.includes(currentYear) ? yearTabs : [...yearTabs, currentYear].sort()
+
   const SCOPE_TABS = [
     { value: PERIODS.MONTH, label: 'This month' },
     ...years.map((year) => ({ value: year, label: String(year) })),
     { value: PERIODS.ALL, label: 'All time' },
   ]
 
-  const summary = netRevenueFor(transactions, refunds, period, now)
-  const bestHourSlot = bestHour(transactions, period, now)
-  const bestMonthSlot = bestMonth(transactions)
-  const cashierRows = collectedByCashier(transactions, refunds, period, now)
+  const summary = analytics?.summary
+  const bestHourSlot = analytics?.bestHour
+  const bestMonthSlot = analytics?.bestMonth
+  const cashierRows = analytics?.byCashier ?? []
 
   /*
     An explicit year narrows the monthly series to that year; "This month"
@@ -76,14 +79,31 @@ function Analytics() {
   */
   const earningsData =
     period === PERIODS.MONTH
-      ? collectedByDay(transactions, refunds, period, now)
+      ? (analytics?.daily ?? [])
       : period === PERIODS.ALL
-        ? collectedByYear(transactions)
-        : typeof period === 'number'
-          ? collectedByMonth(transactions).filter(
-              (row) => new Date(row.at).getFullYear() === period,
-            )
-          : collectedByMonth(transactions)
+        ? (analytics?.yearly ?? [])
+        : (analytics?.monthly ?? [])
+
+  /*
+    The server sends the best month as a year and a month number. A month is
+    only a label once it has a name, and naming it is presentation.
+  */
+  const bestMonthLabel = bestMonthSlot
+    ? new Date(bestMonthSlot.year, bestMonthSlot.month - 1, 1).toLocaleDateString('en-PH', {
+        month: 'short',
+        year: 'numeric',
+      })
+    : null
+
+  /*
+    A response that belongs to a scope the user has already left is not shown.
+    It would be correct data under the wrong heading, which is worse than a
+    moment of loading.
+  */
+  const stale = analytics && analytics.period !== period
+
+  if (analyticsError) return <DataState error={analyticsError} />
+  if (!summary || analyticsLoading || stale) return <AnalyticsSkeleton />
 
   return (
     <div className="flex flex-col gap-6">
@@ -122,7 +142,7 @@ function Analytics() {
         {bestMonthSlot && (
           <p className="mt-3 text-xs text-slate-500">
             Strongest month on record:{' '}
-            <span className="font-medium text-slate-900">{bestMonthSlot.label}</span> at{' '}
+            <span className="font-medium text-slate-900">{bestMonthLabel}</span> at{' '}
             <span className="font-data tabular-nums text-slate-900">
               {formatPeso(bestMonthSlot.collected)}
             </span>
@@ -137,23 +157,19 @@ function Analytics() {
       */}
       {period === PERIODS.MONTH && (
         <>
-          <DailyEarnings
-            data={earningsData.map((row) => ({ label: row.label, collected: row.collected, refunded: row.refunded }))}
-          />
-          <BestHours data={collectedByHour(transactions, period, now).map((row) => ({ label: `${row.hour}:00`, collected: row.collected }))} />
+          <DailyEarnings data={earningsData} />
+          <BestHours data={analytics?.hourly ?? []} />
         </>
       )}
 
       {(period !== PERIODS.MONTH && period !== PERIODS.ALL) && (
         <>
-          <MonthlyEarnings data={earningsData.map((row) => ({ label: row.label, collected: row.collected }))} />
-          <BestHours data={collectedByHour(transactions, period, now).map((row) => ({ label: `${row.hour}:00`, collected: row.collected }))} />
+          <MonthlyEarnings data={earningsData} />
+          <BestHours data={analytics?.hourly ?? []} />
         </>
       )}
 
-      {period === PERIODS.ALL && (
-        <YearlyEarnings data={earningsData} />
-      )}
+      {period === PERIODS.ALL && <YearlyEarnings data={earningsData} />}
 
       <ByCashier data={cashierRows} />
     </div>

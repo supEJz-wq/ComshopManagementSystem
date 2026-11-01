@@ -9,14 +9,19 @@ function Accounts() {
 
   if (!cashier) return null
 
-  function handleReset(event) {
-    event.preventDefault()
-    if (newPassword.length < 4) {
-      setError('Use at least 4 characters.')
-      return
+async function handleReset(event) {
+      event.preventDefault()
+      if (newPassword.length < 4) {
+        setError('Use at least 4 characters.')
+        return
+      }
+      // Async since Phase 11: the password is hashed and stored by the server.
+      try {
+        await resetCashierPassword(newPassword)
+      } catch (err) {
+        setError(err.message)
+      }
     }
-    resetCashierPassword(newPassword)
-  }
 
   return (
     <div className="flex flex-col gap-6">
@@ -60,7 +65,13 @@ function Accounts() {
 
           <button
             type="button"
-            onClick={() => setCashierActive(!cashier.active)}
+            onClick={async () => {
+            try {
+              await setCashierActive(!cashier.active)
+            } catch (err) {
+              setError(err.message)
+            }
+          }}
             className={[
               'rounded-control px-3 py-2 text-sm font-medium',
               /*

@@ -1,17 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '../context/auth.js'
-import { useRentals } from '../context/rentalContext.js'
 import { useTransactions } from '../context/transactionContext.js'
-import {
-  PERIODS,
-  periodsForRole,
-  netRevenueFor,
-  transactionsInPeriod,
-  refundsInPeriod,
-  netForBill,
-  formatRef,
-} from '../data/revenue.js'
+import { PERIODS, periodsForRole, formatRef } from '../data/revenue.js'
 import { formatPeso } from '../data/pricing.js'
+import DataState from '../components/DataState.jsx'
+import { RevenueSkeleton } from '../components/skeletons.jsx'
 import { formatStamp } from '../data/rentals.js'
 import Pager, { PAGE_SIZE } from '../components/Pager.jsx'
 
@@ -26,6 +19,12 @@ import Pager, { PAGE_SIZE } from '../components/Pager.jsx'
      removes the ambiguity permanently instead of explaining it later.
   2. Never add "Collected" to "Still owed". Decision 64. They are separate
      figures in separate cards, and nothing on this page sums them.
+
+  AND ONE MORE, SINCE PHASE 11: never compute a figure here. The server
+  decides which bills and refunds belong to this period and what a bill is
+  worth after its refunds, and this screen displays what it is told. It used
+  to fetch every bill and pick the period's own — the same rule in two
+  places, which is how this project has been bitten five times.
 */
 
 function Figure({ label, amount, tone, note }) {
@@ -80,8 +79,13 @@ function PeriodTabs({ options, value, onChange }) {
   )
 }
 
-function TransactionRow({ entry, refunds }) {
-  const { refunded, net } = netForBill(entry, refunds)
+function TransactionRow({ entry }) {
+  /*
+    The net and the refunded total are the SERVER's numbers, carried on the
+    bill itself. They used to be worked out here by adding up the refunds
+    that belonged to this bill.
+  */
+  const { refunded, net } = entry
 
   return (
     <li className="rounded-card border border-slate-200 bg-white p-4 shadow-card">
@@ -138,11 +142,10 @@ function TransactionRow({ entry, refunds }) {
 
   A ₱0 entry is a real record and belongs in this list (Decision 78: it is
   how a rental adjustment is captured without moving money). It is labelled
-  as an adjustment so it is never mistaken for money, and `netRevenueFor`
-  excludes it from every figure.
+  as an adjustment so it is never mistaken for money, and the server's
+  figures exclude it from every total.
 */
-function RefundRow({ entry, transactions }) {
-  const bill = transactions.find((entry2) => entry2.id === entry.transactionId)
+function RefundRow({ entry }) {
   const isAdjustment = entry.amount === 0
 
   return (
@@ -153,12 +156,14 @@ function RefundRow({ entry, transactions }) {
     >
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <div className="flex items-baseline gap-2">
-          {bill && (
+          {entry.billRef && (
             <span className="font-data text-sm font-semibold text-slate-900">
-              {formatRef(bill.ref)}
+              {formatRef(entry.billRef)}
             </span>
           )}
-          <span className="text-sm font-medium text-slate-900">{bill?.pcName ?? 'unknown PC'}</span>
+          <span className="text-sm font-medium text-slate-900">
+            {entry.pcName ?? 'unknown PC'}
+          </span>
         </div>
 
         <span
@@ -181,13 +186,28 @@ function RefundRow({ entry, transactions }) {
 
 function Revenue() {
   const { isAdmin } = useAuth()
-  const { now } = useRentals()
-  const { transactions, refunds } = useTransactions()
+  const { revenue, revenueLoading, revenueError, loadRevenue } = useTransactions()
 
   const options = periodsForRole(isAdmin)
   const [period, setPeriod] = useState(options[0].value)
   const [settledPage, setSettledPage] = useState(1)
   const [refundPage, setRefundPage] = useState(1)
+
+  /*
+    A Cashier's period is pinned to TODAY on every render. Even if state
+    somehow held another value, they would still only ever see today — and the
+    server enforces it too, by answering any other period with Today. The
+    screen narrows the choice; the server closes the door.
+  */
+  const effectivePeriod = isAdmin ? period : PERIODS.TODAY
+
+  /*
+    Ask the server for this period. One request, and it is the only place the
+    figures for this screen come from.
+  */
+  useEffect(() => {
+    loadRevenue(effectivePeriod);
+  }, [effectivePeriod, loadRevenue]);
 
   /*
     Reset both pages whenever the period changes. A cashier's period is pinned
@@ -201,25 +221,18 @@ function Revenue() {
     setRefundPage(1)
   }
 
-  /*
-    `now` comes from the rental provider's tick, so crossing local midnight
-    re-derives this screen without a reload — and it keeps working on a
-    machine that was asleep across midnight, because the value comes from
-    the wall clock rather than from a cached "today" (Decision 110).
-
-    A Cashier's period is pinned to TODAY on every render. Even if state
-    somehow held another value, they would still only ever see today.
-  */
-  const effectivePeriod = isAdmin ? period : PERIODS.TODAY
-
-  const summary = netRevenueFor(transactions, refunds, effectivePeriod, now)
-  const rows = transactionsInPeriod(transactions, effectivePeriod, now)
-  const refundRows = refundsInPeriod(refunds, effectivePeriod, now)
+  const summary = revenue?.summary
+  const rows = revenue?.bills ?? []
+  const refundRows = revenue?.refunds ?? []
 
   const settledPages = Math.max(1, Math.ceil(rows.length / PAGE_SIZE))
   const refundPages = Math.max(1, Math.ceil(refundRows.length / PAGE_SIZE))
   const settledRows = rows.slice((settledPage - 1) * PAGE_SIZE, settledPage * PAGE_SIZE)
   const pageRefundRows = refundRows.slice((refundPage - 1) * PAGE_SIZE, refundPage * PAGE_SIZE)
+
+  if (revenueLoading && !revenue) return <RevenueSkeleton isAdmin={isAdmin} />
+  if (revenueError) return <DataState error={revenueError} />
+  if (!summary) return <RevenueSkeleton isAdmin={isAdmin} />
 
   return (
     <div className="flex flex-col gap-6">
@@ -298,7 +311,7 @@ function Revenue() {
         ) : (
           <ul className="flex flex-col gap-3">
             {settledRows.map((entry) => (
-              <TransactionRow key={entry.id} entry={entry} refunds={refunds} />
+              <TransactionRow key={entry.id} entry={entry} />
             ))}
           </ul>
         )}
@@ -320,7 +333,7 @@ function Revenue() {
         ) : (
           <ul className="flex flex-col gap-3">
             {pageRefundRows.map((entry) => (
-              <RefundRow key={entry.id} entry={entry} transactions={transactions} />
+              <RefundRow key={entry.id} entry={entry} />
             ))}
           </ul>
         )}

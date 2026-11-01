@@ -1,17 +1,39 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/auth.js'
+import { LoadingScreen } from '../components/skeletons.jsx'
 
 function Login() {
-  const { login } = useAuth()
+  const { login, user, loading } = useAuth()
   const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
 
-  function handleSubmit(event) {
+  /*
+    Already signed in? There is nothing to log in to. This also catches the
+    case where a signed-in user lands on /login by typing the URL or by
+    hitting Back after a logout that is still in flight.
+  */
+  if (loading) return <LoadingScreen />
+
+  if (user) {
+    return (
+      <>
+        <Navigate to="/" replace />
+        <LoadingScreen />
+      </>
+    )
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault()
-    const result = login(username, password)
+
+    // login() is async: it calls the API and waits for the session cookie.
+    // Without the await, `result` is a Promise, `result.ok` is undefined, and
+    // every sign-in silently falls into the error branch.
+    const result = await login(username, password)
+
     if (result.ok) {
       navigate('/', { replace: true })
     } else {
@@ -80,26 +102,6 @@ function Login() {
             Sign in
           </button>
         </form>
-
-        <div className="mt-6 rounded-control border border-dashed border-slate-300 bg-slate-50 p-3">
-          <p className="text-xs font-medium text-slate-600">
-            Demo accounts — Phase 1 only
-          </p>
-          <dl className="mt-2 space-y-1 font-data text-xs text-slate-700">
-            <div className="flex gap-2">
-              <dt className="w-16 shrink-0 text-slate-500">Admin</dt>
-              <dd className="select-all">admin / admin123</dd>
-            </div>
-            <div className="flex gap-2">
-              <dt className="w-16 shrink-0 text-slate-500">Cashier</dt>
-              <dd className="select-all">cashier / cashier123</dd>
-            </div>
-          </dl>
-          <p className="mt-2 text-xs text-slate-500">
-            Click a line to select it, then copy. This notice is removed in
-            Phase 11.
-          </p>
-        </div>
       </div>
     </div>
   )

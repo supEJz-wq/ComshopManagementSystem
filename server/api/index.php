@@ -52,6 +52,7 @@ $routes = [
     'GET /auth/me' => ['file' => 'auth/me.php', 'auth' => 'session'],
     'POST /auth/reset-password' => ['file' => 'auth/reset-password.php', 'auth' => 'admin'],
     'POST /auth/deactivate' => ['file' => 'auth/deactivate.php', 'auth' => 'admin'],
+    'GET /auth/cashier' => ['file' => 'auth/cashier.php', 'auth' => 'admin'],
 
     // ---- pcs -----------------------------------------------------------
     'GET /pcs' => ['file' => 'pcs/index.php', 'auth' => 'session'],
@@ -71,6 +72,7 @@ $routes = [
     'GET /payments' => ['file' => 'payments/index.php', 'auth' => 'session'],
     'GET /payments/unsettled' => ['file' => 'payments/unsettled.php', 'auth' => 'session'],
     'GET /payments/settled' => ['file' => 'payments/settled.php', 'auth' => 'session'],
+    'GET /payments/refunds' => ['file' => 'payments/refunds.php', 'auth' => 'session'],
     'POST /payments/settle' => ['file' => 'payments/settle.php', 'auth' => 'session'],
     'POST /payments/refund' => ['file' => 'payments/refund.php', 'auth' => 'session'],
 

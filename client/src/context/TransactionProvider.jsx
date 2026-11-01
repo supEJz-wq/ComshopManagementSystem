@@ -1,192 +1,298 @@
-import { useEffect, useState } from 'react'
-import { useAuth } from './auth.js'
-import { REFUND_KIND, refundableFor, refundedTotal } from '../data/refunds.js'
-import { nextRef } from '../data/revenue.js'
-import { TransactionContext } from './transactionContext.js'
+// client/src/context/TransactionProvider.jsx
+//
+// Bills, payments and refunds now come from the API. The provider mirrors
+// server state and exposes the same names the screens have always used, so
+// Payments.jsx and Refunds.jsx are unchanged.
+//
+// It also carries the two READ-ONLY VIEWS the server owns: the revenue
+// figures for a period, and the analytics series. They live here rather than
+// in their own provider because they are the same records read differently,
+// and because every API call in this app goes through a provider.
+//
+// The API's snake_case is translated once, in ../normalize.js.
 
-const TRANSACTIONS_KEY = 'cybershopos.transactions'
-const REFUNDS_KEY = 'cybershopos.refunds'
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { api } from '../api.js';
+import {
+  normalizePayment,
+  normalizeRefund,
+  normalizeRevenueSummary,
+  normalizeRevenueBill,
+  normalizeRevenueRefund,
+  normalizeDayBuckets,
+  normalizeHourBuckets,
+  normalizeCashierRows,
+  normalizeYearRows,
+  normalizeMonthRows,
+} from '../normalize.js';
+import { useAuth } from './auth.js';
+import { TransactionContext } from './transactionContext.js';
 
-function readList(key) {
-  try {
-    const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) : []
-  } catch {
-    return []
-  }
-}
-
-/*
-  TRANSACTION RECORDS — Phase 4.
-
-  A rental that is stopped immediately becomes a transaction in the
-  UNSETTLED state. The cashier may leave it that way: the PC is already
-  free and the rental is over, so nothing is blocked on payment. An
-  unsettled transaction keeps its full bill and can be settled later from
-  the Payments screen.
-
-  The original bill is never rewritten. Recording a payment adds the
-  cash figures and marks the record settled — it does not touch
-  amountDue or pieces (Business Rule 10).
-
-  A bill is settled in full or not at all. An underpayment is refused
-  rather than absorbed, so the shop never records less revenue than was
-  owed. Forgiving part of a bill on purpose is a rental adjustment with a
-  recorded reason (Core Feature 6.1.6, Business Rule 11), which is Phase 6
-  — until then there is deliberately no way to settle for less.
-
-  This provider is replaced by real API calls in Phase 11.
-*/
 export function TransactionProvider({ children }) {
-  const { user } = useAuth()
-  const [transactions, setTransactions] = useState(() => readList(TRANSACTIONS_KEY))
-  // Refunds are their OWN records, never fields added to a bill. This is
-  // what keeps the original transaction unedited (Business Rule 10).
-  const [refunds, setRefunds] = useState(() => readList(REFUNDS_KEY))
+  // Bills are behind a login. Waiting for the session check avoids three
+  // guaranteed-401 requests on every refresh.
+  const { user, loading: authLoading } = useAuth();
 
-  useEffect(() => {
-    localStorage.setItem(TRANSACTIONS_KEY, JSON.stringify(transactions))
-  }, [transactions])
-
-  useEffect(() => {
-    localStorage.setItem(REFUNDS_KEY, JSON.stringify(refunds))
-  }, [refunds])
-
-  // Called the moment a rental stops, before any cash is involved.
-  function openTransaction({ rental, pc, endedAt, bill }) {
-    const entry = {
-      id: `t-${endedAt}`,
-      // Stored here, at creation, and never derived from position — see
-      // `nextRef` in data/revenue.js (Decision 108).
-      ref: nextRef(transactions),
-      rentalId: rental.id,
-      pcId: pc.id,
-      pcName: pc.name,
-      startedAt: rental.startedAt,
-      endedAt,
-      usedSeconds: bill.usedSeconds,
-      bookedSeconds: bill.bookedSeconds,
-      overstaySeconds: bill.overstaySeconds,
-      pieces: bill.pieces,
-      // The full transfer chain, so the original PC is never lost. A
-      // transaction created before this existed has no transfers field, so
-      // the default keeps older records rendering.
-      transfers: rental.transfers ?? [],
-      amountDue: bill.amountDue,
-      cashReceived: null,
-      amountCharged: null,
-      change: null,
-      settled: false,
-      cashierId: user?.id ?? null,
-      cashierName: user?.username ?? null,
-    }
-    setTransactions((prev) => [entry, ...prev])
-    return entry
-  }
-
-  function settle(id, cashReceived) {
-    // Re-checked here as well as in the UI, so a zero, negative, or
-    // fractional payment can never be recorded even if the form is
-    // bypassed. There are never centavos, and no payment is worth nothing.
-    if (!Number.isInteger(cashReceived) || cashReceived < 1) return false
-
-    // An underpayment is refused, not absorbed. Settling for less than the
-    // bill would record less revenue than was owed. A deliberate goodwill
-    // discount is a rental adjustment with a recorded reason
-    // (Core Feature 6.1.6, Business Rule 11) and arrives in Phase 6.
-    const target = transactions.find((entry) => entry.id === id)
-    if (!target || target.settled) return false
-    if (cashReceived < target.amountDue) return false
-
-    setTransactions((prev) =>
-      prev.map((entry) => {
-        if (entry.id !== id) return entry
-        return {
-          ...entry,
-          cashReceived,
-          amountCharged: entry.amountDue,
-          change: Math.max(0, cashReceived - entry.amountDue),
-          settled: true,
-          settledAt: Date.now(),
-          settledById: user?.id ?? null,
-          settledByName: user?.username ?? null,
-        }
-      }),
-    )
-    return true
-  }
+  const [transactions, setTransactions] = useState([]);
+  const [refunds, setRefunds] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   /*
-    Records a refund or an adjustment against a bill.
+    The revenue view of one period: the figures, the bills settled in it, and
+    the refunds taken in it — all decided by the server.
 
-    The bill is never touched — this appends a separate record. Guards,
-    all of them enforced here as well as in the form:
-
-      settled only   an unpaid bill has no cash in it to give back
-      whole pesos    no centavos, and ₱0 is allowed for a note
-      hard cap       refunds can never pass the amount paid, however
-                     many are recorded
-      reason         mandatory, always (Business Rule 11)
+    The screen used to receive every bill and pick the ones inside the period
+    itself, which put the period rule in the browser. It does not any more.
   */
-  function recordRefund({ transactionId, kind = REFUND_KIND.PARTIAL, amount, reason }) {
-    const transaction = transactions.find((entry) => entry.id === transactionId)
-    if (!transaction) return { ok: false, error: 'That bill no longer exists.' }
+  const [revenue, setRevenue] = useState(null);
+  const [revenueLoading, setRevenueLoading] = useState(false);
+  const [revenueError, setRevenueError] = useState(null);
 
-    if (!transaction.settled) {
-      return { ok: false, error: 'Settle the bill before refunding it.' }
+  /*
+    The analytics series for one scope. Admin only — every analytics endpoint
+    is behind the admin gate, so a cashier never calls them.
+  */
+  const [analytics, setAnalytics] = useState(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(false);
+  const [analyticsError, setAnalyticsError] = useState(null);
+
+  const refresh = useCallback(async () => {
+    try {
+      // Both lists are needed together: a bill row shows its refund history and
+      // its net amount, so fetching one without the other renders a screen that
+      // is half right.
+      const [bills, adjustments] = await Promise.all([
+        api.get('/payments'),
+        api.get('/payments/refunds'),
+      ]);
+
+      setTransactions((bills.payments ?? []).map(normalizePayment));
+      setRefunds((adjustments.refunds ?? []).map(normalizeRefund));
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
+  }, []);
 
-    if (!Number.isInteger(amount) || amount < 0) {
-      return { ok: false, error: 'Enter a whole peso amount, 0 or more.' }
-    }
+  useEffect(() => {
+    if (authLoading || !user) return;
+    refresh();
+  }, [user, authLoading, refresh]);
 
-    const existing = refunds.filter((entry) => entry.transactionId === transactionId)
-    const { maxRefundable } = refundableFor(transaction, transaction.usedSeconds, existing)
+  /*
+    Called right after a rental stops.
 
-    if (amount > maxRefundable) {
-      return {
-        ok: false,
-        error:
-          maxRefundable === 0
-            ? 'Nothing left to refund on this bill.'
-            : `That is more than the remaining ${maxRefundable}.`,
+    The OLD flow created the bill here, on the client. It no longer does: the
+    server prices the rental and writes the UNSETTLED bill during /rentals/stop,
+    because the price must be decided in exactly one place (Decision 59). So
+    this only refreshes, and returns the bill that now exists.
+
+    `bill` is the server's own calculation. It is returned unchanged rather than
+    recomputed, so the figure the cashier reads is the figure that was stored.
+  */
+  const openTransaction = useCallback(async () => {
+    await refresh();
+    return null;
+  }, [refresh]);
+
+  const settle = useCallback(
+    async (id, cashReceived) => {
+      try {
+        await api.post('/payments/settle', { id, cashReceived });
+        await refresh();
+        return true;
+      } catch {
+        return false;
       }
+    },
+    [refresh],
+  );
+
+  /*
+    A refusal is a normal outcome here, not an exception: the cashier may be
+    trying to settle an already-paid bill, or record a PHP0 adjustment. The
+    server's message is what the cashier needs to read, so it is handed back
+    rather than swallowed.
+  */
+  const recordRefund = useCallback(
+    async ({ transactionId, kind, amount, reason }) => {
+      try {
+        await api.post('/payments/refund', {
+          paymentId: transactionId,
+          kind,
+          amount,
+          reason,
+        });
+        await refresh();
+        return { ok: true };
+      } catch (err) {
+        return { ok: false, error: err.message };
+      }
+    },
+    [refresh],
+  );
+
+  const refundsFor = useCallback(
+    (transactionId) => refunds.filter((r) => r.transactionId === transactionId),
+    [refunds],
+  );
+
+  /*
+    THE REVENUE VIEW OF ONE PERIOD.
+
+    One request. The server returns the figures, the bills settled in the
+    period and the refunds taken in it, all filtered by the same window — so
+    the summary and the list can never describe different periods.
+
+    `period` is the server's own vocabulary: today | month | year | all | <year>.
+    The server is the enforcement point for which periods a role may see; a
+    Cashier asking for anything else is answered with Today.
+  */
+  const loadRevenue = useCallback(async (period) => {
+    setRevenueLoading(true);
+
+    try {
+      const data = await api.get(`/revenue?period=${encodeURIComponent(period)}`);
+
+      setRevenue({
+        // The period this data belongs to. The screen compares it with the
+        // period selected, so a response that arrives after the user moved on
+        // is never shown under the wrong heading.
+        period,
+        summary: normalizeRevenueSummary(data.revenue ?? {}),
+        bills: (data.bills ?? []).map(normalizeRevenueBill),
+        refunds: (data.refunds ?? []).map(normalizeRevenueRefund),
+      });
+      setRevenueError(null);
+    } catch (err) {
+      setRevenueError(err.message);
+    } finally {
+      setRevenueLoading(false);
     }
+  }, []);
 
-    if (!reason || !reason.trim()) {
-      return { ok: false, error: 'A reason is required.' }
+  /*
+    THE ANALYTICS SERIES FOR ONE SCOPE.
+
+    The scope decides the shape of the main series, so only the series that
+    will actually be drawn is asked for:
+
+      month  -> one bucket per day
+      a year -> one bucket per month of that year
+      all    -> one bucket per year
+
+    The rest — the headline figures, the best hour, the best month, the hour
+    shape, the cashier split, and the year list the scope selector is built
+    from — are the same whatever the scope is.
+
+    These are parallel requests because none of them depends on another. Seven
+    small queries for an admin screen is a fair price for the server owning
+    every number on it.
+  */
+  const loadAnalytics = useCallback(async (period) => {
+    setAnalyticsLoading(true);
+
+    try {
+      const query = `?period=${encodeURIComponent(period)}`;
+
+      const series =
+        period === 'month'
+          ? api.get(`/analytics/collected-by-day${query}`)
+          : period === 'all'
+            ? Promise.resolve(null)
+            : api.get('/analytics/collected-by-month');
+
+      const [summary, bestHour, bestMonth, yearly, hourly, cashier, scopeSeries] =
+        await Promise.all([
+          api.get(`/revenue${query}`),
+          api.get(`/analytics/best-hour${query}`),
+          api.get('/analytics/best-month'),
+          api.get('/analytics/collected-by-year'),
+          api.get(`/analytics/collected-by-hour${query}`),
+          api.get(`/analytics/collected-by-cashier${query}`),
+          series,
+        ]);
+
+      const yearRows = normalizeYearRows(yearly.data);
+
+      setAnalytics({
+        // The scope this data belongs to — see the note in loadRevenue.
+        period,
+        summary: normalizeRevenueSummary(summary.revenue ?? {}),
+        bestHour: bestHour.bestHour ?? null,
+        bestMonth: bestMonth.bestMonth ?? null,
+        daily: normalizeDayBuckets(scopeSeries?.buckets),
+        monthly: normalizeMonthRows(scopeSeries?.data, period),
+        yearly: yearRows,
+        hourly: normalizeHourBuckets(hourly.buckets),
+        byCashier: normalizeCashierRows(cashier.data),
+        years: yearRows.map((row) => row.year),
+      });
+      setAnalyticsError(null);
+    } catch (err) {
+      setAnalyticsError(err.message);
+    } finally {
+      setAnalyticsLoading(false);
     }
+  }, []);
 
-    const entry = {
-      id: `r-${Date.now()}`,
-      transactionId,
-      kind: kind === REFUND_KIND.FULL ? REFUND_KIND.FULL : REFUND_KIND.PARTIAL,
-      amount,
-      reason: reason.trim(),
-      cashierId: user?.id ?? null,
-      cashierName: user?.username ?? null,
-      at: Date.now(),
-    }
+  const unsettled = useMemo(
+    () => transactions.filter((t) => !t.settled),
+    [transactions],
+  );
 
-    setRefunds((prev) => [...prev, entry])
-    return { ok: true, entry }
-  }
+  const settled = useMemo(
+    () => transactions.filter((t) => t.settled),
+    [transactions],
+  );
 
-  const unsettled = transactions.filter((entry) => !entry.settled)
-  const settled = transactions.filter((entry) => entry.settled)
-  const refundsFor = (transactionId) => refunds.filter((entry) => entry.transactionId === transactionId)
+  const value = useMemo(
+    () => ({
+      transactions,
+      refunds,
+      loading,
+      error,
+      unsettled,
+      settled,
+      openTransaction,
+      settle,
+      recordRefund,
+      refundsFor,
+      revenue,
+      revenueLoading,
+      revenueError,
+      loadRevenue,
+      analytics,
+      analyticsLoading,
+      analyticsError,
+      loadAnalytics,
+      refresh,
+    }),
+    [
+      transactions,
+      refunds,
+      loading,
+      error,
+      unsettled,
+      settled,
+      openTransaction,
+      settle,
+      recordRefund,
+      refundsFor,
+      revenue,
+      revenueLoading,
+      revenueError,
+      loadRevenue,
+      analytics,
+      analyticsLoading,
+      analyticsError,
+      loadAnalytics,
+      refresh,
+    ],
+  );
 
-  const value = {
-    transactions,
-    refunds,
-    unsettled,
-    settled,
-    openTransaction,
-    settle,
-    recordRefund,
-    refundsFor,
-    refundedTotal,
-  }
-
-  return <TransactionContext.Provider value={value}>{children}</TransactionContext.Provider>
+  return <TransactionContext.Provider value={value}>{children}</TransactionContext.Provider>;
 }

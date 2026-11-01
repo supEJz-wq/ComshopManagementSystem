@@ -1,13 +1,13 @@
 <?php
-// server/apply-migration.php
+// server/tools/apply-migration.php
 //
 // One-off helper that applies a single .sql file. The normal way is
-//     php server/update.php --file=database/migrations/00X_name.sql
+//     php server/tools/update.php --file=database/migrations/00X_name.sql
 // which backs up first and verifies afterwards. This script skips both, so it is
 // for quick local iteration only.
 //
 // Usage:
-//     php server/apply-migration.php database/migrations/001_add_column.sql
+//     php server/tools/apply-migration.php database/migrations/001_add_column.sql
 //
 // Credentials come from .env, never from a literal in this file.
 
@@ -23,7 +23,7 @@ require_once __DIR__ . '/db-admin.php';
 $target = $argv[1] ?? '';
 
 if ($target === '') {
-    echo "Usage: php server/apply-migration.php <path-to.sql>\n";
+    echo "Usage: php server/tools/apply-migration.php <path-to.sql>\n";
     exit(1);
 }
 

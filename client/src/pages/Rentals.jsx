@@ -2,10 +2,15 @@ import { formatClock, getDisplayRemaining, getElapsedSeconds } from '../data/ren
 import RentalTimer from '../components/RentalTimer.jsx'
 import { usePcs } from '../context/pcContext.js'
 import { useRentals } from '../context/rentalContext.js'
+import DataState from '../components/DataState.jsx'
+import { RentalsSkeleton } from '../components/skeletons.jsx'
 
 function Rentals() {
-  const { pcs } = usePcs()
-  const { rentals, now } = useRentals()
+  const { pcs, loading: pcsLoading, error: pcsError } = usePcs()
+  const { rentals, now, loading, error } = useRentals()
+
+  if (loading || pcsLoading) return <RentalsSkeleton />
+  if (error || pcsError) return <DataState error={error || pcsError} />
 
   // Soonest-ending first. That is the order the cashier cares about.
   const ordered = [...rentals].sort(

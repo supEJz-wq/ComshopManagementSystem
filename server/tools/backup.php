@@ -1,9 +1,9 @@
 <?php
-// server/backup.php
+// server/tools/backup.php
 //
 // Takes a full backup of the comshop database.
 //
-//   php server/backup.php
+//   php server/tools/backup.php
 //
 // The file lands in backups/ inside the project and is a real SQL Server .bak,
 // so it can be restored with restore.php. It is NOT a CSV export.
@@ -39,7 +39,7 @@ try {
     out('Location', $path);
 
     echo "\nOK. Restore it with:\n";
-    echo '  php server/restore.php ' . basename($path) . "\n";
+    echo '  php server/tools/restore.php ' . basename($path) . "\n";
 } catch (Throwable $e) {
     echo "\nFAILED: " . $e->getMessage() . "\n";
     exit(1);

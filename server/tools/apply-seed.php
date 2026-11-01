@@ -1,8 +1,8 @@
 <?php
-// server/apply-seed.php
+// server/tools/apply-seed.php
 //
 // One-off helper that applies database/seed.sql. The normal way to seed is
-//     php server/update.php --seed
+//     php server/tools/update.php --seed
 // which backs up first and verifies afterwards. This script skips both, so it is
 // for quick local iteration only.
 //
@@ -18,7 +18,7 @@ if (PHP_SAPI !== 'cli') {
 require_once __DIR__ . '/db-admin.php';
 
 try {
-    $statements = applySqlFile(__DIR__ . '/../database/seed.sql');
+    $statements = applySqlFile(__DIR__ . '/../../database/seed.sql');
 
     echo "seed.sql applied ($statements statements)\n";
 

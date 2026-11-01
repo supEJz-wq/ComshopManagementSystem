@@ -21,7 +21,7 @@ function AppShell({ children }) {
   const { now } = useRentals()
 
   return (
-    <div className="flex min-h-screen bg-slate-100">
+    <div className="app-shell flex min-h-screen bg-slate-100">
       <Sidebar />
 
       <div className="flex flex-1 flex-col">

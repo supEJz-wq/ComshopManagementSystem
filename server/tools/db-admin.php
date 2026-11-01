@@ -1,5 +1,5 @@
 <?php
-// server/db-admin.php
+// server/tools/db-admin.php
 //
 // Shared helpers for the maintenance scripts: backup, restore, and applying a
 // .sql file safely. Used by backup.php, restore.php and update.php.
@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/config/env.php';
+require_once __DIR__ . '/../config/env.php';
 
 // The database name and server come from .env, never from a literal in this
 // file. They are functions rather than constants because a PHP const cannot be
@@ -25,7 +25,7 @@ function dbServer(): string
 }
 
 // Where the finished .bak files are kept, inside the project.
-const PROJECT_BACKUP_DIR = __DIR__ . '/../backups';
+const PROJECT_BACKUP_DIR = __DIR__ . '/../../backups';
 
 // Cached connection settings, read once.
 $dbConfig = dbConfig();

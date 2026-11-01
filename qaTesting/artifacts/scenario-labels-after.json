@@ -1,0 +1,817 @@
+[
+  {
+    "file": "tests/admin/home/home.spec.js",
+    "setup": [
+      {
+        "homeData": {
+          "pcs": [
+            {
+              "id": 1,
+              "name": "TEST-PC-1",
+              "status": "free",
+              "needsRepair": false
+            },
+            {
+              "id": 2,
+              "name": "TEST-PC-2",
+              "status": "rented",
+              "needsRepair": false
+            },
+            {
+              "id": 3,
+              "name": "TEST-PC-3",
+              "status": "rented",
+              "needsRepair": false
+            },
+            {
+              "id": 4,
+              "name": "TEST-PC-4",
+              "status": "issue",
+              "needsRepair": true
+            },
+            {
+              "id": 5,
+              "name": "TEST-PC-5",
+              "status": "issue",
+              "needsRepair": true
+            },
+            {
+              "id": 6,
+              "name": "TEST-PC-6",
+              "status": "issue",
+              "needsRepair": true
+            },
+            {
+              "id": 7,
+              "name": "TEST-PC-7",
+              "status": "unresponsive",
+              "needsRepair": true
+            },
+            {
+              "id": 8,
+              "name": "TEST-PC-8",
+              "status": "unresponsive",
+              "needsRepair": true
+            },
+            {
+              "id": 9,
+              "name": "TEST-PC-9",
+              "status": "unresponsive",
+              "needsRepair": true
+            },
+            {
+              "id": 10,
+              "name": "TEST-PC-10",
+              "status": "unresponsive",
+              "needsRepair": true
+            }
+          ],
+          "rentals": [
+            {
+              "id": 2,
+              "pcId": 2,
+              "blockSeconds": 1800,
+              "status": "active",
+              "startedAt": "2026-11-01T08:00:00+08:00",
+              "blockStartedAt": "2026-11-01T08:00:00+08:00",
+              "segments": [],
+              "transfers": []
+            },
+            {
+              "id": 3,
+              "pcId": 3,
+              "blockSeconds": 1800,
+              "status": "active",
+              "startedAt": "2026-11-01T08:00:00+08:00",
+              "blockStartedAt": "2026-11-01T08:00:00+08:00",
+              "segments": [],
+              "transfers": []
+            },
+            {
+              "id": 4,
+              "pcId": 4,
+              "blockSeconds": 1800,
+              "status": "active",
+              "startedAt": "2026-11-01T08:00:00+08:00",
+              "blockStartedAt": "2026-11-01T08:00:00+08:00",
+              "segments": [],
+              "transfers": []
+            }
+          ]
+        }
+      },
+      {
+        "homeData": {
+          "pcs": [],
+          "rentals": []
+        }
+      },
+      {
+        "homeData": {
+          "pcs": [
+            {
+              "id": 1,
+              "name": "TEST-PC-1",
+              "status": "free",
+              "needsRepair": false
+            }
+          ],
+          "rentals": []
+        }
+      },
+      {
+        "homeData": {
+          "pcs": [
+            {
+              "id": 2,
+              "name": "TEST-PC-2",
+              "status": "rented",
+              "needsRepair": false
+            }
+          ],
+          "rentals": [
+            {
+              "id": 2,
+              "pcId": 2,
+              "blockSeconds": 1800,
+              "status": "active",
+              "startedAt": "2026-11-01T08:00:00+08:00",
+              "blockStartedAt": "2026-11-01T08:00:00+08:00",
+              "segments": [],
+              "transfers": []
+            }
+          ]
+        }
+      }
+    ],
+    "cases": [
+      {
+        "title": "HOME-01/02: shows the loaded Admin Home and each correct status count [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "87a6456e26e97cf4933c35b629047d3ae2fcb11a377827ab29672211d1dd89b6"
+      },
+      {
+        "title": "HOME-03: status counts are valid numbers and add up to the computer total [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "a94471cb96fca78a2972ce53b44cfc91e9b3c9a549dc2353843b00a266b77c53"
+      },
+      {
+        "title": "HOME-04: active rentals include rentals on faulty PCs [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "936c6ffdf7e133afe13b126f49d1844be1c586e5914b89df7f6c84c5b1d36e48"
+      },
+      {
+        "title": "shows zero computers, zero rentals, and zero in every tile [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "81df172af01993d4620b033aaca8af5e58486c5f1e963a898c164d4196904fb0"
+      },
+      {
+        "title": "shows 1 computer, 0 active rentals, and Free = 1 [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "81df172af01993d4620b033aaca8af5e58486c5f1e963a898c164d4196904fb0"
+      },
+      {
+        "title": "shows 1 computer, 1 active rental, and Rented = 1 [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "81df172af01993d4620b033aaca8af5e58486c5f1e963a898c164d4196904fb0"
+      },
+      {
+        "title": "Home refresh: reloads the Admin summary without resetting counts [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "c643645406f9af84f247962f9d11356d20a33f335662e6ed1d7d13ad46fcbd69"
+      },
+      {
+        "title": "Shows loading while waiting for the PC list [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "cf0bbd0ded3e04832dda4cbc4bbc6288553d7950bf1082292e56952eac321d00"
+      },
+      {
+        "title": "Shows a useful error when the PC list cannot load [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "d733635a2feaf0224b789ae857d963ed204acf6d51df8309b1548562411ce895"
+      },
+      {
+        "title": "Shows loading while waiting for the active rental list [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "cf0bbd0ded3e04832dda4cbc4bbc6288553d7950bf1082292e56952eac321d00"
+      },
+      {
+        "title": "Shows a useful error when the active rental list cannot load [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "d733635a2feaf0224b789ae857d963ed204acf6d51df8309b1548562411ce895"
+      }
+    ]
+  },
+  {
+    "file": "tests/admin/home/home.live.spec.js",
+    "setup": [],
+    "cases": [
+      {
+        "title": "Home live: Admin counts match the backend before and after refresh [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "aeaee73365b55661ecc36a0df61c8ff4ed59478ca1fd8cc20031faa5c768ebd5"
+      }
+    ]
+  },
+  {
+    "file": "tests/admin/home/home.flow.spec.js",
+    "setup": [],
+    "cases": [
+      {
+        "title": "HOME-04: Home rental total matches the Rentals list [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "dac52f5b0b33522ea10e14ee9c3f6655d2be271b85de10d3d296e239d783e2a6"
+      },
+      {
+        "title": "HOME-05: Home counts update after marking and resolving a PC issue [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "bbf17e46b4e56a64d88b763371d68c25911fb9073af5b4560daf5944da4975c7"
+      },
+      {
+        "title": "HOME-06: Home counts update after starting and stopping a rental [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "6bbd39273d6fd67ce1e45b6c63986570223cefb65cd9421f92f4bd20526a5804"
+      }
+    ]
+  },
+  {
+    "file": "tests/admin/pcs/pcs.registration-status.spec.js",
+    "setup": [
+      {
+        "timezoneId": "Asia/Manila"
+      }
+    ],
+    "cases": [
+      {
+        "title": "PCS-01: displays the correct inventory, statuses, and legend [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9067ba3de8c788ac8c1b14c2e633e258cbd7c13bc4440174240a946d882af2aa"
+      },
+      {
+        "title": "PCS-02: cancels Add PC without changing inventory [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "2f1157c8732b41fbebb0148e424d7c140b2a33dba78a089eb7b613e9c140885a"
+      },
+      {
+        "title": "PCS-03: registers one new Free PC and preserves it after refresh [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "dfb4b021548653566ff14962815d77fe7d38928912b3e60805be952c8c27f78c"
+      },
+      {
+        "title": "PCS-04: rejects an empty PC name [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "3eac2c4062605b444142e7ebbb3c6fd0bbe6e64dffe3f9ef024330375798bc9a"
+      },
+      {
+        "title": "PCS-04: rejects a whitespace-only PC name [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "3eac2c4062605b444142e7ebbb3c6fd0bbe6e64dffe3f9ef024330375798bc9a"
+      },
+      {
+        "title": "PCS-05: shows duplicate-name feedback without adding another PC [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "8b2022d795931e5c0c82993057dab77dd91783184b553643365fc9b2ddee8662"
+      },
+      {
+        "title": "PCS-06: Issue and Resolve updates only the exact named PC [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "34bd8a936f9aefef980c5e7bfbfb08db7c12fc033bcfeaca1dce06cac100ef83"
+      },
+      {
+        "title": "PCS-06: Unresponsive and Repair updates only the exact named PC [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "34bd8a936f9aefef980c5e7bfbfb08db7c12fc033bcfeaca1dce06cac100ef83"
+      },
+      {
+        "title": "PCS-06: Repair preserves the working state of PCS-FREE-REPAIR [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "367cb87678f44bdaf51306c243fe7c875e4ce5fd519dab7c19278a12ad6afcc1"
+      },
+      {
+        "title": "PCS-06: Repair preserves the working state of PCS-RENTED-REPAIR [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "367cb87678f44bdaf51306c243fe7c875e4ce5fd519dab7c19278a12ad6afcc1"
+      },
+      {
+        "title": "PCS-06: repairing PCS-ISSUE-RENTED restores Rented without ending its rental [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "5c2815b8b7357b48e6a6e47e294f59e79bc07d8efde407f96d8cf7da83f2f723"
+      },
+      {
+        "title": "PCS-06: repairing PCS-UNRESPONSIVE-RENTED restores Rented without ending its rental [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "5c2815b8b7357b48e6a6e47e294f59e79bc07d8efde407f96d8cf7da83f2f723"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-FREE-01 [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-RENTED-01 [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-ISSUE-IDLE [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-UNRESPONSIVE-IDLE [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-ISSUE-RENTED [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-UNRESPONSIVE-RENTED [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-FREE-REPAIR [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      },
+      {
+        "title": "PCS-07: offers the correct actions on PCS-RENTED-REPAIR [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "6689356d580a04d4ac7ec847449061b1303303cc2ed89e62e247e306e78d2825"
+      }
+    ]
+  },
+  {
+    "file": "tests/admin/pcs/pcs.rentals.spec.js",
+    "setup": [
+      {
+        "timezoneId": "Asia/Manila"
+      }
+    ],
+    "cases": [
+      {
+        "title": "PCS-08: starts and saves the 30 min preset [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9d7fcc9042c7e72e14786616d86cb507757ba23f9d2a08195926ca11d3e0ae35"
+      },
+      {
+        "title": "PCS-08: starts and saves the 1 hr preset [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9d7fcc9042c7e72e14786616d86cb507757ba23f9d2a08195926ca11d3e0ae35"
+      },
+      {
+        "title": "PCS-08: starts and saves the 2 hr preset [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9d7fcc9042c7e72e14786616d86cb507757ba23f9d2a08195926ca11d3e0ae35"
+      },
+      {
+        "title": "PCS-08: starts and saves the 3 hr preset [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9d7fcc9042c7e72e14786616d86cb507757ba23f9d2a08195926ca11d3e0ae35"
+      },
+      {
+        "title": "PCS-08: starts and saves the 5 hr preset [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9d7fcc9042c7e72e14786616d86cb507757ba23f9d2a08195926ca11d3e0ae35"
+      },
+      {
+        "title": "PCS-08: starts and saves the 6 hr preset [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "9d7fcc9042c7e72e14786616d86cb507757ba23f9d2a08195926ca11d3e0ae35"
+      },
+      {
+        "title": "PCS-09: accepts the minimum one minute [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "b68bcc3b5c0fc52613d16eb210b0d9845e560c7268e4ad3e70d8fcd643c2c6e3"
+      },
+      {
+        "title": "PCS-09: accepts mixed hours, minutes, and seconds [Happy path]",
+        "tags": [
+          "@happy-path"
+        ],
+        "callbackHash": "b68bcc3b5c0fc52613d16eb210b0d9845e560c7268e4ad3e70d8fcd643c2c6e3"
+      },
+      {
+        "title": "PCS-09: accepts exactly 24 hours [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "b68bcc3b5c0fc52613d16eb210b0d9845e560c7268e4ad3e70d8fcd643c2c6e3"
+      },
+      {
+        "title": "PCS-10: rejects blank duration [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects all-zero duration [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects 59 seconds [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects negative hours [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects fractional minutes [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects 60 minutes in the minutes field [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects 60 seconds in the seconds field [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-10: rejects 24 hours plus one second [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "62ff155d3d0cb7b552b0245b419798a4f67536e275a3ae1b7a1bf05cbfb17665"
+      },
+      {
+        "title": "PCS-11: cancels the start picker without a mutation [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "91c98d16376dbb48504b23ae8bfd274089d44c6761433a9760ad649817014577"
+      },
+      {
+        "title": "PCS-11: cancels the extend picker without a mutation [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "91c98d16376dbb48504b23ae8bfd274089d44c6761433a9760ad649817014577"
+      },
+      {
+        "title": "PCS-12: extends an active rental by 30 min [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-12: extends an active rental by 1 hr [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-12: extends an active rental by 2 hr [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-12: extends an active rental by 3 hr [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-12: extends an active rental by 5 hr [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-12: extends an active rental by 6 hr [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-12: extends an active rental by custom 2 min 3 sec [Happy path]",
+        "tags": "@happy-path",
+        "callbackHash": "3b327fb3a515ee7b29cd587d2379448f7a6f4cbb631fc327cef2cbd160c27feb"
+      },
+      {
+        "title": "PCS-13: rejects an extension of blank duration [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of all-zero duration [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of 59 seconds [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of negative hours [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of fractional minutes [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of 60 minutes in the minutes field [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of 60 seconds in the seconds field [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: rejects an extension of 24 hours plus one second [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "cadcbe1095768eb087a138002ccc15e6fde22962b3863a7b9db66bef09bac7e6"
+      },
+      {
+        "title": "PCS-13: accepts an extension reaching exactly 24 hours booked [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "97079d82ae94eb7e7fe5daaf9b84c089549bb8a8072cc5b66a6d61bc0aa99574"
+      },
+      {
+        "title": "PCS-13: shows feedback when an extension exceeds 24 hours booked [Error path / Edge case]",
+        "tags": [
+          "@error-path",
+          "@edge-case"
+        ],
+        "callbackHash": "996461cc928c385522558af527e06c1544cc2f8f102cfe97c40daec0c77570ea"
+      },
+      {
+        "title": "PCS-14: markIssue preserves the rental and recovery actions [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "745c0a2c1610e3ece38958f49ffdcb1b152c05643bb6ebcc8542ce26df7993d0"
+      },
+      {
+        "title": "PCS-14: markUnresponsive preserves the rental and recovery actions [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "745c0a2c1610e3ece38958f49ffdcb1b152c05643bb6ebcc8542ce26df7993d0"
+      },
+      {
+        "title": "PCS-18: stopping a Rented PC creates one bill and leaves it Free [Happy path]",
+        "tags": [
+          "@happy-path"
+        ],
+        "callbackHash": "384ba8d62a6a7c1ce774eb2740aedfd96c3f46749e23cf461e8fd84e9f1f052a"
+      },
+      {
+        "title": "PCS-18: stopping a Issue PC creates one bill and leaves it Issue [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "384ba8d62a6a7c1ce774eb2740aedfd96c3f46749e23cf461e8fd84e9f1f052a"
+      },
+      {
+        "title": "PCS-18: stopping a Unresponsive PC creates one bill and leaves it Unresponsive [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "384ba8d62a6a7c1ce774eb2740aedfd96c3f46749e23cf461e8fd84e9f1f052a"
+      }
+    ]
+  },
+  {
+    "file": "tests/admin/pcs/pcs.transfers-page-states.spec.js",
+    "setup": [
+      {
+        "timezoneId": "Asia/Manila"
+      }
+    ],
+    "cases": [
+      {
+        "title": "PCS-15: lists only eligible destinations from PCS-ISSUE-RENTED [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "c639880dfc0823824973a2b836f934f0fcc8aa72e79550a6f1333a6988c05454"
+      },
+      {
+        "title": "PCS-16: transfers PCS-ISSUE-RENTED to PCS-FREE-01 without resetting time or charges [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "8775a02da0f676b13bf6055d93bfc2167ff55628600ada646a1cd153a97a34e5"
+      },
+      {
+        "title": "PCS-16: transfers PCS-ISSUE-RENTED to PCS-ISSUE-IDLE without resetting time or charges [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "8775a02da0f676b13bf6055d93bfc2167ff55628600ada646a1cd153a97a34e5"
+      },
+      {
+        "title": "PCS-15: lists only eligible destinations from PCS-UNRESPONSIVE-RENTED [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "c639880dfc0823824973a2b836f934f0fcc8aa72e79550a6f1333a6988c05454"
+      },
+      {
+        "title": "PCS-16: transfers PCS-UNRESPONSIVE-RENTED to PCS-FREE-01 without resetting time or charges [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "8775a02da0f676b13bf6055d93bfc2167ff55628600ada646a1cd153a97a34e5"
+      },
+      {
+        "title": "PCS-16: transfers PCS-UNRESPONSIVE-RENTED to PCS-ISSUE-IDLE without resetting time or charges [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "8775a02da0f676b13bf6055d93bfc2167ff55628600ada646a1cd153a97a34e5"
+      },
+      {
+        "title": "PCS-17: cancelling Transfer leaves the rental on its source PC [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "795d7350f88eed7c013372e2f36d7f8c9a443b3b5ed78a9d194196195ee2e8de"
+      },
+      {
+        "title": "PCS-17: shows the no-target message when all destinations are unavailable [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "5a8e00000bf9b6ee6c800fc84f15386be1558b9e3f621ec8c4150181c47d222f"
+      },
+      {
+        "title": "PCS-19: handles 0 unsettled bills [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "a7f7c7864051846023b5fca72314855cb71cf8ab4c69d6047f12c1623374c3b9"
+      },
+      {
+        "title": "PCS-19: handles 1 unsettled bill [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "a7f7c7864051846023b5fca72314855cb71cf8ab4c69d6047f12c1623374c3b9"
+      },
+      {
+        "title": "PCS-19: handles 2 unsettled bills [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "a7f7c7864051846023b5fca72314855cb71cf8ab4c69d6047f12c1623374c3b9"
+      },
+      {
+        "title": "PCS-20: registration, status, repair, rental, extension, transfer, and bill survive refresh [Happy path / Edge case]",
+        "tags": [
+          "@happy-path",
+          "@edge-case"
+        ],
+        "callbackHash": "b75f0f9985d2092ecfb9499d2a57030a31bef4eb2d5b2222eabef4650bf1b5e3"
+      },
+      {
+        "title": "PCs loading: waits for PC inventory [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "b40c3586cc4ec65c3cedbe869e16c0eaee963ff2870fa417e3352107eaddad87"
+      },
+      {
+        "title": "PCs errors: reports failed PC inventory [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "e640f19868d9da2e81a44bc4acb7ca53b72c9e1f9929d353dbb80de20542258b"
+      },
+      {
+        "title": "PCs loading: waits for active rentals [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "b40c3586cc4ec65c3cedbe869e16c0eaee963ff2870fa417e3352107eaddad87"
+      },
+      {
+        "title": "PCs errors: reports failed active rentals [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "e640f19868d9da2e81a44bc4acb7ca53b72c9e1f9929d353dbb80de20542258b"
+      },
+      {
+        "title": "PCs loading: waits for payments [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "b40c3586cc4ec65c3cedbe869e16c0eaee963ff2870fa417e3352107eaddad87"
+      },
+      {
+        "title": "PCs errors: reports failed payments [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "e640f19868d9da2e81a44bc4acb7ca53b72c9e1f9929d353dbb80de20542258b"
+      },
+      {
+        "title": "PCs loading: waits for refunds required by payments [Edge case]",
+        "tags": "@edge-case",
+        "callbackHash": "b40c3586cc4ec65c3cedbe869e16c0eaee963ff2870fa417e3352107eaddad87"
+      },
+      {
+        "title": "PCs errors: reports failed refunds required by payments [Error path]",
+        "tags": "@error-path",
+        "callbackHash": "e640f19868d9da2e81a44bc4acb7ca53b72c9e1f9929d353dbb80de20542258b"
+      }
+    ]
+  }
+]

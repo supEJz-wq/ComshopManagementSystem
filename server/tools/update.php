@@ -1,11 +1,11 @@
 <?php
-// server/update.php
+// server/tools/update.php
 //
 // The safe way to apply a schema change.
 //
-//   php server/update.php            structure only (additive, nothing dropped)
-//   php server/update.php --seed     structure + demo data
-//   php server/update.php --file=../database/migrations/002_x.sql
+//   php server/tools/update.php            structure only (additive, nothing dropped)
+//   php server/tools/update.php --seed     structure + demo data
+//   php server/tools/update.php --file=database/migrations/002_x.sql
 //
 // THE ORDER MATTERS, and it is the whole point of this script:
 //
@@ -26,6 +26,27 @@ if (PHP_SAPI !== 'cli') {
 }
 
 require_once __DIR__ . '/db-admin.php';
+
+/**
+ * Resolve a --file argument to a real file.
+ *
+ * Two bases are accepted, in this order: the project root, which is what a
+ * person types ("database/migrations/001_x.sql"), and this script's own
+ * directory, which is the older form ("../database/migrations/001_x.sql").
+ * An absolute path is used exactly as given.
+ */
+function locateSqlFile(string $path): string
+{
+    $fromRoot = __DIR__ . '/../../' . $path;
+
+    if (is_file($fromRoot)) {
+        return $fromRoot;
+    }
+
+    $fromScript = __DIR__ . '/' . $path;
+
+    return is_file($fromScript) ? $fromScript : $fromRoot;
+}
 
 $withSeed = in_array('--seed', $argv, true);
 $only = null;
@@ -66,18 +87,18 @@ try {
     if ($only !== null) {
         $target = str_starts_with($only, '/') || preg_match('#^[A-Za-z]:#', $only)
             ? $only
-            : __DIR__ . '/' . ltrim($only, './');
+            : locateSqlFile(ltrim($only, './'));
 
         out('Applying', $target);
         out('Statements', (string) applySqlFile($target));
     } else {
         out('Applying', 'database/schema.sql');
-        out('Statements', (string) applySqlFile(__DIR__ . '/../database/schema.sql'));
+        out('Statements', (string) applySqlFile(__DIR__ . '/../../database/schema.sql'));
 
         if ($withSeed) {
             echo "\n";
             out('Applying', 'database/seed.sql');
-            out('Statements', (string) applySqlFile(__DIR__ . '/../database/seed.sql'));
+            out('Statements', (string) applySqlFile(__DIR__ . '/../../database/seed.sql'));
         } else {
             echo "\n(seed.sql skipped  pass --seed to include it)\n";
         }
@@ -173,14 +194,14 @@ try {
         echo "\nOK.\n";
     } else {
         echo "\nPROBLEMS FOUND (exit " . $exitCode . "). Review the VERIFY section above.\n";
-        echo "To go back:  php server/restore.php " . basename($backupPath) . " --yes\n";
+        echo "To go back:  php server/tools/restore.php " . basename($backupPath) . " --yes\n";
     }
 } catch (Throwable $e) {
     echo "\nFAILED: " . $e->getMessage() . "\n";
 
     if (isset($backupPath)) {
         echo "\nNothing was lost  a backup was taken first:\n  " . $backupPath . "\n";
-        echo "To go back:  php server/restore.php " . basename($backupPath) . " --yes\n";
+        echo "To go back:  php server/tools/restore.php " . basename($backupPath) . " --yes\n";
     }
 
     exit(1);

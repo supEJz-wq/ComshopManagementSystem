@@ -1,105 +1,134 @@
-import { useEffect, useMemo, useState } from 'react'
-import { DEFAULT_ACCOUNTS } from '../data/accounts.js'
-import { AuthContext } from './auth.js'
+// client/src/context/AuthProvider.jsx
+//
+// Session state mirrors the server. On mount we ask /api/auth/me; if the
+// cookie is valid we are signed in, otherwise we are not. Login, logout,
+// password reset and deactivation all go through the API.
 
-const ACCOUNTS_KEY = 'cybershopos.accounts'
-const SESSION_KEY = 'cybershopos.session'
-
-function readJson(key, fallback) {
-  try {
-    const raw = localStorage.getItem(key)
-    return raw ? JSON.parse(raw) : fallback
-  } catch {
-    return fallback
-  }
-}
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { api } from '../api.js';
+import { AuthContext } from './auth.js';
 
 export function AuthProvider({ children }) {
-  const [accounts, setAccounts] = useState(() => readJson(ACCOUNTS_KEY, DEFAULT_ACCOUNTS))
+  const [user, setUser] = useState(null);
+  const [cashier, setCashier] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Validated on load: a stored session only survives if its account still
-  // exists and is active. Otherwise it is discarded.
-  const [sessionId, setSessionId] = useState(() => {
-    const stored = readJson(SESSION_KEY, null)
-    if (!stored) return null
-    const list = readJson(ACCOUNTS_KEY, DEFAULT_ACCOUNTS)
-    const account = list.find((candidate) => candidate.id === stored)
-    return account?.active ? stored : null
-  })
+  /*
+    The Cashier account, for the Admin's Accounts screen.
 
-  const user = useMemo(() => {
-    if (!sessionId) return null
-    return accounts.find((account) => account.id === sessionId && account.active) ?? null
-  }, [accounts, sessionId])
-
-  useEffect(() => {
-    localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(accounts))
-  }, [accounts])
-
-  useEffect(() => {
-    if (sessionId) {
-      localStorage.setItem(SESSION_KEY, JSON.stringify(sessionId))
-    } else {
-      localStorage.removeItem(SESSION_KEY)
+    It is not the signed-in user, so /auth/me cannot answer it, and it is a
+    separate endpoint because only an Admin may read it. When the signed-in
+    user is not an Admin the request is simply not made — the screen that uses
+    this is admin-only, so there is nothing to fetch.
+  */
+  const refreshCashier = useCallback(async (isAdmin) => {
+    if (!isAdmin) {
+      setCashier(null);
+      return;
     }
-  }, [sessionId])
 
-  function login(username, password) {
-    const account = accounts.find(
-      (candidate) => candidate.username === username.trim().toLowerCase(),
-    )
+    try {
+      const data = await api.get('/auth/cashier');
+      setCashier(data.cashier);
+    } catch {
+      setCashier(null);
+    }
+  }, []);
 
-    if (!account) return { ok: false, error: 'No account with that username.' }
-    if (!account.active) {
-      return {
-        ok: false,
-        error: 'This account is deactivated. Ask the owner to reactivate it.',
+  // Ask the server who is signed in. This is the single source of truth.
+  const refresh = useCallback(async () => {
+    try {
+      const data = await api.get('/auth/me');
+      setUser(data.user || null);
+      setError(null);
+      await refreshCashier(data.user?.role === 'Admin');
+    } catch (err) {
+      // 401 means "not signed in", which is normal, not an error.
+      setUser(null);
+      setCashier(null);
+      if (!err.message.includes('Not signed in')) {
+        setError(err.message);
       }
+    } finally {
+      setLoading(false);
     }
-    if (account.password !== password) return { ok: false, error: 'Incorrect password.' }
+  }, [refreshCashier]);
 
-    setSessionId(account.id)
-    return { ok: true }
-  }
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
-  function logout() {
-    setSessionId(null)
-  }
+  const login = useCallback(async (username, password) => {
+    try {
+      const data = await api.post('/auth/login', { username, password });
+      setUser(data.user);
+      await refreshCashier(data.user?.role === 'Admin');
+      setError(null);
+      return { ok: true };
+    } catch (err) {
+      return { ok: false, error: err.message };
+    }
+  }, [refreshCashier]);
 
-  // Resetting the password signs the Admin out, so the Cashier must sign in
-  // personally with the new one. Keeps actions attributed to the Cashier
-  // (Business Rule 12).
-  function resetCashierPassword(newPassword) {
-    setAccounts((prev) =>
-      prev.map((account) =>
-        account.role === 'cashier' ? { ...account, password: newPassword } : account,
-      ),
-    )
-    setSessionId(null)
-  }
+  const logout = useCallback(async () => {
+    try {
+      await api.post('/auth/logout');
+    } catch {
+      // Even if the call fails, clear local state.
+    }
+    setUser(null);
+    setCashier(null);
+  }, []);
 
-  // Deactivating also ends any live session for that account, so
-  // reactivating later can never silently restore it.
-  function setCashierActive(active) {
-    setAccounts((prev) =>
-      prev.map((account) => (account.role === 'cashier' ? { ...account, active } : account)),
-    )
-    if (!active) setSessionId((current) => (current === 'cashier' ? null : current))
-  }
+  const resetCashierPassword = useCallback(
+    async (newPassword) => {
+      await api.post('/auth/reset-password', { newPassword });
+      // The server signs the admin out. Mirror that locally.
+      setUser(null);
+      setCashier(null);
+    },
+    [],
+  );
 
-  return (
-    <AuthContext.Provider
-      value={{
-        user,
-        isAdmin: user?.role === 'admin',
-        cashier: accounts.find((account) => account.role === 'cashier') ?? null,
-        login,
-        logout,
-        resetCashierPassword,
-        setCashierActive,
-      }}
-    >
-      {children}
-    </AuthContext.Provider>
-  )
+  const setCashierActive = useCallback(
+    async (active) => {
+      const data = await api.post('/auth/deactivate', { active });
+      // The server returns the updated state; trust it rather than assuming.
+      setCashier((current) => (current ? { ...current, active: data.active } : current));
+
+      if (!active && user?.role === 'cashier') {
+        setUser(null);
+      }
+    },
+    [user],
+  );
+
+  const value = useMemo(
+    () => ({
+      user,
+      cashier,
+      loading,
+      error,
+      isAdmin: user?.role === 'Admin',
+      login,
+      logout,
+      resetCashierPassword,
+      setCashierActive,
+      refresh,
+    }),
+    [
+      user,
+      cashier,
+      loading,
+      error,
+      login,
+      logout,
+      resetCashierPassword,
+      setCashierActive,
+      refresh,
+    ],
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

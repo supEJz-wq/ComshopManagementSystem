@@ -5,9 +5,107 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CyberShopOS</title>
+    <!-- The loading overlay survives React startup so it can fade away
+         once the session, route and data are ready. No artificial delay. -->
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      html {
+        scrollbar-gutter: stable;
+      }
+      body {
+        background: #f1f5f9;
+        font-family:
+          ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+          sans-serif;
+      }
+      .app-loading {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        visibility: visible;
+      }
+      .app-boot {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: transparent;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 240ms ease-out, background-color 240ms ease-out, visibility 0s linear 240ms;
+      }
+      body:has(.app-loading) .app-boot {
+        background: #f1f5f9;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 120ms ease-out, visibility 0s;
+      }
+      body:has(.page-skeleton):not(:has(.app-loading)) .app-boot {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: none;
+      }
+      .app-loading-track {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        overflow: hidden;
+        background: #e2e8f0;
+      }
+      .app-loading-track::after {
+        content: '';
+        display: block;
+        width: 20%;
+        height: 100%;
+        background: #64748b;
+        transform: translateX(200%);
+      }
+      body:has(.app-loading, .page-skeleton) .app-loading-track::after {
+        animation: app-loading-pass 1.4s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+      }
+      @keyframes app-loading-pass {
+        from { transform: translateX(-100%); }
+        to { transform: translateX(500%); }
+      }
+      @keyframes app-reveal {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      .app-shell:not(:has(.app-loading)) {
+        animation: app-reveal 240ms ease-out both;
+      }
+      .app-shell main:not(:has(.page-skeleton)) {
+        animation: app-reveal 200ms ease-out both;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .app-boot { transition: none; }
+        .app-shell:not(:has(.app-loading)),
+        .app-shell main:not(:has(.page-skeleton)),
+        body:has(.app-loading, .page-skeleton) .app-loading-track::after { animation: none; }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="app-loading" role="status" aria-live="polite" aria-busy="true">
+        Loading your workspace…
+      </div>
+    </div>
+    <div class="app-boot" aria-hidden="true">
+      <div class="app-loading-track"></div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

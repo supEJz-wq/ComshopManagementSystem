@@ -134,7 +134,7 @@ All paths are relative to `http://localhost:8000`.
 
 | Method | Path | Access | Purpose |
 | --- | --- | --- | --- |
-| GET | `/api/revenue?period=` | session | `today` · `month` · `year` · `all` · a year number |
+| GET | `/api/revenue?period=` | session | `today` · `month` · `year` · `all` · a year number. Returns the figures **and** the bills and refunds inside that period, each bill already netted of its refunds |
 | GET | `/api/revenue/net-for-bill?paymentId=` | session | `{refunded, net}` |
 
 ### Analytics
@@ -176,16 +176,31 @@ server/
 ├── router.php            development-server routing for clean /api paths
 ├── config/
 │   ├── database.php      PDO connection
+│   ├── env.php           reads .env — no secrets in the source
 │   ├── cors.php          allows the Vite dev origin
+│   ├── app.php           app-wide constants
 │   └── helpers.php       pricing constants + wholeNumber()
 ├── middleware/
-│   └── session.php       requireAuth() / requireAdmin() / destroySession()
+│   ├── session.php       requireAuth() / requireAdmin() / destroySession()
+│   └── admin.php         thin alias for requireAdmin()
+├── tools/                CLI only — never served over HTTP
+│   ├── backup.php        take a full .bak
+│   ├── restore.php       list / restore backups
+│   ├── update.php        backup -> apply -> verify -> report
+│   ├── db-admin.php      shared maintenance helpers
+│   ├── apply-migration.php  quick .sql apply — no backup, no verify
+│   └── apply-seed.php       quick seed — no backup, no verify
 └── api/
+    ├── index.php         front controller: method + path + auth gate
     ├── auth/  pcs/  rentals/  payments/  revenue/  analytics/
 ```
 
 `middleware/admin.php` is a thin alias kept for readability; the real gate is
 `requireAdmin()` in `middleware/session.php`.
+
+`tools/apply-migration.php` and `tools/apply-seed.php` skip the backup and the
+verification that `tools/update.php` performs. They exist for quick local
+iteration only — the safe path is `php server/tools/update.php`.
 
 ## Known limitations
 

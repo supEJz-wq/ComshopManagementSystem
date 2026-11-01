@@ -1,0 +1,20 @@
+{
+  "name": "automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:home": "playwright test tests/admin/home/home.spec.js --project=chromium --workers=1",
+    "test:home:live": "playwright test tests/admin/home/home.live.spec.js --project=chromium --workers=1",
+    "test:home:flow": "node utils/run-home-flow.cjs",
+    "test:pcs": "node utils/run-home-flow.cjs --suite=pcs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5"
+  }
+}
