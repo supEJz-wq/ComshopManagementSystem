@@ -7,7 +7,8 @@
     "test:home": "playwright test tests/admin/home/home.spec.js --project=chromium --workers=1",
     "test:home:live": "playwright test tests/admin/home/home.live.spec.js --project=chromium --workers=1",
     "test:home:flow": "node utils/run-home-flow.cjs",
-    "test:pcs": "node utils/run-home-flow.cjs --suite=pcs"
+    "test:pcs": "node utils/run-home-flow.cjs --suite=pcs",
+    "test:responsive": "node utils/run-responsive.cjs"
   },
   "keywords": [],
   "author": "",

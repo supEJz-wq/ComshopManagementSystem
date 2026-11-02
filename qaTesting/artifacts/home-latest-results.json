@@ -1,0 +1,848 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/admin/home/home.flow.spec.js",
+      "--project=chromium",
+      "--workers=1",
+      "tests/admin/home/home.spec.js",
+      "tests/admin/home/home.live.spec.js",
+      "--reporter=line,json,html"
+    ],
+    "configFile": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\playwright.config.js",
+    "rootDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests",
+        "snapshotDir": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:55363",
+          "trace": "on-first-retry",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "chrome"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ],
+      [
+        "html"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "admin\\home\\home.flow.spec.js",
+      "file": "admin/home/home.flow.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "homeAdmin — PCs and Rentals integration",
+          "file": "admin/home/home.flow.spec.js",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "HOME-04: Home rental total matches the Rentals list [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2485,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T09:26:58.064Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5257f964fc2f4c17bfd7-ec845b7beda559c5aece",
+              "file": "admin/home/home.flow.spec.js",
+              "line": 22,
+              "column": 5
+            },
+            {
+              "title": "HOME-05: Home counts update after marking and resolving a PC issue [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1383,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Mark the exact PC as Issue, then check Home",
+                          "duration": 274
+                        },
+                        {
+                          "title": "Resolve that PC and check the restored Home counts",
+                          "duration": 273
+                        }
+                      ],
+                      "startTime": "2026-11-02T09:27:05.129Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5257f964fc2f4c17bfd7-5a43aff96a64192b3279",
+              "file": "admin/home/home.flow.spec.js",
+              "line": 44,
+              "column": 5
+            },
+            {
+              "title": "HOME-06: Home counts update after starting and stopping a rental [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2162,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Start a rental and check PCs, Home, and Rentals",
+                          "duration": 460
+                        },
+                        {
+                          "title": "Stop the rental, check its bill, and verify restored counts",
+                          "duration": 966
+                        }
+                      ],
+                      "startTime": "2026-11-02T09:27:06.525Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5257f964fc2f4c17bfd7-792dec475220c1162cd8",
+              "file": "admin/home/home.flow.spec.js",
+              "line": 91,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\home\\home.live.spec.js",
+      "file": "admin/home/home.live.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Home — 5. Live backend",
+          "file": "admin/home/home.live.spec.js",
+          "line": 15,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Home live: Admin counts match the backend before and after refresh [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 953,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Sign in with the configured Admin test account",
+                          "duration": 237
+                        },
+                        {
+                          "title": "Open Home and compare all six counts",
+                          "duration": 350
+                        },
+                        {
+                          "title": "Refresh Home and compare all six counts again",
+                          "duration": 207
+                        }
+                      ],
+                      "startTime": "2026-11-02T09:27:08.715Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "f5867e54451d921ce64e-b537c54982c52459af5a",
+              "file": "admin/home/home.live.spec.js",
+              "line": 22,
+              "column": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\home\\home.spec.js",
+      "file": "admin/home/home.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Admin Home — 1. Display and counts",
+          "file": "admin/home/home.spec.js",
+          "line": 51,
+          "column": 6,
+          "specs": [
+            {
+              "title": "HOME-01/02: shows the loaded Admin Home and each correct status count [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 512,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T09:27:09.701Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "940889ce5ed15fdb99da-88131b58b9dcbd0a088f",
+              "file": "admin/home/home.spec.js",
+              "line": 58,
+              "column": 5
+            },
+            {
+              "title": "HOME-03: status counts are valid numbers and add up to the computer total [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 593,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T09:27:10.229Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "940889ce5ed15fdb99da-4389b85cf8c426d5785a",
+              "file": "admin/home/home.spec.js",
+              "line": 77,
+              "column": 5
+            },
+            {
+              "title": "HOME-04: active rentals include rentals on faulty PCs [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 551,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T09:27:10.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "940889ce5ed15fdb99da-ffb3f93d818c2ca256d5",
+              "file": "admin/home/home.spec.js",
+              "line": 97,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "Admin Home — 2. Empty and singular states",
+          "file": "admin/home/home.spec.js",
+          "line": 108,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "HOME-07: empty inventory",
+              "file": "admin/home/home.spec.js",
+              "line": 136,
+              "column": 14,
+              "specs": [
+                {
+                  "title": "shows zero computers, zero rentals, and zero in every tile [Edge case]",
+                  "ok": true,
+                  "tags": [
+                    "edge-case"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 533,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:11.414Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-b74e36da4cf81bca4867",
+                  "file": "admin/home/home.spec.js",
+                  "line": 145,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "HOME-07: one idle computer",
+              "file": "admin/home/home.spec.js",
+              "line": 136,
+              "column": 14,
+              "specs": [
+                {
+                  "title": "shows 1 computer, 0 active rentals, and Free = 1 [Edge case]",
+                  "ok": true,
+                  "tags": [
+                    "edge-case"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 505,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:11.969Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-1fb8bced86057b54755e",
+                  "file": "admin/home/home.spec.js",
+                  "line": 145,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "HOME-07: one rented computer",
+              "file": "admin/home/home.spec.js",
+              "line": 136,
+              "column": 14,
+              "specs": [
+                {
+                  "title": "shows 1 computer, 1 active rental, and Rented = 1 [Edge case]",
+                  "ok": true,
+                  "tags": [
+                    "edge-case"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 493,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:12.489Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-9dd6fd2b784d21b05bda",
+                  "file": "admin/home/home.spec.js",
+                  "line": 145,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Admin Home — 3. Refresh",
+          "file": "admin/home/home.spec.js",
+          "line": 161,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Home refresh: reloads the Admin summary without resetting counts [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 706,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T09:27:12.996Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "940889ce5ed15fdb99da-1f83b962451a3fc3912c",
+              "file": "admin/home/home.spec.js",
+              "line": 168,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "Admin Home — 4. Loading and errors",
+          "file": "admin/home/home.spec.js",
+          "line": 181,
+          "column": 6,
+          "specs": [],
+          "suites": [
+            {
+              "title": "the PC list",
+              "file": "admin/home/home.spec.js",
+              "line": 187,
+              "column": 14,
+              "specs": [
+                {
+                  "title": "Shows loading while waiting for the PC list [Edge case]",
+                  "ok": true,
+                  "tags": [
+                    "edge-case"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 497,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:13.713Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-dbef3dbc3d1671c49b9e",
+                  "file": "admin/home/home.spec.js",
+                  "line": 194,
+                  "column": 13
+                },
+                {
+                  "title": "Shows a useful error when the PC list cannot load [Error path]",
+                  "ok": true,
+                  "tags": [
+                    "error-path"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 459,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:14.223Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-406c45e81e3f200c38db",
+                  "file": "admin/home/home.spec.js",
+                  "line": 224,
+                  "column": 13
+                }
+              ]
+            },
+            {
+              "title": "the active rental list",
+              "file": "admin/home/home.spec.js",
+              "line": 187,
+              "column": 14,
+              "specs": [
+                {
+                  "title": "Shows loading while waiting for the active rental list [Edge case]",
+                  "ok": true,
+                  "tags": [
+                    "edge-case"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 482,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:14.696Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-06cdb9d0387a51dc53d3",
+                  "file": "admin/home/home.spec.js",
+                  "line": 194,
+                  "column": 13
+                },
+                {
+                  "title": "Shows a useful error when the active rental list cannot load [Error path]",
+                  "ok": true,
+                  "tags": [
+                    "error-path"
+                  ],
+                  "tests": [
+                    {
+                      "timeout": 30000,
+                      "annotations": [],
+                      "expectedStatus": "passed",
+                      "projectId": "chromium",
+                      "projectName": "chromium",
+                      "results": [
+                        {
+                          "workerIndex": 0,
+                          "parallelIndex": 0,
+                          "status": "passed",
+                          "duration": 545,
+                          "errors": [],
+                          "stdout": [],
+                          "stderr": [],
+                          "retry": 0,
+                          "startTime": "2026-11-02T09:27:15.189Z",
+                          "annotations": [],
+                          "attachments": []
+                        }
+                      ],
+                      "status": "expected"
+                    }
+                  ],
+                  "id": "940889ce5ed15fdb99da-9c463c68fe93ccc7d7f3",
+                  "file": "admin/home/home.spec.js",
+                  "line": 224,
+                  "column": 13
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-02T09:26:57.374Z",
+    "duration": 18883.734999999997,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

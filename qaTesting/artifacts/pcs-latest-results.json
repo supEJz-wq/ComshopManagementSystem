@@ -1,0 +1,4309 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/admin/pcs",
+      "--project=chromium",
+      "--workers=1",
+      "--output=../artifacts/pcs-split-output",
+      "--reporter=line,json,html"
+    ],
+    "configFile": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\playwright.config.js",
+    "rootDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/artifacts/pcs-split-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+        "testIgnore": [
+          "**/*.responsive.spec.js"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/artifacts/pcs-split-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+        "testIgnore": [
+          "**/*.responsive.spec.js"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/artifacts/pcs-split-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/Administrator/Desktop/comshop/qaTesting/automation/tests",
+        "testIgnore": [
+          "**/*.responsive.spec.js"
+        ],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "chromium",
+        "testDir": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests",
+        "snapshotDir": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests",
+        "testIgnore": "**/*.responsive.spec.js",
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "baseURL": "http://127.0.0.1:53998",
+          "trace": "on-first-retry",
+          "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.8078.4 Safari/537.36",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "screen": {
+            "width": 1920,
+            "height": 1080
+          },
+          "deviceScaleFactor": 1,
+          "isMobile": false,
+          "hasTouch": false,
+          "defaultBrowserType": "chromium",
+          "channel": "chrome"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": "chromium"
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "line"
+      ],
+      [
+        "json"
+      ],
+      [
+        "html"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "admin\\pcs\\pcs.registration-status.spec.js",
+      "file": "admin/pcs/pcs.registration-status.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "pcsAdmin — 1. Board and registration",
+          "file": "admin/pcs/pcs.registration-status.spec.js",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-01: displays the correct inventory, statuses, and legend [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1841,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:29.601Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-53d713009f726f047a7f",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 20,
+              "column": 5
+            },
+            {
+              "title": "PCS-02: cancels Add PC without changing inventory [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1248,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:31.837Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-422e043cd371d50c5113",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 42,
+              "column": 5
+            },
+            {
+              "title": "PCS-03: registers one new Free PC and preserves it after refresh [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1480,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:33.102Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-7a8e49fd02f255a4a75d",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 62,
+              "column": 5
+            },
+            {
+              "title": "PCS-04: validation rejects an empty PC name [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1180,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:34.598Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-d6f156aac56e15723976",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 85,
+              "column": 9
+            },
+            {
+              "title": "PCS-04: feedback shows an error for an empty PC name [Error path / Edge case]",
+              "ok": false,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6181,
+                      "error": {
+                        "message": "Error: Feedback issue: rejection must explain the missing name.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"Enter a name for the PC.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: rejection must explain the missing name. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n",
+                        "stack": "Error: Feedback issue: rejection must explain the missing name.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"Enter a name for the PC.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: rejection must explain the missing name. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:97:106",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                          "column": 106,
+                          "line": 97
+                        },
+                        "snippet": "   95 |                 await expect(pcs.addPcForm, 'Invalid input must not complete registration.').toBeVisible();\n   96 |             } else {\n>  97 |                 await expect(pcs.addPcError, 'Feedback issue: rejection must explain the missing name.').toHaveText('Enter a name for the PC.');\n      |                                                                                                          ^\n   98 |             }\n   99 |         });\n  100 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                            "column": 106,
+                            "line": 97
+                          },
+                          "message": "Error: Feedback issue: rejection must explain the missing name.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"Enter a name for the PC.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: rejection must explain the missing name. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n\n\n   95 |                 await expect(pcs.addPcForm, 'Invalid input must not complete registration.').toBeVisible();\n   96 |             } else {\n>  97 |                 await expect(pcs.addPcError, 'Feedback issue: rejection must explain the missing name.').toHaveText('Enter a name for the PC.');\n      |                                                                                                          ^\n   98 |             }\n   99 |         });\n  100 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:97:106"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:35.790Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.registration-8a7ea--name-Error-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                        "column": 106,
+                        "line": 97
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-4d879c3c045fc14daf7a",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 85,
+              "column": 9
+            },
+            {
+              "title": "PCS-04: validation rejects a whitespace-only PC name [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1527,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:42.660Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-5b3b83422cf0717920b4",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 85,
+              "column": 9
+            },
+            {
+              "title": "PCS-04: feedback shows an error for a whitespace-only PC name [Error path / Edge case]",
+              "ok": false,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6337,
+                      "error": {
+                        "message": "Error: Feedback issue: rejection must explain the missing name.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"Enter a name for the PC.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: rejection must explain the missing name. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n",
+                        "stack": "Error: Feedback issue: rejection must explain the missing name.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"Enter a name for the PC.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: rejection must explain the missing name. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:97:106",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                          "column": 106,
+                          "line": 97
+                        },
+                        "snippet": "   95 |                 await expect(pcs.addPcForm, 'Invalid input must not complete registration.').toBeVisible();\n   96 |             } else {\n>  97 |                 await expect(pcs.addPcError, 'Feedback issue: rejection must explain the missing name.').toHaveText('Enter a name for the PC.');\n      |                                                                                                          ^\n   98 |             }\n   99 |         });\n  100 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                            "column": 106,
+                            "line": 97
+                          },
+                          "message": "Error: Feedback issue: rejection must explain the missing name.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"Enter a name for the PC.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: rejection must explain the missing name. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n\n\n   95 |                 await expect(pcs.addPcForm, 'Invalid input must not complete registration.').toBeVisible();\n   96 |             } else {\n>  97 |                 await expect(pcs.addPcError, 'Feedback issue: rejection must explain the missing name.').toHaveText('Enter a name for the PC.');\n      |                                                                                                          ^\n   98 |             }\n   99 |         });\n  100 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:97:106"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:44.453Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.registration-fce79--name-Error-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                        "column": 106,
+                        "line": 97
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-acad7ffade28c96de327",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 85,
+              "column": 9
+            },
+            {
+              "title": "PCS-05: validation rejects an existing PC name without creating a PC [Error path]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1784,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:51.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-43498e0b4f87b5325e7b",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 109,
+              "column": 5
+            },
+            {
+              "title": "PCS-05: feedback shows the duplicate-name error [Error path]",
+              "ok": false,
+              "tags": [
+                "error-path",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6361,
+                      "error": {
+                        "message": "Error: Feedback issue: duplicate rejection must have a visible reason.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"PCS-FREE-01 already exists.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: duplicate rejection must have a visible reason. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n",
+                        "stack": "Error: Feedback issue: duplicate rejection must have a visible reason.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"PCS-FREE-01 already exists.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: duplicate rejection must have a visible reason. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:125:109",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                          "column": 109,
+                          "line": 125
+                        },
+                        "snippet": "  123 |             await expect(pcs.addPcForm).toBeVisible();\n  124 |         } else {\n> 125 |             await expect(pcs.addPcError, 'Feedback issue: duplicate rejection must have a visible reason.').toHaveText('PCS-FREE-01 already exists.');\n      |                                                                                                             ^\n  126 |         }\n  127 |     });\n  128 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                            "column": 109,
+                            "line": 125
+                          },
+                          "message": "Error: Feedback issue: duplicate rejection must have a visible reason.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\nExpected: \u001b[32m\"PCS-FREE-01 already exists.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: duplicate rejection must have a visible reason. locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('form').filter({ has: getByRole('textbox', { name: 'PC name', exact: true }) }).getByRole('alert')\u001b[22m\n\n\n  123 |             await expect(pcs.addPcForm).toBeVisible();\n  124 |         } else {\n> 125 |             await expect(pcs.addPcError, 'Feedback issue: duplicate rejection must have a visible reason.').toHaveText('PCS-FREE-01 already exists.');\n      |                                                                                                             ^\n  126 |         }\n  127 |     });\n  128 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:125:109"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:27:53.939Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.registration-f2837-cate-name-error-Error-path--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                        "column": 109,
+                        "line": 125
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-f9c2e5302559a87221c4",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 109,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "pcsAdmin — 2. Status and repairs",
+          "file": "admin/pcs/pcs.registration-status.spec.js",
+          "line": 131,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-06: Issue and Resolve updates only the exact named PC [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1643,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:01.017Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-b16917e456bf72cc84ca",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 141,
+              "column": 9
+            },
+            {
+              "title": "PCS-06: Unresponsive and Repair updates only the exact named PC [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1313,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:02.956Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-9217fe39c75d9896d3c9",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 141,
+              "column": 9
+            },
+            {
+              "title": "PCS-06: Repair preserves the working state of PCS-FREE-REPAIR [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1399,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:04.289Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-3dbae0dc8e09b8fd4bdb",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 160,
+              "column": 9
+            },
+            {
+              "title": "PCS-06: Repair preserves the working state of PCS-RENTED-REPAIR [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1515,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:05.719Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-f9a2844f96af481260ed",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 160,
+              "column": 9
+            },
+            {
+              "title": "PCS-06: repairing PCS-ISSUE-RENTED restores Rented without ending its rental [Happy path / Edge case]",
+              "ok": false,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1246,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:187:48",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                          "column": 48,
+                          "line": 187
+                        },
+                        "snippet": "  185 |             await pcs.repairPc(name);\n  186 |             expect(await shop.rentalFor(name)).toEqual(before);\n> 187 |             expect(await pcs.readStatus(name)).toBe('Rented');\n      |                                                ^\n  188 |         });\n  189 |     }\n  190 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                            "column": 48,
+                            "line": 187
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n\n  185 |             await pcs.repairPc(name);\n  186 |             expect(await shop.rentalFor(name)).toEqual(before);\n> 187 |             expect(await pcs.readStatus(name)).toBe('Rented');\n      |                                                ^\n  188 |         });\n  189 |     }\n  190 |\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:187:48"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:07.271Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.registration-45420-ental-Happy-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                        "column": 48,
+                        "line": 187
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-dd5d21b27af9f6dc3700",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 180,
+              "column": 9
+            },
+            {
+              "title": "PCS-06: repairing PCS-UNRESPONSIVE-RENTED restores Rented without ending its rental [Happy path / Edge case]",
+              "ok": false,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1719,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:187:48",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                          "column": 48,
+                          "line": 187
+                        },
+                        "snippet": "  185 |             await pcs.repairPc(name);\n  186 |             expect(await shop.rentalFor(name)).toEqual(before);\n> 187 |             expect(await pcs.readStatus(name)).toBe('Rented');\n      |                                                ^\n  188 |         });\n  189 |     }\n  190 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                            "column": 48,
+                            "line": 187
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n\n  185 |             await pcs.repairPc(name);\n  186 |             expect(await shop.rentalFor(name)).toEqual(before);\n> 187 |             expect(await pcs.readStatus(name)).toBe('Rented');\n      |                                                ^\n  188 |         });\n  189 |     }\n  190 |\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js:187:48"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:09.392Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.registration-d0587-ental-Happy-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.registration-status.spec.js",
+                        "column": 48,
+                        "line": 187
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-2945e4d9c4e9e915b11f",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 180,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-FREE-01 [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1390,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:12.157Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-2a9cb3bd0c459c04d28a",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-RENTED-01 [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1191,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:13.873Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-2085014cd63aca316993",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-ISSUE-IDLE [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1128,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:15.088Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-af37c344493336820302",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-UNRESPONSIVE-IDLE [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1115,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:16.235Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-3c74569448301d30dc33",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-ISSUE-RENTED [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1092,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:17.386Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-b087a7834e948a499533",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-UNRESPONSIVE-RENTED [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1093,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:18.504Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-3f81f7a35e2565ee5353",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-FREE-REPAIR [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1097,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:19.621Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-df113e0df11644773fc7",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            },
+            {
+              "title": "PCS-07: offers the correct actions on PCS-RENTED-REPAIR [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1109,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:20.733Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "3a76e84fef2891e7bff8-6dee09ea44e35ff4f337",
+              "file": "admin/pcs/pcs.registration-status.spec.js",
+              "line": 206,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\pcs\\pcs.rentals.spec.js",
+      "file": "admin/pcs/pcs.rentals.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "pcsAdmin — 3. Start a rental",
+          "file": "admin/pcs/pcs.rentals.spec.js",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-08: starts and saves the 30 min preset [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1694,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:21.874Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-d99b105b6ce649eff7f8",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-08: starts and saves the 1 hr preset [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1621,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:23.589Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-ac948c7944e8baa139a2",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-08: starts and saves the 2 hr preset [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1580,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:25.235Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-71db1365a42f1da8ba32",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-08: starts and saves the 3 hr preset [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1685,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:26.833Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-8f3d1b4d62a5200434a1",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-08: starts and saves the 5 hr preset [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1606,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:28.534Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-27cee2d73ab99ea95c56",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-08: starts and saves the 6 hr preset [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1625,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:30.165Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-06cf8ba74d49b71b617c",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-09: accepts the minimum one minute [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1292,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:31.806Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-96f840c72c84d5ee4d78",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 54,
+              "column": 9
+            },
+            {
+              "title": "PCS-09: accepts mixed hours, minutes, and seconds [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1313,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:33.116Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-ef1480c39daa967b40ca",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 54,
+              "column": 9
+            },
+            {
+              "title": "PCS-09: accepts exactly 24 hours [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1302,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:34.442Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-5ba166bef8a8bebdac17",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 54,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects blank duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1260,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:35.761Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-16a0c0cfe83e9f434097",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of blank duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1222,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:37.037Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-9fdf1e9412fa25761d25",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects all-zero duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1255,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:38.273Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-a5864459877a396f46e4",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of all-zero duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1235,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:39.541Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-7b309f1d968591fffb38",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects 59 seconds [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1518,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:40.789Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-bc449812654296fdfcae",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of 59 seconds [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1313,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:42.323Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-0948aa2c5addb0f7a422",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects negative hours [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1395,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:43.654Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-6f1b465ff513c623ffc7",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of negative hours [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1379,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:45.066Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-2a110f06e992e68cd65e",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects fractional minutes [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1269,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:46.460Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-6010a2b888f4c0a7fa88",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of fractional minutes [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1254,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:47.745Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-604e5036527a16562849",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects 60 minutes in the minutes field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1300,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:49.017Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-a0b6ace6df0ed172a7f7",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of 60 minutes in the minutes field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1294,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:50.334Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-45628eb43322db0aa3c4",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects 60 seconds in the seconds field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1250,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:51.647Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-6dc343a91d062428be44",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of 60 seconds in the seconds field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2002,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:52.913Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-7071bd349b9c359ba24d",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: validation rejects 24 hours plus one second [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1860,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:54.935Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-a09efc58180c810797b2",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-10: feedback explains rejection of 24 hours plus one second [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1831,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:56.816Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-95573e7464ebd0d50528",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 73,
+              "column": 9
+            },
+            {
+              "title": "PCS-11: cancels the start picker without a mutation [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1509,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:28:58.668Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-88247afec781b60a81a6",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 99,
+              "column": 9
+            },
+            {
+              "title": "PCS-11: cancels the extend picker without a mutation [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1336,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:00.209Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-8af751f0ffadda1251de",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 99,
+              "column": 9
+            }
+          ]
+        },
+        {
+          "title": "pcsAdmin — 4. Extend a rental",
+          "file": "admin/pcs/pcs.rentals.spec.js",
+          "line": 115,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-12: extends an active rental by 30 min [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2300,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:01.565Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-630932084eee36ddc859",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-12: extends an active rental by 1 hr [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2232,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:03.879Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-c774610647bbe733ea97",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-12: extends an active rental by 2 hr [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2287,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:06.131Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-34ddcdb07296b42d217a",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-12: extends an active rental by 3 hr [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2395,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:08.432Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-a5502b66b6ca17fc36b5",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-12: extends an active rental by 5 hr [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2294,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:10.841Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-6797f23d233618af3650",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-12: extends an active rental by 6 hr [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2351,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:13.158Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-76a9552e4a198ef3de12",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-12: extends an active rental by custom 2 min 3 sec [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2385,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:15.522Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-b94611db24a7d64a6656",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 122,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of blank duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1261,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:17.924Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-939d4829e5322aa4006b",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of blank duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1283,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:19.212Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-0dea00374e4e533b0b48",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of all-zero duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1482,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:20.519Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-cbdb0f07c747daf5751b",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of all-zero duration [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1326,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:22.014Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-8aa589e25eae204535e5",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of 59 seconds [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1313,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:23.362Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-b097c7f9f59b90317dcb",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of 59 seconds [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1387,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:24.691Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-d160c9f47e4893e700c0",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of negative hours [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1322,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:26.096Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-f9256c2f0df6a446315a",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of negative hours [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1326,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:27.443Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-1b4ba55a80be9885f7fb",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of fractional minutes [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1221,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:28.784Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-98cd872167c4435cc136",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of fractional minutes [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1298,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:30.021Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-00818401bb1ed4363155",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of 60 minutes in the minutes field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1313,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:31.338Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-7553fd6a6e76dcc7345c",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of 60 minutes in the minutes field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1260,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:32.665Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-bdabe4fe1696a9a3578a",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of 60 seconds in the seconds field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1242,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:33.937Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-d9f1f78cf35a07b7bd16",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of 60 seconds in the seconds field [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1310,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:35.193Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-a243f85e4266ac33ef24",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: validation rejects an extension of 24 hours plus one second [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1327,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:36.520Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-fefae243b467d27cdddb",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: feedback explains rejection of an extension of 24 hours plus one second [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1395,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:37.862Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-8c15fd0d6c8253757e4a",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 156,
+              "column": 9
+            },
+            {
+              "title": "PCS-13: accepts an extension reaching exactly 24 hours booked [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1375,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:39.271Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-2c2cf3b5d30a1af9bd0b",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 180,
+              "column": 5
+            },
+            {
+              "title": "PCS-13: validation rejects an extension exceeding 24 hours booked [Error path / Edge case]",
+              "ok": true,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "validation"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1322,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:40.659Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-97313bde134b5504f5e1",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 195,
+              "column": 5
+            },
+            {
+              "title": "PCS-13: feedback shows the error for an extension exceeding 24 hours booked [Error path / Edge case]",
+              "ok": false,
+              "tags": [
+                "error-path",
+                "edge-case",
+                "feedback"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6245,
+                      "error": {
+                        "message": "Error: Feedback issue: the cap rejection must be explained.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert')\nExpected: \u001b[32m\"A rental cannot be longer than 24 hours.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: the cap rejection must be explained. locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert')\u001b[22m\n",
+                        "stack": "Error: Feedback issue: the cap rejection must be explained.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert')\nExpected: \u001b[32m\"A rental cannot be longer than 24 hours.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: the cap rejection must be explained. locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert')\u001b[22m\n\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.rentals.spec.js:210:131",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.rentals.spec.js",
+                          "column": 131,
+                          "line": 210
+                        },
+                        "snippet": "  208 |             expect(await shop.rentalFor('PCS-CAP-RENTED')).toEqual(before);\n  209 |         } else {\n> 210 |             await expect(pcs.pcTile('PCS-CAP-RENTED').getByRole('alert'), 'Feedback issue: the cap rejection must be explained.').toHaveText('A rental cannot be longer than 24 hours.');\n      |                                                                                                                                   ^\n  211 |         }\n  212 |     });\n  213 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.rentals.spec.js",
+                            "column": 131,
+                            "line": 210
+                          },
+                          "message": "Error: Feedback issue: the cap rejection must be explained.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert')\nExpected: \u001b[32m\"A rental cannot be longer than 24 hours.\"\u001b[39m\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Feedback issue: the cap rejection must be explained. locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^PCS-CAP-RENTED$/ }) }).getByRole('alert')\u001b[22m\n\n\n  208 |             expect(await shop.rentalFor('PCS-CAP-RENTED')).toEqual(before);\n  209 |         } else {\n> 210 |             await expect(pcs.pcTile('PCS-CAP-RENTED').getByRole('alert'), 'Feedback issue: the cap rejection must be explained.').toHaveText('A rental cannot be longer than 24 hours.');\n      |                                                                                                                                   ^\n  211 |         }\n  212 |     });\n  213 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.rentals.spec.js:210:131"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:41.993Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.rentals-pcsA-ddf18-ooked-Error-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.rentals.spec.js",
+                        "column": 131,
+                        "line": 210
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "32170714efdf0b411209-6538a9a4d094057c55d4",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 195,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "pcsAdmin — 5. Faults and stopping",
+          "file": "admin/pcs/pcs.rentals.spec.js",
+          "line": 216,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-14: markIssue preserves the rental and recovery actions [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1912,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:49.023Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-de5349ae75125bf01cfb",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 223,
+              "column": 9
+            },
+            {
+              "title": "PCS-14: markUnresponsive preserves the rental and recovery actions [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1425,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:51.284Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-8d250bd4ece0d03c5bb0",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 223,
+              "column": 9
+            },
+            {
+              "title": "PCS-18: stopping a Rented PC creates one bill and leaves it Free [Happy path]",
+              "ok": true,
+              "tags": [
+                "happy-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2391,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:52.733Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-0a25de8b3b853ac9325d",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 249,
+              "column": 9
+            },
+            {
+              "title": "PCS-18: stopping a Issue PC creates one bill and leaves it Issue [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2108,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:55.153Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-db470cb3f795ce715331",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 249,
+              "column": 9
+            },
+            {
+              "title": "PCS-18: stopping a Unresponsive PC creates one bill and leaves it Unresponsive [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1614,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:57.295Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "32170714efdf0b411209-e94adac9164b532975e2",
+              "file": "admin/pcs/pcs.rentals.spec.js",
+              "line": 249,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "admin\\pcs\\pcs.transfers-page-states.spec.js",
+      "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "pcsAdmin — 6. Transfers",
+          "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+          "line": 14,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-15: lists only eligible destinations from PCS-ISSUE-RENTED [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1387,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:29:58.935Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-3647f3c21786c6a661f0",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-16: transfers PCS-ISSUE-RENTED to PCS-FREE-01 without resetting time or charges [Happy path / Edge case]",
+              "ok": false,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1868,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                          "column": 54,
+                          "line": 59
+                        },
+                        "snippet": "  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                            "column": 54,
+                            "line": 59
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n\n  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:00.336Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.transfers-pa-aced9-arges-Happy-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                        "column": 54,
+                        "line": 59
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-f849b3ee713def1f360c",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 37,
+              "column": 13
+            },
+            {
+              "title": "PCS-16: transfers PCS-ISSUE-RENTED to PCS-ISSUE-IDLE without resetting time or charges [Happy path / Edge case]",
+              "ok": false,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1744,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Issue\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Issue\"\u001b[39m\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                          "column": 54,
+                          "line": 59
+                        },
+                        "snippet": "  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                            "column": 54,
+                            "line": 59
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Issue\"\u001b[39m\n\n  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:03.155Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.transfers-pa-a1e2d-arges-Happy-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                        "column": 54,
+                        "line": 59
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-bb306b53ce94ed59f8ba",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 37,
+              "column": 13
+            },
+            {
+              "title": "PCS-15: lists only eligible destinations from PCS-UNRESPONSIVE-RENTED [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1380,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:05.968Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-d5b93b8ac59a2939b326",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 21,
+              "column": 9
+            },
+            {
+              "title": "PCS-16: transfers PCS-UNRESPONSIVE-RENTED to PCS-FREE-01 without resetting time or charges [Happy path / Edge case]",
+              "ok": false,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1317,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                          "column": 54,
+                          "line": 59
+                        },
+                        "snippet": "  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                            "column": 54,
+                            "line": 59
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Free\"\u001b[39m\n\n  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:07.614Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.transfers-pa-5d4a7-arges-Happy-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                        "column": 54,
+                        "line": 59
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-df8045a833fd2d3b7b0d",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 37,
+              "column": 13
+            },
+            {
+              "title": "PCS-16: transfers PCS-UNRESPONSIVE-RENTED to PCS-ISSUE-IDLE without resetting time or charges [Happy path / Edge case]",
+              "ok": false,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1593,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Issue\"\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Issue\"\u001b[39m\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54",
+                        "location": {
+                          "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                          "column": 54,
+                          "line": 59
+                        },
+                        "snippet": "  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                            "column": 54,
+                            "line": 59
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"Rented\"\u001b[39m\nReceived: \u001b[31m\"Issue\"\u001b[39m\n\n  57 |                 expect(carried).toBeLessThanOrEqual(remaining + 1);\n  58 |                 expect(await pcs.readStatus(source)).toBe(source.includes('UNRESPONSIVE') ? 'Unresponsive' : 'Issue');\n> 59 |                 expect(await pcs.readStatus(target)).toBe('Rented');\n     |                                                      ^\n  60 |             });\n  61 |         }\n  62 |     }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js:59:54"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:09.639Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\artifacts\\pcs-split-output\\admin-pcs-pcs.transfers-pa-ea397-arges-Happy-path-Edge-case--chromium\\error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.transfers-page-states.spec.js",
+                        "column": 54,
+                        "line": 59
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-fe6c6ec4ceb286a0d0a7",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 37,
+              "column": 13
+            },
+            {
+              "title": "PCS-17: cancelling Transfer leaves the rental on its source PC [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1383,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:12.270Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-4e727b694fc2af704f93",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 69,
+              "column": 5
+            },
+            {
+              "title": "PCS-17: shows the no-target message when all destinations are unavailable [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1233,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:13.909Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-4ee37445dde3cef401c4",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 85,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "pcsAdmin — 7. Bills and refresh",
+          "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+          "line": 103,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCS-19: handles 0 unsettled bills [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1105,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:15.158Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-494f04a6c9adcc387820",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "PCS-19: handles 1 unsettled bill [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1174,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:16.276Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-c3bc2ea47ec3122230f3",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "PCS-19: handles 2 unsettled bills [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1151,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:17.469Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-079425dd6d0ea80d648b",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 110,
+              "column": 9
+            },
+            {
+              "title": "PCS-20: registration, status, repair, rental, extension, transfer, and bill survive refresh [Happy path / Edge case]",
+              "ok": true,
+              "tags": [
+                "happy-path",
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4565,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Register once, then refresh",
+                          "duration": 554
+                        },
+                        {
+                          "title": "Mark Issue and resolve it, refreshing after each action",
+                          "duration": 834
+                        },
+                        {
+                          "title": "Start and extend the same rental, refreshing after each action",
+                          "duration": 985
+                        },
+                        {
+                          "title": "Flag, transfer, and refresh without a second transfer",
+                          "duration": 576
+                        },
+                        {
+                          "title": "Stop once and refresh without creating another bill",
+                          "duration": 568
+                        }
+                      ],
+                      "startTime": "2026-11-02T11:30:18.634Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-3dd87c856e6835817098",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 133,
+              "column": 5
+            }
+          ]
+        },
+        {
+          "title": "pcsAdmin — 8. Loading and errors",
+          "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+          "line": 185,
+          "column": 6,
+          "specs": [
+            {
+              "title": "PCs loading: waits for PC inventory [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1081,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:23.212Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-1df023041ee68c31867e",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 197,
+              "column": 9
+            },
+            {
+              "title": "PCs errors: reports failed PC inventory [Error path]",
+              "ok": true,
+              "tags": [
+                "error-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1084,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:24.313Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-b11371be99d2d40a8a87",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 221,
+              "column": 9
+            },
+            {
+              "title": "PCs loading: waits for active rentals [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1106,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:25.410Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-b1a40a75f75920bfd5d7",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 197,
+              "column": 9
+            },
+            {
+              "title": "PCs errors: reports failed active rentals [Error path]",
+              "ok": true,
+              "tags": [
+                "error-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1094,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:26.531Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-36b843b4da197f1e5087",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 221,
+              "column": 9
+            },
+            {
+              "title": "PCs loading: waits for payments [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1072,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:27.639Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-0728046556c69f9bd615",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 197,
+              "column": 9
+            },
+            {
+              "title": "PCs errors: reports failed payments [Error path]",
+              "ok": true,
+              "tags": [
+                "error-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1067,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:28.730Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-d23d15cb8db49d073aae",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 221,
+              "column": 9
+            },
+            {
+              "title": "PCs loading: waits for refunds required by payments [Edge case]",
+              "ok": true,
+              "tags": [
+                "edge-case"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1087,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:29.811Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-e2511b38ca3683477c07",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 197,
+              "column": 9
+            },
+            {
+              "title": "PCs errors: reports failed refunds required by payments [Error path]",
+              "ok": true,
+              "tags": [
+                "error-path"
+              ],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1061,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T11:30:30.908Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "cd9809fbda0a36c3e326-31bd93767df8469b2231",
+              "file": "admin/pcs/pcs.transfers-page-states.spec.js",
+              "line": 221,
+              "column": 9
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-02T11:27:29.002Z",
+    "duration": 183230.528,
+    "expected": 91,
+    "skipped": 0,
+    "unexpected": 10,
+    "flaky": 0
+  }
+}

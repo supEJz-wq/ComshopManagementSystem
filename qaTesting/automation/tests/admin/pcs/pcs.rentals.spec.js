@@ -6,6 +6,8 @@
  * Edge case = boundary/unusual state. TYPE comments and report tags describe the
  * scenario; pass/fail is a separate result. Filter with --grep @happy-path,
  * --grep @error-path, or --grep @edge-case.
+ * Edge cases PASS when their expected acceptance/rejection is correct.
+ * @validation checks saved state; @feedback independently checks the explanation.
  */
 const {test, expect} = require('../../../fixtures/pcs.fixture');
 const {presets, invalidDurations, clockSeconds} = require('./pcs.data');
@@ -62,13 +64,15 @@ test.describe('pcsAdmin — 3. Start a rental', () => {
         });
     }
 
-    for (const invalid of invalidDurations) {
+    for (const invalid of invalidDurations) for (const check of ['validation', 'feedback']) {
         /*
          * TYPE: Error path / Edge case
          * WHAT: Reject the invalid start duration named in the title.
          * TEST DATA: See pcs.data.js for the input and browser/application validation layer.
-         * EXPECTED: Visible validation (or an invalid number field); no rental or status change. */
-        test(`PCS-10: rejects ${invalid.label} [Error path / Edge case]`, {tag: ['@error-path', '@edge-case']}, async ({page, adminPages, shop}) => {
+         * EXPECTED: Validation PASSES when no rental/status change occurs.
+         * Feedback separately requires the application message or the browser's
+         * nonempty native validation message. Rejection is an expected success. */
+        test(`PCS-10: ${check} ${check === 'validation' ? 'rejects' : 'explains rejection of'} ${invalid.label} [Error path / Edge case]`, {tag: ['@error-path', '@edge-case', `@${check}`]}, async ({page, adminPages, shop}) => {
             const {pcs} = adminPages;
             const before = await shop.rentals();
             await page.goto('/pcs');
@@ -76,14 +80,15 @@ test.describe('pcsAdmin — 3. Start a rental', () => {
             await pcs.openStartPicker('PCS-FREE-01');
             await pcs.fillDuration('PCS-FREE-01', 'start', invalid.value);
             await pcs.pcTile('PCS-FREE-01').getByRole('button', {name: 'Start', exact: true}).click();
-            if (invalid.nativePart) {
+            if (check === 'validation') {
+                expect(await shop.rentals(), 'Invalid duration must not start a rental.').toEqual(before);
+                expect(await pcs.readStatus('PCS-FREE-01')).toBe('Free');
+            } else if (invalid.nativePart) {
                 expect(await pcs.durationField('PCS-FREE-01', 'start', invalid.nativePart)
-                    .evaluate((input) => input.checkValidity())).toBe(false);
+                    .evaluate((input) => input.validationMessage.trim().length), 'Native feedback must explain the rejected value.').toBeGreaterThan(0);
             } else {
                 await expect(pcs.pcTile('PCS-FREE-01').getByRole('alert')).toHaveText(invalid.error);
             }
-            expect(await shop.rentals()).toEqual(before);
-            expect(await pcs.readStatus('PCS-FREE-01')).toBe('Free');
         });
     }
 
@@ -143,13 +148,14 @@ test.describe('pcsAdmin — 4. Extend a rental', () => {
         });
     }
 
-    for (const invalid of invalidDurations) {
+    for (const invalid of invalidDurations) for (const check of ['validation', 'feedback']) {
         /*
          * TYPE: Error path / Edge case
          * WHAT: Reject an invalid custom extension before changing the rental.
          * TEST DATA: The invalid input named in the title on PCS-RENTED-01.
-         * EXPECTED: Browser/application feedback and the same stored rental/segments. */
-        test(`PCS-13: rejects an extension of ${invalid.label} [Error path / Edge case]`, {tag: ['@error-path', '@edge-case']}, async ({page, adminPages, shop}) => {
+         * EXPECTED: Validation PASSES when stored rental/segments stay unchanged.
+         * Feedback separately requires the browser/application rejection message. */
+        test(`PCS-13: ${check} ${check === 'validation' ? 'rejects' : 'explains rejection of'} an extension of ${invalid.label} [Error path / Edge case]`, {tag: ['@error-path', '@edge-case', `@${check}`]}, async ({page, adminPages, shop}) => {
             const {pcs} = adminPages;
             const before = await shop.rentalFor('PCS-RENTED-01');
             await page.goto('/pcs');
@@ -157,13 +163,14 @@ test.describe('pcsAdmin — 4. Extend a rental', () => {
             await pcs.openExtendPicker('PCS-RENTED-01');
             await pcs.fillDuration('PCS-RENTED-01', 'extend', invalid.value);
             await pcs.pcTile('PCS-RENTED-01').getByRole('button', {name: 'Add', exact: true}).click();
-            if (invalid.nativePart) {
+            if (check === 'validation') {
+                expect(await shop.rentalFor('PCS-RENTED-01'), 'Invalid duration must not extend the rental.').toEqual(before);
+            } else if (invalid.nativePart) {
                 expect(await pcs.durationField('PCS-RENTED-01', 'extend', invalid.nativePart)
-                    .evaluate((input) => input.checkValidity())).toBe(false);
+                    .evaluate((input) => input.validationMessage.trim().length), 'Native feedback must explain the rejected value.').toBeGreaterThan(0);
             } else {
                 await expect(pcs.pcTile('PCS-RENTED-01').getByRole('alert')).toHaveText(invalid.error);
             }
-            expect(await shop.rentalFor('PCS-RENTED-01')).toEqual(before);
         });
     }
 
@@ -180,25 +187,32 @@ test.describe('pcsAdmin — 4. Extend a rental', () => {
         expect(rental.segments.reduce((sum, piece) => sum + piece.seconds, 0)).toBe(86400);
     });
 
-    /*
-     * TYPE: Error path / Edge case
-     * WHAT: Reject an otherwise valid extension that exceeds total booked time.
-     * TEST DATA: PCS-CAP-RENTED has 23h 59m booked; add 2 minutes.
-     * EXPECTED: Server rejects it, rental is unchanged, and the picker displays the rejection. */
-    test('PCS-13: shows feedback when an extension exceeds 24 hours booked [Error path / Edge case]', {tag: ['@error-path', '@edge-case']}, async ({page, adminPages, shop}) => {
-        const {pcs} = adminPages;
-        const before = await shop.rentalFor('PCS-CAP-RENTED');
-        await page.goto('/pcs');
-        await pcs.waitForReady();
-        await pcs.openExtendPicker('PCS-CAP-RENTED');
-        await pcs.fillDuration('PCS-CAP-RENTED', 'extend', {minutes: 2});
-        const rejected = page.waitForResponse((response) => response.request().method() === 'POST'
-            && new URL(response.url()).pathname === '/api/rentals/extend');
-        await pcs.pcTile('PCS-CAP-RENTED').getByRole('button', {name: 'Add', exact: true}).click();
-        expect((await rejected).status()).toBe(400);
-        expect(await shop.rentalFor('PCS-CAP-RENTED')).toEqual(before);
-        await expect(pcs.pcTile('PCS-CAP-RENTED').getByRole('alert')).toHaveText('A rental cannot be longer than 24 hours.');
-    });
+    for (const check of ['validation', 'feedback']) {
+        /*
+         * TYPE: Error path / Edge case
+         * WHAT: Reject an otherwise valid extension that exceeds total booked time.
+         * TEST DATA: PCS-CAP-RENTED has 23h 59m booked; add 2 minutes.
+         * EXPECTED: Validation PASSES for HTTP 400 and the unchanged rental.
+         * Feedback separately requires the visible total-booked-time error. */
+        test(`PCS-13: ${check} ${check === 'validation' ? 'rejects an extension exceeding 24 hours booked' : 'shows the error for an extension exceeding 24 hours booked'} [Error path / Edge case]`, {tag: ['@error-path', '@edge-case', `@${check}`]}, async ({page, adminPages, shop}) => {
+            const {pcs} = adminPages;
+            const before = await shop.rentalFor('PCS-CAP-RENTED');
+            await page.goto('/pcs');
+            await pcs.waitForReady();
+            await pcs.openExtendPicker('PCS-CAP-RENTED');
+            await pcs.fillDuration('PCS-CAP-RENTED', 'extend', {minutes: 2});
+            const rejected = page.waitForResponse((response) => response.request().method() === 'POST'
+                && new URL(response.url()).pathname === '/api/rentals/extend');
+            await pcs.pcTile('PCS-CAP-RENTED').getByRole('button', {name: 'Add', exact: true}).click();
+            const response = await rejected;
+            if (check === 'validation') {
+                expect(response.status(), 'Rejecting a duration over the cap is the expected result.').toBe(400);
+                expect(await shop.rentalFor('PCS-CAP-RENTED')).toEqual(before);
+            } else {
+                await expect(pcs.pcTile('PCS-CAP-RENTED').getByRole('alert'), 'Feedback issue: the cap rejection must be explained.').toHaveText('A rental cannot be longer than 24 hours.');
+            }
+        });
+    }
 });
 
 test.describe('pcsAdmin — 5. Faults and stopping', () => {

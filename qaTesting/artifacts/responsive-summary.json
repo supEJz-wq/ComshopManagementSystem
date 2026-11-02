@@ -1,0 +1,3861 @@
+{
+  "stats": {
+    "startTime": "2026-11-02T11:31:41.951Z",
+    "duration": 168543.538,
+    "expected": 33,
+    "skipped": 0,
+    "unexpected": 30,
+    "flaky": 0
+  },
+  "byScreen": {
+    "phone-small 360x800": {
+      "passed": 0,
+      "failed": 9
+    },
+    "phone 390x844": {
+      "passed": 0,
+      "failed": 9
+    },
+    "tablet-portrait 768x1024": {
+      "passed": 6,
+      "failed": 3
+    },
+    "tablet-landscape 1024x768": {
+      "passed": 6,
+      "failed": 3
+    },
+    "laptop 1366x768": {
+      "passed": 7,
+      "failed": 2
+    },
+    "desktop 1920x1080": {
+      "passed": 8,
+      "failed": 1
+    },
+    "phone-landscape 844x390": {
+      "passed": 6,
+      "failed": 3
+    }
+  },
+  "byId": {
+    "RESP-HOME-01": {
+      "passed": 5,
+      "failed": 2
+    },
+    "RESP-HOME-02": {
+      "passed": 5,
+      "failed": 2
+    },
+    "RESP-HOME-03": {
+      "passed": 4,
+      "failed": 3
+    },
+    "RESP-PCS-01": {
+      "passed": 3,
+      "failed": 4
+    },
+    "RESP-PCS-02": {
+      "passed": 5,
+      "failed": 2
+    },
+    "RESP-PCS-03": {
+      "passed": 0,
+      "failed": 7
+    },
+    "RESP-RENT-01": {
+      "passed": 5,
+      "failed": 2
+    },
+    "RESP-RENT-02": {
+      "passed": 5,
+      "failed": 2
+    },
+    "RESP-RENT-03": {
+      "passed": 1,
+      "failed": 6
+    }
+  },
+  "cases": [
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Home must fit the requested screen width.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 416,\n+     \"innerWidth\": 416,\n+     \"phase\": \"Home summary\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  22 |             await ui.audit('Home summary');\n  23 |             await ui.control('Home navigation link', ui.layout.sidebar.getByRole('link', {name: 'Home', exact: true}));\n> 24 |             expect(ui.failures, 'Home must fit the requested screen width.').toEqual([]);\n     |                                                                              ^\n  25 |         });\n  26 |\n  27 |         /* TYPE: Error path. WHAT: Fit required-data errors at each screen size.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:24:78"
+      ],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 416,
+          "innerWidth": 416,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Error messages must fit without horizontal scrolling.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Home error /api/pcs\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Home error /api/rentals/active\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  36 |                 await ui.audit(`Home error ${endpoint}`);\n  37 |             }\n> 38 |             expect(ui.failures, 'Error messages must fit without horizontal scrolling.').toEqual([]);\n     |                                                                                          ^\n  39 |         });\n  40 |\n  41 |         /* TYPE: Edge case. WHAT: Resize empty and large Home counts.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:38:90"
+      ],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Home must reflow without resetting counts.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 416,\n+     \"innerWidth\": 416,\n+     \"phase\": \"Home empty initial\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 416,\n+     \"innerWidth\": 416,\n+     \"phase\": \"Home large initial\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  55 |                 await page.setViewportSize({width: screen.width, height: screen.height});\n  56 |             }\n> 57 |             expect(ui.failures, 'Home must reflow without resetting counts.').toEqual([]);\n     |                                                                               ^\n  58 |         });\n  59 |     });\n  60 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:57:79"
+      ],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 416,
+          "innerWidth": 416,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": true,
+          "viewport": 800,
+          "documentWidth": 800,
+          "innerWidth": 800,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 800,
+            "width": 560
+          },
+          "containerContentWidth": 560,
+          "containerClientWidth": 560,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 416,
+          "innerWidth": 416,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": true,
+          "viewport": 800,
+          "documentWidth": 800,
+          "innerWidth": 800,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 800,
+            "width": 560
+          },
+          "containerContentWidth": 560,
+          "containerClientWidth": 560,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Home must fit the requested screen width.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 417,\n+     \"innerWidth\": 417,\n+     \"phase\": \"Home summary\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  22 |             await ui.audit('Home summary');\n  23 |             await ui.control('Home navigation link', ui.layout.sidebar.getByRole('link', {name: 'Home', exact: true}));\n> 24 |             expect(ui.failures, 'Home must fit the requested screen width.').toEqual([]);\n     |                                                                              ^\n  25 |         });\n  26 |\n  27 |         /* TYPE: Error path. WHAT: Fit required-data errors at each screen size.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:24:78"
+      ],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 417,
+          "innerWidth": 417,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Error messages must fit without horizontal scrolling.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Home error /api/pcs\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Home error /api/rentals/active\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  36 |                 await ui.audit(`Home error ${endpoint}`);\n  37 |             }\n> 38 |             expect(ui.failures, 'Error messages must fit without horizontal scrolling.').toEqual([]);\n     |                                                                                          ^\n  39 |         });\n  40 |\n  41 |         /* TYPE: Edge case. WHAT: Resize empty and large Home counts.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:38:90"
+      ],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Home must reflow without resetting counts.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 417,\n+     \"innerWidth\": 417,\n+     \"phase\": \"Home empty initial\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 417,\n+     \"innerWidth\": 417,\n+     \"phase\": \"Home large initial\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  55 |                 await page.setViewportSize({width: screen.width, height: screen.height});\n  56 |             }\n> 57 |             expect(ui.failures, 'Home must reflow without resetting counts.').toEqual([]);\n     |                                                                               ^\n  58 |         });\n  59 |     });\n  60 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:57:79"
+      ],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 417,
+          "innerWidth": 417,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 417,
+          "innerWidth": 417,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 753,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 753,
+            "width": 513
+          },
+          "containerContentWidth": 513,
+          "containerClientWidth": 513,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 753,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 753,
+            "width": 513
+          },
+          "containerContentWidth": 513,
+          "containerClientWidth": 513,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": true,
+          "viewport": 1080,
+          "documentWidth": 1065,
+          "innerWidth": 1080,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1065,
+            "width": 825
+          },
+          "containerContentWidth": 825,
+          "containerClientWidth": 825,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": true,
+          "viewport": 1080,
+          "documentWidth": 1065,
+          "innerWidth": 1080,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1065,
+            "width": 825
+          },
+          "containerContentWidth": 825,
+          "containerClientWidth": 825,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-01",
+      "title": "RESP-HOME-01: Home summary and navigation fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home summary",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-02",
+      "title": "RESP-HOME-02: Home data errors fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Home error /api/pcs",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Home error /api/rentals/active",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-HOME-03",
+      "title": "RESP-HOME-03: empty and large counts survive resizing (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/home/home.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Home must reflow without resetting counts.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 417,\n+     \"innerWidth\": 417,\n+     \"phase\": \"Home empty rotated\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 394.38,\n+       \"width\": 154.38,\n+     },\n+     \"containerClientWidth\": 154,\n+     \"containerContentWidth\": 176,\n+     \"documentWidth\": 417,\n+     \"innerWidth\": 417,\n+     \"phase\": \"Home large rotated\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  55 |                 await page.setViewportSize({width: screen.width, height: screen.height});\n  56 |             }\n> 57 |             expect(ui.failures, 'Home must reflow without resetting counts.').toEqual([]);\n     |                                                                               ^\n  58 |         });\n  59 |     });\n  60 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\home\\home.responsive.spec.js:57:79"
+      ],
+      "evidence": [
+        {
+          "phase": "Home empty initial",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Home empty rotated",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 417,
+          "innerWidth": 417,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        },
+        {
+          "phase": "Home large initial",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Home large rotated",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 417,
+          "innerWidth": 417,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 394.38,
+            "width": 154.38
+          },
+          "containerContentWidth": 176,
+          "containerClientWidth": 154,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: PC board overflows before form interaction; later controls are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 44\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 91,\n+         \"text\": \"23:59:00block\",\n+         \"width\": 78,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 403.41,\n+       \"width\": 163.41,\n+     },\n+     \"containerClientWidth\": 163,\n+     \"containerContentWidth\": 269,\n+     \"documentWidth\": 509,\n+     \"innerWidth\": 509,\n+     \"phase\": \"PC board\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 91,\n+         \"text\": \"23:59:00block\",\n+         \"width\": 78,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 379.41,\n+       \"width\": 115.41,\n+     },\n+     \"containerClientWidth\": 110,\n+     \"containerContentWidth\": 241,\n+     \"documentWidth\": 509,\n+     \"innerWidth\": 509,\n+     \"phase\": \"Long rental timer tile\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  24 |             // A phone already overflowing cannot establish usable touch editors.\n  25 |             // Keep this failed; leave later controls unverified at this size.\n> 26 |             if (screen.width < 500 && ui.failures.length) expect(ui.failures, 'PC board overflows before form interaction; later controls are not verified.').toEqual([]);\n     |                                                                                                                                                               ^\n  27 |             await ui.layout.activate(ui.pcs.addpc);\n  28 |             await ui.pcs.fillPcName('RESP-DRAFT');\n  29 |             await ui.audit('Add PC form', ui.pcs.addPcForm);\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:26:159"
+      ],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 509,
+          "innerWidth": 509,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 403.41,
+            "width": 163.41
+          },
+          "containerContentWidth": 269,
+          "containerClientWidth": 163,
+          "clipped": [
+            {
+              "text": "23:59:00block",
+              "width": 78,
+              "contentWidth": 91
+            }
+          ]
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 509,
+          "innerWidth": 509,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 379.41,
+            "width": 115.41
+          },
+          "containerContentWidth": 241,
+          "containerClientWidth": 110,
+          "clipped": [
+            {
+              "text": "23:59:00block",
+              "width": 78,
+              "contentWidth": 91
+            }
+          ]
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: PC error screen overflows; phone form checks remain unverified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"PC data error\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  59 |             await expect(ui.layout.errorHeading).toBeVisible();\n  60 |             await ui.audit('PC data error');\n> 61 |             if (screen.width < 500 && ui.failures.length) expect(ui.failures, 'PC error screen overflows; phone form checks remain unverified.').toEqual([]);\n     |                                                                                                                                                  ^\n  62 |             ui.failRead('');\n  63 |             await page.reload();\n  64 |             await ui.pcs.waitForReady();\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:61:146"
+      ],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "TimeoutError: locator.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator('main div.border-l-4').filter({ has: locator(':scope > span.font-semibold') }).filter({ has: locator(':scope > span').filter({ hasText: /^RESP-ISSUE-01$/ }) }).getByRole('button', { name: 'Transfer', exact: true })\n    - locator resolved to <button type=\"button\" class=\"rounded-control border border-state-issue px-2 py-1 text-xs font-medium text-state-issue hover:bg-surface-issue\">Transfer</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <button type=\"button\" class=\"rounded-control bg-slate-900 px-2 py-1 text-xs font-medium text-white hover:bg-slate-700\">Start rental</button> from <div class=\"flex flex-col rounded-card border border-slate-200 border-l-4 bg-white p-4 shadow-card border-l-state-free\">…</div> subtree intercepts pointer events\n  - retrying click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <button type=\"button\" class=\"rounded-control border border-slate-300 px-2 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50\">Stop rental</button> from <div class=\"flex flex-col rounded-card border border-slate-200 border-l-4 bg-white p-4 shadow-card border-l-state-busy\">…</div> subtree intercepts pointer events\n  - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <aside class=\"flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white\">…</aside> intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <aside class=\"flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white\">…</aside> intercepts pointer events\n    - retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <div class=\"mt-4 flex flex-wrap gap-2 border-t border-slate-100 pt-3\">…</div> intercepts pointer events\n    - retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <aside class=\"flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white\">…</aside> intercepts pointer events\n    - retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <aside class=\"flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white\">…</aside> intercepts pointer events\n    - retrying click action\n      - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <aside class=\"flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white\">…</aside> intercepts pointer events\n  - retrying click action\n    - waiting 500ms\n\n\n   at ..\\pages\\admin\\pcsPageAdmin.js:268\n\n  266 |     async openTransfer(pcName) {\n  267 |         const tile = this.pcTile(pcName);\n> 268 |         await tile.getByRole('button', {name: 'Transfer', exact: true}).click();\n      |                                                                         ^\n  269 |         await tile.getByText('Move to another PC', {exact: true}).waitFor({state: 'visible'});\n  270 |         await tile.getByText('Checking which PCs are free...', {exact: true}).waitFor({state: 'hidden'});\n  271 |     }\n    at pcsPageAdmin.openTransfer (C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\pages\\admin\\pcsPageAdmin.js:268:73)\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:100:26"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 749,
+          "innerWidth": 749,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 379.41,
+            "width": 115.41
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 110,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 78,
+              "contentWidth": 465
+            }
+          ]
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: PC board overflows before form interaction; later controls are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 44\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 91,\n+         \"text\": \"23:59:00block\",\n+         \"width\": 78,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 403.41,\n+       \"width\": 163.41,\n+     },\n+     \"containerClientWidth\": 163,\n+     \"containerContentWidth\": 269,\n+     \"documentWidth\": 509,\n+     \"innerWidth\": 509,\n+     \"phase\": \"PC board\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 91,\n+         \"text\": \"23:59:00block\",\n+         \"width\": 78,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 379.41,\n+       \"width\": 115.41,\n+     },\n+     \"containerClientWidth\": 110,\n+     \"containerContentWidth\": 241,\n+     \"documentWidth\": 509,\n+     \"innerWidth\": 509,\n+     \"phase\": \"Long rental timer tile\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  24 |             // A phone already overflowing cannot establish usable touch editors.\n  25 |             // Keep this failed; leave later controls unverified at this size.\n> 26 |             if (screen.width < 500 && ui.failures.length) expect(ui.failures, 'PC board overflows before form interaction; later controls are not verified.').toEqual([]);\n     |                                                                                                                                                               ^\n  27 |             await ui.layout.activate(ui.pcs.addpc);\n  28 |             await ui.pcs.fillPcName('RESP-DRAFT');\n  29 |             await ui.audit('Add PC form', ui.pcs.addPcForm);\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:26:159"
+      ],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 509,
+          "innerWidth": 509,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 403.41,
+            "width": 163.41
+          },
+          "containerContentWidth": 269,
+          "containerClientWidth": 163,
+          "clipped": [
+            {
+              "text": "23:59:00block",
+              "width": 78,
+              "contentWidth": 91
+            }
+          ]
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 509,
+          "innerWidth": 509,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 379.41,
+            "width": 115.41
+          },
+          "containerContentWidth": 241,
+          "containerClientWidth": 110,
+          "clipped": [
+            {
+              "text": "23:59:00block",
+              "width": 78,
+              "contentWidth": 91
+            }
+          ]
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: PC error screen overflows; phone form checks remain unverified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"PC data error\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  59 |             await expect(ui.layout.errorHeading).toBeVisible();\n  60 |             await ui.audit('PC data error');\n> 61 |             if (screen.width < 500 && ui.failures.length) expect(ui.failures, 'PC error screen overflows; phone form checks remain unverified.').toEqual([]);\n     |                                                                                                                                                  ^\n  62 |             ui.failRead('');\n  63 |             await page.reload();\n  64 |             await ui.pcs.waitForReady();\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:61:146"
+      ],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Long names/list overflow; later resize steps are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 99\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 465,\n+         \"text\": \"RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX\",\n+         \"width\": 78,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 379.41,\n+       \"width\": 115.41,\n+     },\n+     \"containerClientWidth\": 110,\n+     \"containerContentWidth\": 481,\n+     \"documentWidth\": 749,\n+     \"innerWidth\": 749,\n+     \"phase\": \"Long PC name\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 56,\n+         \"text\": \"RESP-ISSUE-01 is out of action. Remaining time carries over and nothing is added to the bill.\",\n+         \"width\": 52,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-FREE-01\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-26\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-27\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-28\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-29\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-30\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-31\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-32\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-33\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-34\",\n+         \"width\": 21,\n+       },\n+       Object {\n+         \"contentWidth\": 76,\n+         \"text\": \"RESP-LIST-35\",\n+         \"width\": 21,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 379.41,\n+       \"width\": 115.41,\n+     },\n+     \"containerClientWidth\": 110,\n+     \"containerContentWidth\": 135,\n+     \"documentWidth\": 749,\n+     \"innerWidth\": 749,\n+     \"phase\": \"Long transfer destination list\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  103 |             // Preserve the measured failure instead of forcing a touch outside\n  104 |             // the device viewport and pretending the remaining resize steps ran.\n> 105 |             if (ui.failures.length) expect(ui.failures, 'Long names/list overflow; later resize steps are not verified.').toEqual([]);\n      |                                                                                                                           ^\n  106 |             await ui.control('Last transfer target', ui.pcs.transferTargets.last());\n  107 |             await ui.control('Transfer cancel', ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  108 |             await ui.pcs.cancelRentalPicker('RESP-ISSUE-01');\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:105:123"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 749,
+          "innerWidth": 749,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 379.41,
+            "width": 115.41
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 110,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 78,
+              "contentWidth": 465
+            }
+          ]
+        },
+        {
+          "phase": "Long transfer destination list",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 749,
+          "innerWidth": 749,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 379.41,
+            "width": 115.41
+          },
+          "containerContentWidth": 135,
+          "containerClientWidth": 110,
+          "clipped": [
+            {
+              "text": "RESP-ISSUE-01 is out of action. Remaining time carries over and nothing is added to the bill.",
+              "width": 52,
+              "contentWidth": 56
+            },
+            {
+              "text": "RESP-FREE-01",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-26",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-27",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-28",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-29",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-30",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-31",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-32",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-33",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-34",
+              "width": 21,
+              "contentWidth": 76
+            },
+            {
+              "text": "RESP-LIST-35",
+              "width": 21,
+              "contentWidth": 76
+            }
+          ]
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: PC controls must fit and be usable without horizontal scrolling.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 496,\n+       \"width\": 232,\n+     },\n+     \"containerClientWidth\": 227,\n+     \"containerContentWidth\": 241,\n+     \"documentWidth\": 768,\n+     \"innerWidth\": 768,\n+     \"phase\": \"Long rental timer tile\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 768,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 496,\n+       \"width\": 232,\n+     },\n+     \"containerClientWidth\": 227,\n+     \"containerContentWidth\": 241,\n+     \"documentWidth\": 768,\n+     \"innerWidth\": 768,\n+     \"phase\": \"Transfer destinations\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 768,\n+   },\n+ ]\n\n  46 |             await ui.layout.activate(ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  47 |             expect(ui.writes).toEqual([]);\n> 48 |             expect(ui.failures, 'PC controls must fit and be usable without horizontal scrolling.').toEqual([]);\n     |                                                                                                     ^\n  49 |         });\n  50 |\n  51 |         /* TYPE: Error path. WHAT: Fit data/validation errors and recovery controls.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:48:101"
+      ],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": false,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 496,
+            "width": 232
+          },
+          "containerContentWidth": 241,
+          "containerClientWidth": 227,
+          "clipped": []
+        },
+        {
+          "phase": "Add PC form",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 744,
+            "width": 480
+          },
+          "containerContentWidth": 478,
+          "containerClientWidth": 478,
+          "clipped": []
+        },
+        {
+          "phase": "start picker",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 496,
+            "width": 232
+          },
+          "containerContentWidth": 227,
+          "containerClientWidth": 227,
+          "clipped": []
+        },
+        {
+          "phase": "extend picker",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 512,
+            "right": 744,
+            "width": 232
+          },
+          "containerContentWidth": 227,
+          "containerClientWidth": 227,
+          "clipped": []
+        },
+        {
+          "phase": "Transfer destinations",
+          "fits": false,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 496,
+            "width": 232
+          },
+          "containerContentWidth": 241,
+          "containerClientWidth": 227,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "start invalid duration error",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 496,
+            "width": 232
+          },
+          "containerContentWidth": 227,
+          "containerClientWidth": 227,
+          "clipped": []
+        },
+        {
+          "phase": "extend invalid duration error",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 512,
+            "right": 744,
+            "width": 232
+          },
+          "containerContentWidth": 227,
+          "containerClientWidth": 227,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 744,
+            "width": 480
+          },
+          "containerContentWidth": 478,
+          "containerClientWidth": 478,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 744,
+            "width": 480
+          },
+          "containerContentWidth": 478,
+          "containerClientWidth": 478,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 744,
+            "width": 480
+          },
+          "containerContentWidth": 478,
+          "containerClientWidth": 478,
+          "clipped": []
+        }
+      ],
+      "writes": [
+        {
+          "path": "/api/pcs",
+          "body": {
+            "name": "RESP-FREE-01"
+          }
+        }
+      ],
+      "unexpected": [],
+      "feedbackNotVerified": [
+        "Registration feedback absent for empty name (existing BUG-001/002/003)",
+        "Registration feedback absent for spaces-only name (existing BUG-001/002/003)",
+        "Registration feedback absent for duplicate name (existing BUG-001/002/003)"
+      ]
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Long names/list overflow; later resize steps are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 23\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 465,\n+         \"text\": \"RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX\",\n+         \"width\": 195,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 496,\n+       \"width\": 232,\n+     },\n+     \"containerClientWidth\": 227,\n+     \"containerContentWidth\": 481,\n+     \"documentWidth\": 768,\n+     \"innerWidth\": 768,\n+     \"phase\": \"Long PC name\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 768,\n+   },\n+ ]\n\n  103 |             // Preserve the measured failure instead of forcing a touch outside\n  104 |             // the device viewport and pretending the remaining resize steps ran.\n> 105 |             if (ui.failures.length) expect(ui.failures, 'Long names/list overflow; later resize steps are not verified.').toEqual([]);\n      |                                                                                                                           ^\n  106 |             await ui.control('Last transfer target', ui.pcs.transferTargets.last());\n  107 |             await ui.control('Transfer cancel', ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  108 |             await ui.pcs.cancelRentalPicker('RESP-ISSUE-01');\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:105:123"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 496,
+            "width": 232
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 227,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 195,
+              "contentWidth": 465
+            }
+          ]
+        },
+        {
+          "phase": "Long transfer destination list",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 496,
+            "width": 232
+          },
+          "containerContentWidth": 227,
+          "containerClientWidth": 227,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: PC controls must fit and be usable without horizontal scrolling.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 765.33,\n+       \"right\": 1000,\n+       \"width\": 234.67,\n+     },\n+     \"containerClientWidth\": 230,\n+     \"containerContentWidth\": 241,\n+     \"documentWidth\": 1024,\n+     \"innerWidth\": 1024,\n+     \"phase\": \"Long rental timer tile\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 1024,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 765.33,\n+       \"right\": 1000,\n+       \"width\": 234.67,\n+     },\n+     \"containerClientWidth\": 230,\n+     \"containerContentWidth\": 241,\n+     \"documentWidth\": 1024,\n+     \"innerWidth\": 1024,\n+     \"phase\": \"Transfer destinations\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 1024,\n+   },\n+ ]\n\n  46 |             await ui.layout.activate(ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  47 |             expect(ui.writes).toEqual([]);\n> 48 |             expect(ui.failures, 'PC controls must fit and be usable without horizontal scrolling.').toEqual([]);\n     |                                                                                                     ^\n  49 |         });\n  50 |\n  51 |         /* TYPE: Error path. WHAT: Fit data/validation errors and recovery controls.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:48:101"
+      ],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": false,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 765.33,
+            "right": 1000,
+            "width": 234.67
+          },
+          "containerContentWidth": 241,
+          "containerClientWidth": 230,
+          "clipped": []
+        },
+        {
+          "phase": "Add PC form",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1000,
+            "width": 736
+          },
+          "containerContentWidth": 734,
+          "containerClientWidth": 734,
+          "clipped": []
+        },
+        {
+          "phase": "start picker",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 498.66,
+            "width": 234.66
+          },
+          "containerContentWidth": 230,
+          "containerClientWidth": 230,
+          "clipped": []
+        },
+        {
+          "phase": "extend picker",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 514.66,
+            "right": 749.33,
+            "width": 234.67
+          },
+          "containerContentWidth": 230,
+          "containerClientWidth": 230,
+          "clipped": []
+        },
+        {
+          "phase": "Transfer destinations",
+          "fits": false,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 765.33,
+            "right": 1000,
+            "width": 234.67
+          },
+          "containerContentWidth": 241,
+          "containerClientWidth": 230,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "start invalid duration error",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 498.66,
+            "width": 234.66
+          },
+          "containerContentWidth": 230,
+          "containerClientWidth": 230,
+          "clipped": []
+        },
+        {
+          "phase": "extend invalid duration error",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 514.66,
+            "right": 749.33,
+            "width": 234.67
+          },
+          "containerContentWidth": 230,
+          "containerClientWidth": 230,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1000,
+            "width": 736
+          },
+          "containerContentWidth": 734,
+          "containerClientWidth": 734,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1000,
+            "width": 736
+          },
+          "containerContentWidth": 734,
+          "containerClientWidth": 734,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1000,
+            "width": 736
+          },
+          "containerContentWidth": 734,
+          "containerClientWidth": 734,
+          "clipped": []
+        }
+      ],
+      "writes": [
+        {
+          "path": "/api/pcs",
+          "body": {
+            "name": "RESP-FREE-01"
+          }
+        }
+      ],
+      "unexpected": [],
+      "feedbackNotVerified": [
+        "Registration feedback absent for empty name (existing BUG-001/002/003)",
+        "Registration feedback absent for spaces-only name (existing BUG-001/002/003)",
+        "Registration feedback absent for duplicate name (existing BUG-001/002/003)"
+      ]
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Long names/list overflow; later resize steps are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 23\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 465,\n+         \"text\": \"RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX\",\n+         \"width\": 198,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 514.66,\n+       \"right\": 749.33,\n+       \"width\": 234.67,\n+     },\n+     \"containerClientWidth\": 230,\n+     \"containerContentWidth\": 481,\n+     \"documentWidth\": 1024,\n+     \"innerWidth\": 1024,\n+     \"phase\": \"Long PC name\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 1024,\n+   },\n+ ]\n\n  103 |             // Preserve the measured failure instead of forcing a touch outside\n  104 |             // the device viewport and pretending the remaining resize steps ran.\n> 105 |             if (ui.failures.length) expect(ui.failures, 'Long names/list overflow; later resize steps are not verified.').toEqual([]);\n      |                                                                                                                           ^\n  106 |             await ui.control('Last transfer target', ui.pcs.transferTargets.last());\n  107 |             await ui.control('Transfer cancel', ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  108 |             await ui.pcs.cancelRentalPicker('RESP-ISSUE-01');\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:105:123"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 514.66,
+            "right": 749.33,
+            "width": 234.67
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 230,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 198,
+              "contentWidth": 465
+            }
+          ]
+        },
+        {
+          "phase": "Long transfer destination list",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 765.33,
+            "right": 1000,
+            "width": 234.67
+          },
+          "containerContentWidth": 230,
+          "containerClientWidth": 230,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 803.5,
+            "right": 1057.25,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        },
+        {
+          "phase": "Add PC form",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1327,
+            "width": 1063
+          },
+          "containerContentWidth": 1061,
+          "containerClientWidth": 1061,
+          "clipped": []
+        },
+        {
+          "phase": "start picker",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 517.75,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        },
+        {
+          "phase": "extend picker",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 533.75,
+            "right": 787.5,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        },
+        {
+          "phase": "Transfer destinations",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 803.5,
+            "right": 1057.25,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "start invalid duration error",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 517.75,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        },
+        {
+          "phase": "extend invalid duration error",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 533.75,
+            "right": 787.5,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1327,
+            "width": 1063
+          },
+          "containerContentWidth": 1061,
+          "containerClientWidth": 1061,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1327,
+            "width": 1063
+          },
+          "containerContentWidth": 1061,
+          "containerClientWidth": 1061,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1327,
+            "width": 1063
+          },
+          "containerContentWidth": 1061,
+          "containerClientWidth": 1061,
+          "clipped": []
+        }
+      ],
+      "writes": [
+        {
+          "path": "/api/pcs",
+          "body": {
+            "name": "RESP-FREE-01"
+          }
+        }
+      ],
+      "unexpected": [],
+      "feedbackNotVerified": [
+        "Registration feedback absent for empty name (existing BUG-001/002/003)",
+        "Registration feedback absent for spaces-only name (existing BUG-001/002/003)",
+        "Registration feedback absent for duplicate name (existing BUG-001/002/003)"
+      ]
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Long names/list overflow; later resize steps are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 23\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 465,\n+         \"text\": \"RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX\",\n+         \"width\": 217,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 517.75,\n+       \"width\": 253.75,\n+     },\n+     \"containerClientWidth\": 249,\n+     \"containerContentWidth\": 481,\n+     \"documentWidth\": 1351,\n+     \"innerWidth\": 1366,\n+     \"phase\": \"Long PC name\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 1366,\n+   },\n+ ]\n\n  103 |             // Preserve the measured failure instead of forcing a touch outside\n  104 |             // the device viewport and pretending the remaining resize steps ran.\n> 105 |             if (ui.failures.length) expect(ui.failures, 'Long names/list overflow; later resize steps are not verified.').toEqual([]);\n      |                                                                                                                           ^\n  106 |             await ui.control('Last transfer target', ui.pcs.transferTargets.last());\n  107 |             await ui.control('Transfer cancel', ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  108 |             await ui.pcs.cancelRentalPicker('RESP-ISSUE-01');\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:105:123"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 517.75,
+            "width": 253.75
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 249,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 217,
+              "contentWidth": 465
+            }
+          ]
+        },
+        {
+          "phase": "Long transfer destination list",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 803.5,
+            "right": 1057.25,
+            "width": 253.75
+          },
+          "containerContentWidth": 249,
+          "containerClientWidth": 249,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 1080.5,
+            "right": 1472.75,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        },
+        {
+          "phase": "Add PC form",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1881,
+            "width": 1617
+          },
+          "containerContentWidth": 1615,
+          "containerClientWidth": 1615,
+          "clipped": []
+        },
+        {
+          "phase": "start picker",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 656.25,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        },
+        {
+          "phase": "extend picker",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 672.25,
+            "right": 1064.5,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        },
+        {
+          "phase": "Transfer destinations",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 1080.5,
+            "right": 1472.75,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "start invalid duration error",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 656.25,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        },
+        {
+          "phase": "extend invalid duration error",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 672.25,
+            "right": 1064.5,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1881,
+            "width": 1617
+          },
+          "containerContentWidth": 1615,
+          "containerClientWidth": 1615,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1881,
+            "width": 1617
+          },
+          "containerContentWidth": 1615,
+          "containerClientWidth": 1615,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1881,
+            "width": 1617
+          },
+          "containerContentWidth": 1615,
+          "containerClientWidth": 1615,
+          "clipped": []
+        }
+      ],
+      "writes": [
+        {
+          "path": "/api/pcs",
+          "body": {
+            "name": "RESP-FREE-01"
+          }
+        }
+      ],
+      "unexpected": [],
+      "feedbackNotVerified": [
+        "Registration feedback absent for empty name (existing BUG-001/002/003)",
+        "Registration feedback absent for spaces-only name (existing BUG-001/002/003)",
+        "Registration feedback absent for duplicate name (existing BUG-001/002/003)"
+      ]
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Long names/list overflow; later resize steps are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 23\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 465,\n+         \"text\": \"RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX\",\n+         \"width\": 355,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 656.25,\n+       \"width\": 392.25,\n+     },\n+     \"containerClientWidth\": 387,\n+     \"containerContentWidth\": 481,\n+     \"documentWidth\": 1905,\n+     \"innerWidth\": 1920,\n+     \"phase\": \"Long PC name\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 1920,\n+   },\n+ ]\n\n  103 |             // Preserve the measured failure instead of forcing a touch outside\n  104 |             // the device viewport and pretending the remaining resize steps ran.\n> 105 |             if (ui.failures.length) expect(ui.failures, 'Long names/list overflow; later resize steps are not verified.').toEqual([]);\n      |                                                                                                                           ^\n  106 |             await ui.control('Last transfer target', ui.pcs.transferTargets.last());\n  107 |             await ui.control('Transfer cancel', ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  108 |             await ui.pcs.cancelRentalPicker('RESP-ISSUE-01');\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:105:123"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 656.25,
+            "width": 392.25
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 387,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 355,
+              "contentWidth": 465
+            }
+          ]
+        },
+        {
+          "phase": "Long transfer destination list",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 1080.5,
+            "right": 1472.75,
+            "width": 392.25
+          },
+          "containerContentWidth": 387,
+          "containerClientWidth": 387,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-01",
+      "title": "RESP-PCS-01: board, registration, duration, and transfer controls fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC board",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental timer tile",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 534,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        },
+        {
+          "phase": "Add PC form",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 820,
+            "width": 556
+          },
+          "containerContentWidth": 554,
+          "containerClientWidth": 554,
+          "clipped": []
+        },
+        {
+          "phase": "start picker",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 534,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        },
+        {
+          "phase": "extend picker",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 550,
+            "right": 820,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        },
+        {
+          "phase": "Transfer destinations",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 534,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-PCS-02",
+      "title": "RESP-PCS-02: PC data and form errors fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "PC data error",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "start invalid duration error",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 534,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        },
+        {
+          "phase": "extend invalid duration error",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 550,
+            "right": 820,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 820,
+            "width": 556
+          },
+          "containerContentWidth": 554,
+          "containerClientWidth": 554,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 820,
+            "width": 556
+          },
+          "containerContentWidth": 554,
+          "containerClientWidth": 554,
+          "clipped": []
+        },
+        {
+          "phase": "Registration validation form",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 820,
+            "width": 556
+          },
+          "containerContentWidth": 554,
+          "containerClientWidth": 554,
+          "clipped": []
+        }
+      ],
+      "writes": [
+        {
+          "path": "/api/pcs",
+          "body": {
+            "name": "RESP-FREE-01"
+          }
+        }
+      ],
+      "unexpected": [],
+      "feedbackNotVerified": [
+        "Registration feedback absent for empty name (existing BUG-001/002/003)",
+        "Registration feedback absent for spaces-only name (existing BUG-001/002/003)",
+        "Registration feedback absent for duplicate name (existing BUG-001/002/003)"
+      ]
+    },
+    {
+      "id": "RESP-PCS-03",
+      "title": "RESP-PCS-03: long names, long transfers, and resize fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/pcs/pcs.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Long names/list overflow; later resize steps are not verified.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 23\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [\n+       Object {\n+         \"contentWidth\": 465,\n+         \"text\": \"RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX\",\n+         \"width\": 233,\n+       },\n+     ],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 534,\n+       \"width\": 270,\n+     },\n+     \"containerClientWidth\": 265,\n+     \"containerContentWidth\": 481,\n+     \"documentWidth\": 844,\n+     \"innerWidth\": 844,\n+     \"phase\": \"Long PC name\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 844,\n+   },\n+ ]\n\n  103 |             // Preserve the measured failure instead of forcing a touch outside\n  104 |             // the device viewport and pretending the remaining resize steps ran.\n> 105 |             if (ui.failures.length) expect(ui.failures, 'Long names/list overflow; later resize steps are not verified.').toEqual([]);\n      |                                                                                                                           ^\n  106 |             await ui.control('Last transfer target', ui.pcs.transferTargets.last());\n  107 |             await ui.control('Transfer cancel', ui.pcs.pcTile('RESP-ISSUE-01').getByRole('button', {name: 'Cancel', exact: true}));\n  108 |             await ui.pcs.cancelRentalPicker('RESP-ISSUE-01');\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\pcs\\pcs.responsive.spec.js:105:123"
+      ],
+      "evidence": [
+        {
+          "phase": "Long PC name",
+          "fits": false,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 534,
+            "width": 270
+          },
+          "containerContentWidth": 481,
+          "containerClientWidth": 265,
+          "clipped": [
+            {
+              "text": "RESP-PC-LONGNAMELONGNAMELONGNAMELONGNAMELONGNAMEXX",
+              "width": 233,
+              "contentWidth": 465
+            }
+          ]
+        },
+        {
+          "phase": "Long transfer destination list",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 534,
+            "width": 270
+          },
+          "containerContentWidth": 265,
+          "containerClientWidth": 265,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rental names and timers must fit the screen.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 490.75,\n+       \"width\": 250.75,\n+     },\n+     \"containerClientWidth\": 251,\n+     \"containerContentWidth\": 251,\n+     \"documentWidth\": 491,\n+     \"innerWidth\": 491,\n+     \"phase\": \"Active rental list\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  25 |             }\n  26 |             await ui.audit('Active rental list');\n> 27 |             expect(ui.failures, 'Rental names and timers must fit the screen.').toEqual([]);\n     |                                                                                 ^\n  28 |         });\n  29 |\n  30 |         /* TYPE: Error path. WHAT: Fit both required-data failure states.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:27:81"
+      ],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 491,
+          "innerWidth": 491,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 490.75,
+            "width": 250.75
+          },
+          "containerContentWidth": 251,
+          "containerClientWidth": 251,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rentals errors must fit the screen.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Rentals error /api/pcs\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Rentals error /api/rentals/active\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  39 |                 await ui.audit(`Rentals error ${endpoint}`);\n  40 |             }\n> 41 |             expect(ui.failures, 'Rentals errors must fit the screen.').toEqual([]);\n     |                                                                        ^\n  42 |         });\n  43 |\n  44 |         /* TYPE: Edge case. WHAT: Fit empty/long lists and keep clocks running.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:41:72"
+      ],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "phone-small 360x800",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rows must fit after resizing without restarting timers.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 398.34,\n+       \"width\": 158.34,\n+     },\n+     \"containerClientWidth\": 158,\n+     \"containerContentWidth\": 158,\n+     \"documentWidth\": 398,\n+     \"innerWidth\": 398,\n+     \"phase\": \"Empty Rentals\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 762.77,\n+       \"width\": 498.77,\n+     },\n+     \"containerClientWidth\": 497,\n+     \"containerContentWidth\": 497,\n+     \"documentWidth\": 788,\n+     \"innerWidth\": 788,\n+     \"phase\": \"Long rental name and Used time\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 360,\n+   },\n+ ]\n\n  67 |             await expect(timer).not.toHaveText(before);\n  68 |             await ui.audit('Rentals after resize');\n> 69 |             expect(ui.failures, 'Rows must fit after resizing without restarting timers.').toEqual([]);\n     |                                                                                            ^\n  70 |         });\n  71 |     });\n  72 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:69:92"
+      ],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 398,
+          "innerWidth": 398,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 398.34,
+            "width": 158.34
+          },
+          "containerContentWidth": 158,
+          "containerClientWidth": 158,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": false,
+          "viewport": 360,
+          "documentWidth": 788,
+          "innerWidth": 788,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 762.77,
+            "width": 498.77
+          },
+          "containerContentWidth": 497,
+          "containerClientWidth": 497,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": true,
+          "viewport": 800,
+          "documentWidth": 800,
+          "innerWidth": 800,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 800,
+            "width": 560
+          },
+          "containerContentWidth": 560,
+          "containerClientWidth": 560,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rental names and timers must fit the screen.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 490.75,\n+       \"width\": 250.75,\n+     },\n+     \"containerClientWidth\": 251,\n+     \"containerContentWidth\": 251,\n+     \"documentWidth\": 492,\n+     \"innerWidth\": 492,\n+     \"phase\": \"Active rental list\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  25 |             }\n  26 |             await ui.audit('Active rental list');\n> 27 |             expect(ui.failures, 'Rental names and timers must fit the screen.').toEqual([]);\n     |                                                                                 ^\n  28 |         });\n  29 |\n  30 |         /* TYPE: Error path. WHAT: Fit both required-data failure states.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:27:81"
+      ],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 492,
+          "innerWidth": 492,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 490.75,
+            "width": 250.75
+          },
+          "containerContentWidth": 251,
+          "containerClientWidth": 251,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rentals errors must fit the screen.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Rentals error /api/pcs\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 436.44,\n+       \"width\": 196.44,\n+     },\n+     \"containerClientWidth\": 196,\n+     \"containerContentWidth\": 196,\n+     \"documentWidth\": 436,\n+     \"innerWidth\": 436,\n+     \"phase\": \"Rentals error /api/rentals/active\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  39 |                 await ui.audit(`Rentals error ${endpoint}`);\n  40 |             }\n> 41 |             expect(ui.failures, 'Rentals errors must fit the screen.').toEqual([]);\n     |                                                                        ^\n  42 |         });\n  43 |\n  44 |         /* TYPE: Edge case. WHAT: Fit empty/long lists and keep clocks running.\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:41:72"
+      ],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 436,
+          "innerWidth": 436,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 436.44,
+            "width": 196.44
+          },
+          "containerContentWidth": 196,
+          "containerClientWidth": 196,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "phone 390x844",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rows must fit after resizing without restarting timers.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 32\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 398.34,\n+       \"width\": 158.34,\n+     },\n+     \"containerClientWidth\": 158,\n+     \"containerContentWidth\": 158,\n+     \"documentWidth\": 398,\n+     \"innerWidth\": 398,\n+     \"phase\": \"Empty Rentals\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 762.77,\n+       \"width\": 498.77,\n+     },\n+     \"containerClientWidth\": 497,\n+     \"containerContentWidth\": 497,\n+     \"documentWidth\": 788,\n+     \"innerWidth\": 788,\n+     \"phase\": \"Long rental name and Used time\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  67 |             await expect(timer).not.toHaveText(before);\n  68 |             await ui.audit('Rentals after resize');\n> 69 |             expect(ui.failures, 'Rows must fit after resizing without restarting timers.').toEqual([]);\n     |                                                                                            ^\n  70 |         });\n  71 |     });\n  72 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:69:92"
+      ],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 398,
+          "innerWidth": 398,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 398.34,
+            "width": 158.34
+          },
+          "containerContentWidth": 158,
+          "containerClientWidth": 158,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 788,
+          "innerWidth": 788,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 762.77,
+            "width": 498.77
+          },
+          "containerContentWidth": 497,
+          "containerClientWidth": 497,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "tablet-portrait 768x1024",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rows must fit after resizing without restarting timers.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 264,\n+       \"right\": 762.77,\n+       \"width\": 498.77,\n+     },\n+     \"containerClientWidth\": 497,\n+     \"containerContentWidth\": 497,\n+     \"documentWidth\": 787,\n+     \"innerWidth\": 787,\n+     \"phase\": \"Long rental name and Used time\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 768,\n+   },\n+ ]\n\n  67 |             await expect(timer).not.toHaveText(before);\n  68 |             await ui.audit('Rentals after resize');\n> 69 |             expect(ui.failures, 'Rows must fit after resizing without restarting timers.').toEqual([]);\n     |                                                                                            ^\n  70 |         });\n  71 |     });\n  72 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:69:92"
+      ],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": true,
+          "viewport": 768,
+          "documentWidth": 768,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 768,
+            "width": 528
+          },
+          "containerContentWidth": 528,
+          "containerClientWidth": 528,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": false,
+          "viewport": 768,
+          "documentWidth": 787,
+          "innerWidth": 787,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 762.77,
+            "width": 498.77
+          },
+          "containerContentWidth": 497,
+          "containerClientWidth": 497,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "tablet-landscape 1024x768",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rows must fit after resizing without restarting timers.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 786.77,\n+       \"width\": 546.77,\n+     },\n+     \"containerClientWidth\": 547,\n+     \"containerContentWidth\": 547,\n+     \"documentWidth\": 787,\n+     \"innerWidth\": 787,\n+     \"phase\": \"Rentals after resize\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 768,\n+   },\n+ ]\n\n  67 |             await expect(timer).not.toHaveText(before);\n  68 |             await ui.audit('Rentals after resize');\n> 69 |             expect(ui.failures, 'Rows must fit after resizing without restarting timers.').toEqual([]);\n     |                                                                                            ^\n  70 |         });\n  71 |     });\n  72 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:69:92"
+      ],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1024,
+            "width": 784
+          },
+          "containerContentWidth": 784,
+          "containerClientWidth": 784,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": true,
+          "viewport": 1024,
+          "documentWidth": 1024,
+          "innerWidth": 1024,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1000,
+            "width": 736
+          },
+          "containerContentWidth": 734,
+          "containerClientWidth": 734,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": false,
+          "viewport": 768,
+          "documentWidth": 787,
+          "innerWidth": 787,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 786.77,
+            "width": 546.77
+          },
+          "containerContentWidth": 547,
+          "containerClientWidth": 547,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "laptop 1366x768",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rows must fit after resizing without restarting timers.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 786.77,\n+       \"width\": 546.77,\n+     },\n+     \"containerClientWidth\": 547,\n+     \"containerContentWidth\": 547,\n+     \"documentWidth\": 787,\n+     \"innerWidth\": 768,\n+     \"phase\": \"Rentals after resize\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 768,\n+   },\n+ ]\n\n  67 |             await expect(timer).not.toHaveText(before);\n  68 |             await ui.audit('Rentals after resize');\n> 69 |             expect(ui.failures, 'Rows must fit after resizing without restarting timers.').toEqual([]);\n     |                                                                                            ^\n  70 |         });\n  71 |     });\n  72 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:69:92"
+      ],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1351,
+            "width": 1111
+          },
+          "containerContentWidth": 1111,
+          "containerClientWidth": 1111,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": true,
+          "viewport": 1366,
+          "documentWidth": 1351,
+          "innerWidth": 1366,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1327,
+            "width": 1063
+          },
+          "containerContentWidth": 1061,
+          "containerClientWidth": 1061,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": false,
+          "viewport": 768,
+          "documentWidth": 787,
+          "innerWidth": 768,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 786.77,
+            "width": 546.77
+          },
+          "containerContentWidth": 547,
+          "containerClientWidth": 547,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "desktop 1920x1080",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1905,
+            "width": 1665
+          },
+          "containerContentWidth": 1665,
+          "containerClientWidth": 1665,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": true,
+          "viewport": 1920,
+          "documentWidth": 1905,
+          "innerWidth": 1920,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 1881,
+            "width": 1617
+          },
+          "containerContentWidth": 1615,
+          "containerClientWidth": 1615,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": true,
+          "viewport": 1080,
+          "documentWidth": 1065,
+          "innerWidth": 1080,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 1065,
+            "width": 825
+          },
+          "containerContentWidth": 825,
+          "containerClientWidth": 825,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-01",
+      "title": "RESP-RENT-01: rental rows and navigation fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Active rental list",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-02",
+      "title": "RESP-RENT-02: Rentals errors fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "passed",
+      "errors": [],
+      "evidence": [
+        {
+          "phase": "Rentals error /api/pcs",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals error /api/rentals/active",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    },
+    {
+      "id": "RESP-RENT-03",
+      "title": "RESP-RENT-03: empty lists, long names, and resizing fit (UI Responsive)",
+      "screen": "phone-landscape 844x390",
+      "file": "admin/rentals/rentals.responsive.spec.js",
+      "status": "failed",
+      "errors": [
+        "Error: Rows must fit after resizing without restarting timers.\n\nexpect(received).toEqual(expected) // deep equality\n\n- Expected  -  1\n+ Received  + 17\n\n- Array []\n+ Array [\n+   Object {\n+     \"clipped\": Array [],\n+     \"container\": Object {\n+       \"left\": 240,\n+       \"right\": 786.77,\n+       \"width\": 546.77,\n+     },\n+     \"containerClientWidth\": 547,\n+     \"containerContentWidth\": 547,\n+     \"documentWidth\": 788,\n+     \"innerWidth\": 788,\n+     \"phase\": \"Rentals after resize\",\n+     \"sidebarWidth\": 240,\n+     \"viewport\": 390,\n+   },\n+ ]\n\n  67 |             await expect(timer).not.toHaveText(before);\n  68 |             await ui.audit('Rentals after resize');\n> 69 |             expect(ui.failures, 'Rows must fit after resizing without restarting timers.').toEqual([]);\n     |                                                                                            ^\n  70 |         });\n  71 |     });\n  72 | }\n    at C:\\Users\\Administrator\\Desktop\\comshop\\qaTesting\\automation\\tests\\admin\\rentals\\rentals.responsive.spec.js:69:92"
+      ],
+      "evidence": [
+        {
+          "phase": "Empty Rentals",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 844,
+            "width": 604
+          },
+          "containerContentWidth": 604,
+          "containerClientWidth": 604,
+          "clipped": []
+        },
+        {
+          "phase": "Long rental name and Used time",
+          "fits": true,
+          "viewport": 844,
+          "documentWidth": 844,
+          "innerWidth": 844,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 264,
+            "right": 820,
+            "width": 556
+          },
+          "containerContentWidth": 554,
+          "containerClientWidth": 554,
+          "clipped": []
+        },
+        {
+          "phase": "Rentals after resize",
+          "fits": false,
+          "viewport": 390,
+          "documentWidth": 788,
+          "innerWidth": 788,
+          "sidebarWidth": 240,
+          "container": {
+            "left": 240,
+            "right": 786.77,
+            "width": 546.77
+          },
+          "containerContentWidth": 547,
+          "containerClientWidth": 547,
+          "clipped": []
+        }
+      ],
+      "writes": [],
+      "unexpected": [],
+      "feedbackNotVerified": []
+    }
+  ]
+}

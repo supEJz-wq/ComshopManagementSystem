@@ -1,10 +1,12 @@
 # Automation Plan
 
-For the central test checklist and links to each suite, open [test.md](test.md).
+For the central test checklist and links to each suite, open [testing.md](testing.md).
 
-**Status: homeAdmin is complete. The pcsAdmin suite is implemented and has
-71 passing / 10 failing checks across four application issues. The full Rentals
-test suite is still pending.**
+**Status: the homeAdmin functional suite is complete. The pcsAdmin functional suite is implemented and has
+91 passing / 10 failing checks across four application issues. The full Rentals
+test suite is still pending. Responsive UI now has 63 executed cases: 33 layout passes / 30 failures (5 message-layout checks remain partial); four confirmed responsive issues are recorded in Excel.**
+
+Invalid-input validation and error-message feedback are independent results. Rejection is a validation PASS; missing messages are feedback failures. Edge cases pass when their stated acceptance/rejection/display expectation is met. See [testing.md](testing.md) for the outcome key.
 
 Checklist key: `[x]` = implemented and passed; `[ ]` = pending or currently failing. A parent stays
 unchecked until every part is complete. Checked items describe the latest recorded verification.
@@ -37,7 +39,8 @@ instruction to start Home authorized its page-object functions and focused tests
 
 ### Test folder organization
 
-Current Admin tests are grouped by page in `tests/admin/home/` and `tests/admin/pcs/`:
+Current Admin tests are grouped by page in `tests/admin/home/`, `tests/admin/pcs/`,
+and `tests/admin/rentals/` (responsive checks only for Rentals):
 
 ```text
 tests/
@@ -45,16 +48,22 @@ tests/
     ├── home/
     │   ├── home.spec.js
     │   ├── home.live.spec.js
-    │   └── home.flow.spec.js
-    └── pcs/
-        ├── pcs.registration-status.spec.js
-        ├── pcs.rentals.spec.js
-        ├── pcs.transfers-page-states.spec.js
-        └── pcs.data.js
+    │   ├── home.flow.spec.js
+    │   └── home.responsive.spec.js
+    ├── pcs/
+    │   ├── pcs.registration-status.spec.js
+    │   ├── pcs.rentals.spec.js
+    │   ├── pcs.transfers-page-states.spec.js
+    │   ├── pcs.data.js
+    │   └── pcs.responsive.spec.js
+    └── rentals/
+        └── rentals.responsive.spec.js
 ```
 
 Future page folders can be added under `tests/admin/` when their test suites
-are started. Home and PCs folders exist; future page folders have not been created.
+are started. Home, PCs, and Rentals folders now exist; Rentals currently contains
+responsive checks only. Run them with `npm run test:responsive`. See the
+[responsive test results](responsive%20test%20results.md) for limits and confirmed issues.
 
 ### Home batch results
 
@@ -372,7 +381,7 @@ and `tests/admin/home/home.flow.spec.js`
 `tests/admin/pcs/pcs.rentals.spec.js`, and
 `tests/admin/pcs/pcs.transfers-page-states.spec.js`
 
-**Latest result: 81 tests run — 71 passed, 10 failed.** No tests were skipped.
+**Latest result: 101 checks run — 91 passed, 10 failed.** No tests were skipped.
 The failures map to four application issues in registration feedback, active
 rental repairs, extension rejection feedback, and immediate transfer status.
 See [PCs test results](pcs%20test%20results.md) for the failures and case counts.
@@ -404,11 +413,17 @@ after all of its variants pass.
 
 - [ ] **PCS-04:** Submit an empty or whitespace-only name.
   **Expected:** Validation prevents creation; inventory and total remain unchanged.
-  **Current result:** 2 failures. Creation is prevented, but no visible form error appears.
+  **Current result:** Validation PASSED for both inputs; feedback FAILED for both.
+
+  - [x] Validation: empty/whitespace input creates no PC (2 checks).
+  - [ ] Feedback: show the required-name error (2 failures).
 
 - [ ] **PCS-05:** Submit an existing PC name.
   **Expected:** Duplicate is rejected with visible feedback; no second PC is created. Confirm exact duplicate/case rules before adding case-variant tests.
-  **Current result:** 1 failure. Backend rejects the duplicate, but its error is not shown.
+  **Current result:** Validation PASSED; feedback FAILED.
+
+  - [x] Validation: backend rejects the duplicate and inventory stays unchanged.
+  - [ ] Feedback: show the duplicate-name error.
 
 - [ ] **PCS-06:** On a Free PC, mark Issue, resolve it, mark Unresponsive, and repair it in separate cases.
   **Expected:** Each supported action updates the named PC only; resolving/repairing an idle faulty PC restores Free and clears its repair flag.
@@ -437,7 +452,9 @@ after all of its variants pass.
 - [ ] **PCS-13:** Attempt an invalid extension or extend past 24 hours of total booked time.
   **Expected:** Request is rejected; the existing rental and booked duration remain unchanged. Missing UI error feedback is reported as a defect.
 
-  - [x] Invalid input and exact 24-hour acceptance (9 checks).
+  - [x] Validation rejects all nine invalid extension scenarios.
+  - [x] Feedback explains the eight invalid-input scenarios.
+  - [x] Exactly 24 hours booked is accepted (edge-case success).
   - [ ] Show the server's rejection when total booked time exceeds 24 hours (1 failure).
 
 - [x] **PCS-14:** Mark an actively rented PC Issue or Unresponsive.
@@ -583,8 +600,8 @@ remaining findings belong to later approved implementation batches.
   across Home, PCs, and Rentals; review results before state-changing coverage.
 - [ ] **PCs:** finish with all cases passing after the recorded application issues are fixed.
 
-  - [x] Implement and run all 81 cases across PCS-01 through PCS-20 plus loading/errors.
-  - [x] Record 71 passing checks and the four issues behind 10 failures.
+  - [x] Implement and run all 101 checks across PCS-01 through PCS-20 plus loading/errors, with validation and feedback reported independently.
+  - [x] Record 91 passing checks and the four issues behind 10 failures; all 20 invalid-input validation checks passed.
   - [ ] Fix and recheck registration feedback, active-rental repair status,
     extension-cap feedback, and immediate transfer status.
 - [ ] **Rentals:** add list, ordering, time display, and controlled-clock cases.

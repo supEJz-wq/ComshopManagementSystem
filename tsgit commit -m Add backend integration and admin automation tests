@@ -1,0 +1,92 @@
+ .github/workflows/playwright.yml                   |   27 [32m+[m
+ .gitignore                                         |    7 [32m+[m
+ README.md                                          |  312 [32m++[m
+ client/README.md                                   |  316 [32m+[m[31m-[m
+ client/index.html                                  |  100 [32m+[m[31m-[m
+ client/src/App.jsx                                 |   39 [32m+[m[31m-[m
+ client/src/api.js                                  |   55 [32m+[m
+ client/src/components/AppShell.jsx                 |    2 [32m+[m[31m-[m
+ client/src/components/DataState.jsx                |   34 [32m+[m
+ client/src/components/PcTile.jsx                   |   10 [32m+[m[31m-[m
+ client/src/components/Sidebar.jsx                  |   46 [32m+[m[31m-[m
+ client/src/components/TransferPicker.jsx           |   54 [32m+[m[31m-[m
+ client/src/components/skeletons.jsx                |  183 [32m++[m
+ client/src/context/AuthProvider.jsx                |  205 [32m+[m[31m-[m
+ client/src/context/PcProvider.jsx                  |  154 [32m+[m[31m-[m
+ client/src/context/RentalProvider.jsx              |  366 [32m+[m[31m--[m
+ client/src/context/TransactionProvider.jsx         |  454 [32m++[m[31m-[m
+ client/src/context/auth.js                         |   13 [32m+[m[31m-[m
+ client/src/context/pcContext.js                    |   13 [32m+[m[31m-[m
+ client/src/context/rentalContext.js                |   12 [32m+[m[31m-[m
+ client/src/context/transactionContext.js           |   10 [32m+[m[31m-[m
+ client/src/data/accounts.js                        |   30 [31m-[m
+ client/src/data/pcs.js                             |   45 [32m+[m[31m-[m
+ client/src/data/rentals.js                         |   64 [32m+[m[31m-[m
+ client/src/data/revenue.js                         |  409 [32m+[m[31m--[m
+ client/src/normalize.js                            |  216 [32m++[m
+ client/src/pages/Accounts.jsx                      |   27 [32m+[m[31m-[m
+ client/src/pages/Analytics.jsx                     |   98 [32m+[m[31m-[m
+ client/src/pages/Home.jsx                          |   16 [32m+[m[31m-[m
+ client/src/pages/Login.jsx                         |   50 [32m+[m[31m-[m
+ client/src/pages/PCs.jsx                           |   29 [32m+[m[31m-[m
+ client/src/pages/Payments.jsx                      |   14 [32m+[m[31m-[m
+ client/src/pages/Rentals.jsx                       |    9 [32m+[m[31m-[m
+ client/src/pages/Revenue.jsx                       |   89 [32m+[m[31m-[m
+ client/vite.config.js                              |   10 [32m+[m[31m-[m
+ package-lock.json                                  |    6 [32m+[m
+ package.json                                       |    1 [32m+[m
+ .../artifacts/home-compatibility/.last-run.json    |    4 [32m+[m
+ .../artifacts/pcs-failure-lifecycle/.last-run.json |    6 [32m+[m
+ .../error-context.md                               |  301 [32m++[m
+ qaTesting/artifacts/pcs-results.json               | 3316 [32m++++++++++++++++++++[m
+ qaTesting/artifacts/refresh-ui/loading-after.png   |  Bin [31m0[m -> [32m4849[m bytes
+ .../refresh-ui/payments-skeleton-small.png         |  Bin [31m0[m -> [32m30596[m bytes
+ .../artifacts/refresh-ui/payments-skeleton.png     |  Bin [31m0[m -> [32m32240[m bytes
+ qaTesting/artifacts/refresh-ui/pcs-after.png       |  Bin [31m0[m -> [32m82044[m bytes
+ qaTesting/artifacts/refresh-ui/pcs-before.png      |  Bin [31m0[m -> [32m51984[m bytes
+ .../artifacts/refresh-ui/pcs-skeleton-small.png    |  Bin [31m0[m -> [32m28133[m bytes
+ qaTesting/artifacts/refresh-ui/pcs-skeleton.png    |  Bin [31m0[m -> [32m31944[m bytes
+ qaTesting/artifacts/refresh-ui/pcs-small-after.png |  Bin [31m0[m -> [32m53310[m bytes
+ qaTesting/artifacts/refresh-ui/website-after.png   |  Bin [31m0[m -> [32m52314[m bytes
+ qaTesting/artifacts/scenario-collection.json       | 2501 [32m+++++++++++++++[m
+ .../artifacts/scenario-home-check/.last-run.json   |    4 [32m+[m
+ qaTesting/artifacts/scenario-labels-after.json     |  817 [32m+++++[m
+ qaTesting/artifacts/scenario-labels-before.json    |  576 [32m++++[m
+ .../automation/.github/workflows/playwright.yml    |   27 [32m+[m
+ qaTesting/automation/.gitignore                    |    8 [32m+[m
+ qaTesting/automation/check-refresh.cjs             |  147 [32m+[m
+ qaTesting/automation/fixtures/admin.fixture.js     |   35 [32m+[m
+ qaTesting/automation/fixtures/home.fixture.js      |   44 [32m+[m
+ qaTesting/automation/fixtures/pcs.fixture.js       |   60 [32m+[m
+ qaTesting/automation/package-lock.json             |   79 [32m+[m
+ qaTesting/automation/package.json                  |   20 [32m+[m
+ qaTesting/automation/pages/admin/homePageAdmin.js  |  100 [32m+[m
+ qaTesting/automation/pages/admin/pcsPageAdmin.js   |  322 [32m++[m
+ .../automation/pages/admin/rentalsPageAdmin.js     |   46 [32m+[m
+ qaTesting/automation/pages/admin/sideBarAdmin.js   |   58 [32m+[m
+ qaTesting/automation/plan/automation plan.md       |  609 [32m++++[m
+ qaTesting/automation/plan/pcs test results.md      |   80 [32m+[m
+ qaTesting/automation/plan/test.md                  |  375 [32m+++[m
+ qaTesting/automation/playwright.config.js          |   82 [32m+[m
+ .../automation/tests/admin/home/home.flow.spec.js  |  146 [32m+[m
+ .../automation/tests/admin/home/home.live.spec.js  |   66 [32m+[m
+ qaTesting/automation/tests/admin/home/home.spec.js |  239 [32m++[m
+ qaTesting/automation/tests/admin/pcs/pcs.data.js   |   32 [32m+[m
+ .../admin/pcs/pcs.registration-status.spec.js      |  199 [32m++[m
+ .../automation/tests/admin/pcs/pcs.rentals.spec.js |  254 [32m++[m
+ .../admin/pcs/pcs.transfers-page-states.spec.js    |  233 [32m++[m
+ qaTesting/automation/utils/homeTestDatabase.php    |  125 [32m+[m
+ qaTesting/automation/utils/run-home-flow.cjs       |  154 [32m+[m
+ server/README.md                                   |   19 [32m+[m[31m-[m
+ server/api/auth/cashier.php                        |   39 [32m+[m
+ server/api/index.php                               |    2 [32m+[m
+ server/api/payments/index.php                      |   81 [32m+[m[31m-[m
+ server/api/payments/refunds.php                    |   44 [32m+[m
+ server/api/revenue/index.php                       |  109 [32m+[m
+ server/{ => tools}/apply-migration.php             |    8 [32m+[m[31m-[m
+ server/{ => tools}/apply-seed.php                  |    6 [32m+[m[31m-[m
+ server/{ => tools}/backup.php                      |    6 [32m+[m[31m-[m
+ server/{ => tools}/db-admin.php                    |    6 [32m+[m[31m-[m
+ server/{ => tools}/restore.php                     |   14 [32m+[m[31m-[m
+ server/{ => tools}/update.php                      |   39 [32m+[m[31m-[m
+ 91 files changed, 13546 insertions(+), 1417 deletions(-)

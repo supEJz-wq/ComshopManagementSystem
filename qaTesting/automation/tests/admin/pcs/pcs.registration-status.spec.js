@@ -6,6 +6,8 @@
  * Edge case = boundary/unusual state. TYPE comments and report tags describe the
  * scenario; pass/fail is a separate result. Filter with --grep @happy-path,
  * --grep @error-path, or --grep @edge-case.
+ * Rejection is a successful validation result. @validation checks saved state;
+ * @feedback checks its explanation independently. Neither tag marks a bug fixed.
  */
 const {test, expect} = require('../../../fixtures/pcs.fixture');
 const {pcNames} = require('./pcs.data');
@@ -74,13 +76,15 @@ test.describe('pcsAdmin — 1. Board and registration', () => {
         expect(await pcs.readComputerTotal()).toBe(before + 1);
     });
 
-    for (const name of ['', '   ']) {
+    for (const name of ['', '   ']) for (const check of ['validation', 'feedback']) {
         /*
          * TYPE: Error path / Edge case
-         * WHAT: Reject a missing PC name with helpful feedback.
+         * WHAT: Report rejected input separately from its error-message feedback.
          * TEST DATA: The test title identifies empty or whitespace-only input.
-         * EXPECTED: A visible name error and no new inventory record. */
-        test(`PCS-04: rejects ${name === '' ? 'an empty' : 'a whitespace-only'} PC name [Error path / Edge case]`, {tag: ['@error-path', '@edge-case']}, async ({page, adminPages, shop}) => {
+         * EXPECTED: Validation PASSES when no PC is created and the form stays open.
+         * Feedback PASSES only when the expected error appears; a missing message
+         * must not imply that the empty name was accepted. */
+        test(`PCS-04: ${check} ${check === 'validation' ? 'rejects' : 'shows an error for'} ${name === '' ? 'an empty' : 'a whitespace-only'} PC name [Error path / Edge case]`, {tag: ['@error-path', '@edge-case', `@${check}`]}, async ({page, adminPages, shop}) => {
             const {pcs} = adminPages;
             const before = await shop.pcs();
             await page.goto('/pcs');
@@ -88,29 +92,42 @@ test.describe('pcsAdmin — 1. Board and registration', () => {
             await pcs.openAddPc();
             await pcs.fillPcName(name);
             await pcs.submitAddPc.click();
-            expect(await shop.pcs()).toEqual(before);
-            await expect(pcs.addPcError).toHaveText('Enter a name for the PC.');
+            if (check === 'validation') {
+                expect(await shop.pcs(), 'Rejected input must not create any PC.').toEqual(before);
+                await expect(pcs.addPcForm, 'Invalid input must not complete registration.').toBeVisible();
+            } else {
+                await expect(pcs.addPcError, 'Feedback issue: rejection must explain the missing name.').toHaveText('Enter a name for the PC.');
+            }
         });
     }
 
-    /*
-     * TYPE: Error path
-     * WHAT: Reject an already registered name without hiding the reason.
-     * TEST DATA: Submit the existing PCS-FREE-01 name.
-     * EXPECTED: API rejection appears in the form, and exactly one copy of the PC remains. */
-    test('PCS-05: shows duplicate-name feedback without adding another PC [Error path]', {tag: '@error-path'}, async ({page, adminPages, shop}) => {
-        const {pcs} = adminPages;
-        await page.goto('/pcs');
-        await pcs.waitForReady();
-        await pcs.openAddPc();
-        await pcs.fillPcName('PCS-FREE-01');
-        const rejected = page.waitForResponse((response) => response.request().method() === 'POST'
-            && new URL(response.url()).pathname === '/api/pcs');
-        await pcs.submitAddPc.click();
-        expect((await rejected).status()).toBe(400);
-        expect((await shop.pcs()).filter((pc) => pc.name === 'PCS-FREE-01')).toHaveLength(1);
-        await expect(pcs.addPcError).toHaveText('PCS-FREE-01 already exists.');
-    });
+    for (const check of ['validation', 'feedback']) {
+        /*
+         * TYPE: Error path
+         * WHAT: Report duplicate rejection separately from its visible message.
+         * TEST DATA: Submit the existing PCS-FREE-01 name.
+         * EXPECTED: Validation PASSES for HTTP 400 and unchanged inventory.
+         * Feedback is a separate result requiring the duplicate-name message. */
+        test(`PCS-05: ${check} ${check === 'validation' ? 'rejects an existing PC name without creating a PC' : 'shows the duplicate-name error'} [Error path]`, {tag: ['@error-path', `@${check}`]}, async ({page, adminPages, shop}) => {
+            const {pcs} = adminPages;
+            const before = await shop.pcs();
+            await page.goto('/pcs');
+            await pcs.waitForReady();
+            await pcs.openAddPc();
+            await pcs.fillPcName('PCS-FREE-01');
+            const rejected = page.waitForResponse((response) => response.request().method() === 'POST'
+                && new URL(response.url()).pathname === '/api/pcs');
+            await pcs.submitAddPc.click();
+            const response = await rejected;
+            if (check === 'validation') {
+                expect(response.status(), 'A valid rejection is a successful bad-path check.').toBe(400);
+                expect(await shop.pcs()).toEqual(before);
+                await expect(pcs.addPcForm).toBeVisible();
+            } else {
+                await expect(pcs.addPcError, 'Feedback issue: duplicate rejection must have a visible reason.').toHaveText('PCS-FREE-01 already exists.');
+            }
+        });
+    }
 });
 
 test.describe('pcsAdmin — 2. Status and repairs', () => {
